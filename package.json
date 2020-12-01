@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/IPBachvarov18/CryptoZargan/issues"
   },
-  "homepage": "https://github.com/IPBachvarov18/CryptoZargan#readme"
+  "homepage": "https://github.com/IPBachvarov18/CryptoZargan#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "request": "^2.88.2",
+    "socket.io": "^3.0.3"
+  }
 }
