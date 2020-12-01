@@ -1,0 +1,19 @@
+{
+  "name": "cryptozargan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IPBachvarov18/CryptoZargan.git"
+  },
+  "author": "CryptoZargan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IPBachvarov18/CryptoZargan/issues"
+  },
+  "homepage": "https://github.com/IPBachvarov18/CryptoZargan#readme"
+}
