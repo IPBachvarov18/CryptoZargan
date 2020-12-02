@@ -10,7 +10,11 @@ function generateRandomNumbers() {
     return digits;
 }
 
-
+/*
+   Checks if there are duplicated digits
+   @param {object} digits  Array with 4 digits
+   @return {object} array with checked/non-repeating digits 
+*/
 function checkDigits(digits) {
     let isValid = true;
 
@@ -41,12 +45,3 @@ function checkDigits(digits) {
     }
     return digits;
 }
-
-let digits = generateRandomNumbers()
-console.log(`Original ${digits}`);
-let smDigits = checkDigits(digits);
-console.log(`Checked ${smDigits}`);
-
-
-
-//turciq
