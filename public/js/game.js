@@ -9,18 +9,19 @@ function getTrulyRandomNumber(blacklister = []) {
     let randNumber;
 
     do {
+
         randNumber = Math.floor(Math.random() * 8);
     } while (blacklister.indexOf(randNumber) != -1);
 
     return randNumber;
 }
 
-let digits = [];
+let digits_ = [];
 
-digits.push(getTrulyRandomNumber([0]));
-digits.push(getTrulyRandomNumber(digits));
-digits.push(getTrulyRandomNumber(digits));
-digits.push(getTrulyRandomNumber(digits));
+digits_.push(getTrulyRandomNumber([0]));
+digits_.push(getTrulyRandomNumber(digits_));
+digits_.push(getTrulyRandomNumber(digits_));
+digits_.push(getTrulyRandomNumber(digits_));
 
 //console.log(digits);
 
@@ -32,6 +33,7 @@ function isThereDuplicates(arr) {
         for (let j = i + 1; j < arr.length; j++) {
 
             if (arr[i] == arr[j]) {
+
                 return true;
             }
         }
@@ -71,8 +73,59 @@ function checkUserInput(inputDigits = []) {
 
 };
 
-console.log(checkUserInput([1, 2, 3, 4]));
-console.log(typeof(true));
+function calculatesGuessedDigits(inputDigits = [], digits = []) {
+
+    let guessed = 0;
+
+
+    for (let i = 0; i < inputDigits.length; i++) {
+
+        if (digits.indexOf(inputDigits[i]) != -1) {
+
+            guessed++;
+        }
+    }
+
+    return guessed;
+
+}
+
+function calculateExactPositions(inputDigits = [], digits = []) {
+
+    let guessedPosition = 0;
+
+    for (let i = 0; i < inputDigits.length; i++) {
+
+        if (inputDigits[i] == digits[i]) {
+
+            guessedPosition++;
+        }
+    }
+
+    return guessedPosition;
+}
+
+function checkGuessedNumber(inputDigits = [], digits = []) {
+
+    let isCorrect = checkUserInput(inputDigits);
+    let guessedDigits = calculatesGuessedDigits(inputDigits, digits)
+    let guessedPositions = calculateExactPositions(inputDigits, digits);
+
+    let result = {
+        Valid: isCorrect,
+        Match: guessedDigits,
+        Exact: guessedPositions
+    };
+
+    return result;
+
+}
+
+//console.log(checkUserInput([1, 2, 3, 4]));
+//console.log(calculatesGuessedDigits([1, 2, 0, 7], [1, 2, 7, 0]));
+//console.log(calculateExactPositions([1, 2, 7, 0], [1, 2, 7, 0]));
+
+console.log(checkGuessedNumber([1, 3, 7, 0], [1, 2, 7, 0]));
 
 /*function checkDigits(digits) {
     let isValid = true;
