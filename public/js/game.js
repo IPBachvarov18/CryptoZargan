@@ -1,17 +1,16 @@
+'use strict'
+
 /*
-   Checks if there are duplicated digits
-   @param {object} digits  Array with 4 digits
-   @return {object} array with checked/non-repeating digits 
+   Generate unique random number
+   @param {object} blacklister Array with blacklisted digits
+   @return {Number} Unique random number 
 */
-
-//const { get } = require("request");
-
-function getTrulyRandomNumber(blacklister = []){
+function getTrulyRandomNumber(blacklister = []) {
     let randNumber;
 
     do {
         randNumber = Math.floor(Math.random() * 8);
-    } while(blacklister.indexOf(randNumber) != -1);
+    } while (blacklister.indexOf(randNumber) != -1);
 
     return randNumber;
 }
@@ -23,7 +22,57 @@ digits.push(getTrulyRandomNumber(digits));
 digits.push(getTrulyRandomNumber(digits));
 digits.push(getTrulyRandomNumber(digits));
 
-console.log(digits);
+//console.log(digits);
+
+
+function isThereDuplicates(arr) {
+
+    for (let i = 0; i < arr.length; i++) {
+
+        for (let j = i + 1; j < arr.length; j++) {
+
+            if (arr[i] == arr[j]) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+/*
+   Checks if user input is valid
+   @param {object} inputDigits Array with user input
+   @return {boolean} Is correct or no 
+*/
+function checkUserInput(inputDigits = []) {
+
+    let whiteList = [0, 1, 2, 3, 4, 5, 6, 7];
+    let correctDigit = 0;
+
+    for (let i = 0; i < inputDigits.length; i++) {
+
+        for (let j = 0; j < whiteList.length; j++) {
+
+            if (inputDigits[i] == whiteList[j]) {
+
+                correctDigit++;
+            }
+        }
+    }
+
+    if (correctDigit == 4 &&
+        inputDigits[0] != 0 &&
+        !isThereDuplicates(inputDigits)) {
+
+        return true;
+    }
+
+    return false;
+
+};
+
+console.log(checkUserInput([1, 2, 3, 4]));
+console.log(typeof(true));
 
 /*function checkDigits(digits) {
     let isValid = true;
