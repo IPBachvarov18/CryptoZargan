@@ -1,21 +1,31 @@
-function generateRandomNumbers() {
-
-    let digits = [
-        Math.floor(Math.random() * 8),
-        Math.floor(Math.random() * 8),
-        Math.floor(Math.random() * 8),
-        Math.floor(Math.random() * 8)
-    ];
-
-    return digits;
-}
-
 /*
    Checks if there are duplicated digits
    @param {object} digits  Array with 4 digits
    @return {object} array with checked/non-repeating digits 
 */
-function checkDigits(digits) {
+
+//const { get } = require("request");
+
+function getTrulyRandomNumber(blacklister = []){
+    let randNumber;
+
+    do {
+        randNumber = Math.floor(Math.random() * 8);
+    } while(blacklister.indexOf(randNumber) != -1);
+
+    return randNumber;
+}
+
+let digits = [];
+
+digits.push(getTrulyRandomNumber([0]));
+digits.push(getTrulyRandomNumber(digits));
+digits.push(getTrulyRandomNumber(digits));
+digits.push(getTrulyRandomNumber(digits));
+
+console.log(digits);
+
+/*function checkDigits(digits) {
     let isValid = true;
 
     while (digits[0] == 0) {
@@ -44,4 +54,4 @@ function checkDigits(digits) {
         }
     }
     return digits;
-}
+}*/
