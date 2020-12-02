@@ -6,6 +6,17 @@ app.get("/", function(req, res) {
     res.render("index.ejs");
 });
 
+app.get("/game", function(req, res) {
+    res.render("game.ejs");
+});
+
+app.get("/about", function(req, res) {
+    res.render("about.ejs");
+});
+
+app.get("/contact", function(req, res) {
+    res.render("contact.ejs");
+})
 app.get("*", function(req, res) {
     res.send("Page not found! Error 404");
 })
