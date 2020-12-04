@@ -1,16 +1,14 @@
 'use strict'
 
+let gamesInProgress;
+
+const uuid = require("uuid");
+
 /*
    Generate unique random number
    @param {object} blacklister Array with blacklisted digits
    @return {Number} Unique random number 
 */
-
-let gamesInProgress;
-
-const uuid = require("uuid");
-
-
 function getTrulyRandomNumber(blacklister = []) {
     let randNumber;
 
@@ -31,54 +29,12 @@ function getTrulyRandomNumber(blacklister = []) {
 
 //console.log(digits);
 
-
-function isThereDuplicates(arr) {
-
-    for (let i = 0; i < arr.length; i++) {
-
-        for (let j = i + 1; j < arr.length; j++) {
-
-            if (arr[i] == arr[j]) {
-
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 /*
-   Checks if user input is valid
-   @param {object} inputDigits Array with user input
-   @return {boolean} Is correct or no 
+   Calculate guessed digits, 
+   @param {string} inputDigits the input of the user
+   @param {string} digits the correct code
+   @return {Number} The number of guessed digits
 */
-function checkUserInput(inputDigits = []) {
-
-    let whiteList = [0, 1, 2, 3, 4, 5, 6, 7];
-    let correctDigit = 0;
-
-    for (let i = 0; i < inputDigits.length; i++) {
-
-        for (let j = 0; j < whiteList.length; j++) {
-
-            if (inputDigits[i] == whiteList[j]) {
-
-                correctDigit++;
-            }
-        }
-    }
-
-    if (correctDigit == 4 &&
-        inputDigits[0] != 0 &&
-        !isThereDuplicates(inputDigits)) {
-
-        return true;
-    }
-
-    return false;
-
-};
-
 function calculatesGuessedDigits(inputDigits, digits) {
 
     let guessed = 0;
@@ -98,6 +54,12 @@ function calculatesGuessedDigits(inputDigits, digits) {
 
 //console.log(calculatesGuessedDigits("1234", "5634"));
 
+/*
+   Calculate exact positions,
+   @param {string} inputDigits the input of the user
+   @param {string} digits the correct code
+   @return {Number} The number of digits on exact positions
+*/
 function calculateExactPositions(inputDigits, digits) {
 
     let guessedPosition = 0;
@@ -113,22 +75,10 @@ function calculateExactPositions(inputDigits, digits) {
     return guessedPosition;
 }
 
-function checkGuessedNumber(inputDigits = [], digits = []) {
-
-    let isCorrect = checkUserInput(inputDigits);
-    let guessedDigits = calculatesGuessedDigits(inputDigits, digits)
-    let guessedPositions = calculateExactPositions(inputDigits, digits);
-
-    let result = {
-        Valid: isCorrect,
-        Match: guessedDigits,
-        Exact: guessedPositions
-    };
-
-    return result;
-
-}
-
+/*
+   Initialise game session, 
+   @return {String} Generated ID of the game
+*/
 function startGame() {
 
     let id = uuid.v4();
@@ -159,6 +109,11 @@ function startGame() {
     console.log(gamesInProgress);
 }
 
+/*
+   Process user's data, 
+   @param {string} Generated ID of the game
+   @return {Object} Returns object with user's guess, matches and exact matches
+*/
 function getGuessedData(id) {
 
     let renderData = [];
