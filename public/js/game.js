@@ -135,7 +135,7 @@ function startGame() {
 
     let digits = [];
 
-    digits.push(getTrulyRandomNumber([0]));
+    digits.push(getTrulyRandomNumber(digits));
     digits.push(getTrulyRandomNumber(digits));
     digits.push(getTrulyRandomNumber(digits));
     digits.push(getTrulyRandomNumber(digits));
