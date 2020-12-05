@@ -14,8 +14,19 @@
 
 <body>
 
+
+
     <%- include("partials/navigationBar.ejs"); %>
         <h1>Welcome</h1>
+
+
+        <form action="/game" method="POST">
+            <input type="number" min="0" , max="7" name="digit_1">
+            <input type="number" min="0" , max="7" name="digit_2">
+            <input type="number" min="0" , max="7" name="digit_3">
+            <input type="number" min="0" , max="7" name="digit_4">
+            <input type="submit">
+        </form>
 </body>
 
 </html>
