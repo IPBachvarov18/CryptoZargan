@@ -32,7 +32,7 @@ app.post("/game", function(req, res) {
 
     let data = req.body;
     let guess = data.digit_1 + data.digit_2 + data.digit_3 + data.digit_4;
-    game.getUserInput(guess);
+    game.processTurn(guess);
     res.redirect("/");
 });
 
