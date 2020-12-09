@@ -65,7 +65,31 @@ function calculateExactPositions(inputDigits, digits) {
     return guessedPosition;
 }
 
-function getUserInput(input) {
+function checkUserInput(input) {
+
+    if (input.length > 4) {
+        return false;
+    }
+
+    let usedDigits = "";
+
+    for (let i = 0; i < input.length; i++) {
+        if (input[i] <= "0" || input[i] >= "7") {
+            return false;
+        }
+
+        if (usedDigits.indexOf(input[i]) != -1) {
+            return false;
+        }
+
+        usedDigits += input[i];
+    }
+
+    return true;
+}
+
+function processTurn(input) {
+
     console.log(input);
 }
 
@@ -125,8 +149,6 @@ function getGuessedData(id) {
     }
 
     return renderData;
-
 }
 
-
-exports.getUserInput = getUserInput;
+exports.processTurn = processTurn;
