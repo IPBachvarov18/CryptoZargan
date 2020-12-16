@@ -1,47 +1,59 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const game = require("./public/js/game.js")
+const express = require('express');
+const bodyParser = require('body-parser');
+const http = require('http');
+const { isObject } = require('util');
+const socketio = require("socket.io")
 
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static("./public"));
 
-
-app.get("/", function(req, res) {
-
-    res.render("index.ejs");
-});
-
-app.get("/game", function(req, res) {
-
-    res.render("game.ejs");
-});
-
-app.get("/about", function(req, res) {
-
-    res.render("about.ejs");
-});
-
-app.get("/contact", function(req, res) {
-
-    res.render("contact.ejs");
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/public/index.html');
 })
 
-app.post("/game", function(req, res) {
-
-    let data = req.body;
-    let guess = data.digit_1 + data.digit_2 + data.digit_3 + data.digit_4;
-    game.processTurn(guess);
-    res.redirect("/");
+app.get('/singleplayer', function(req, res) {
+    res.sendFile(__dirname + '/public/singleplayer.html');
 });
 
-app.get("*", function(req, res) {
+app.get('/multiplayer', function(req, res) {
+    res.sendFile(__dirname + '/public/multiplayer.html');
+});
 
-    res.send("Page not found! Error 404");
+app.get('/team', function(req, res) {
+    res.sendFile(__dirname + '/public/aboutTeam.html');
+});
+
+app.get('/contact', function(req, res) {
+    res.sendFile(__dirname + '/public/contact.html');
+});
+
+app.get('/project', function(req, res) {
+    res.sendFile(__dirname + '/public/aboutProject.html');
+});
+
+app.get('/rules', function(req, res) {
+    res.sendFile(__dirname + '/public/rules.html');
+});
+
+app.get('/documentation', function(req, res) {
+    res.send('Documentation');
+});
+
+
+
+
+io.on('connection', function(socket) {
+    console.log('New Connection!');
 })
 
-app.listen(6969, () => {
 
-    console.log("Server started on port 6969");
+server.listen(6969, () => {
+
+    console.log('Server started on port 6969');
 });
