@@ -15,7 +15,7 @@ app.use(express.static("./public"));
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
-});
+})
 
 app.get('/singleplayer', function(req, res) {
     res.sendFile(__dirname + '/public/singleplayer.html');
