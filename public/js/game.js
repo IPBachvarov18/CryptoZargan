@@ -2,7 +2,7 @@
 
 let gamesInProgress;
 
-const uuid = require("uuid");
+const uuid = require('uuid');
 
 /*
    Generate unique random number
@@ -71,10 +71,10 @@ function checkUserInput(input) {
         return false;
     }
 
-    let usedDigits = "";
+    let usedDigits = '';
 
     for (let i = 0; i < input.length; i++) {
-        if (input[i] <= "0" || input[i] >= "7") {
+        if (input[i] <= '0' || input[i] >= '7') {
             return false;
         }
 
@@ -109,7 +109,7 @@ function startGame() {
     digits.push(getTrulyRandomNumber(digits));
 
 
-    let number = "";
+    let number = '';
 
     for (let i = 0; i < 4; i++) {
 
