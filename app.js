@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
 const { isObject } = require('util');
-const socketio = require("socket.io")
+const socketio = require('socket.io');
+const game = require('./utils/game');
 
 const app = express();
 const server = http.createServer(app);
@@ -18,11 +19,7 @@ app.get('/', function(req, res) {
 })
 
 app.get('/singleplayer', function(req, res) {
-    res.sendFile(__dirname + '/public/singleplayerJoin.html');
-});
-
-app.get('/singleplayerPlay', function(req, res) {
-    res.sendFile(__dirname + '/public/singleplayerPlay.html');
+    res.sendFile(__dirname + '/public/singleplayer.html');
 });
 
 app.get('/multiplayer', function(req, res) {
@@ -50,16 +47,53 @@ app.get('/documentation', function(req, res) {
 });
 
 
-
-
-
-
 io.on('connection', function(socket) {
     console.log('New Connection!');
 
-    socket.on('crackCode', function(guessedCode) {
 
+    socket.on('startSingleplayer', function(username) {
+        let gameCount = 1;
+        let hasWon = false;
+        let level = 1;
+        let hasTries = true;
+        let guessedDigits = 0;
+        let guessedPosition = 0;
+
+        console.log(username);
+
+        let code = game.generateCode();
+
+        console.log(code);
+
+        socket.on('nextLevel', function() {
+            level = 2;
+            guessedDigits = 0;
+            guessedPosition = 0;
+            gameCount = 1;
+            code = game.generateCode(); // LEVEL 2
+            console.log(code);
+            hasWon = false;
+            hasTries = true;
+        })
+
+        socket.on('crackCodeSinglePlayer', function(guessedCode) {
+            hasTries = gameCount <= 3;
+            if (hasTries) {
+                gameCount++;
+                guessedDigits = game.calculatesGuessedDigits(guessedCode, code);
+                guessedPosition = game.calculateExactPositions(guessedCode, code);
+                hasWon = guessedPosition == 4;
+                if (hasWon && level == 2) {
+                    gameCount = 420;
+                }
+                console.log("Digs: " + guessedDigits, "Pos: " + guessedPosition);
+
+            }
+            socket.emit("singleplayerAnswer", { guessedDigits, guessedPosition, hasTries, hasWon, level });
+        })
     })
+
+
 
 })
 

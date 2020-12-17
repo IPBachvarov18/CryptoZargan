@@ -1,12 +1,37 @@
 const socket = io();
 
+const inputUsername = document.getElementById("inputUsername");
 const guessedDigits = document.getElementById("guessedDigits");
+const levelActions = document.getElementById("levelActions");
 
-const username = Qs.parse(location.search, {
-    ignoreQueryPrefix: true
-})
+if (inputUsername) {
+    inputUsername.addEventListener("submit", function(e) {
+        e.preventDefault();
 
-console.log(username);
+        inputUsername.style.display = "none";
+
+        const username = e.target.elements.username.value;
+        console.log(username);
+        socket.emit('startSingleplayer', username);
+    });
+}
+
+if (levelActions) {
+    levelActions.addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+
+        socket.emit("nextLevel");
+
+
+        guessedDigits.style.display = "block";
+        levelResult.style.display = "none";
+    });
+
+}
+
+
 
 if (guessedDigits) {
     guessedDigits.addEventListener("submit", function(e) {
@@ -21,6 +46,22 @@ if (guessedDigits) {
 
         console.log(number);
 
-        socket.emit('crackCode', number);
+        socket.emit('crackCodeSinglePlayer', number);
+
     });
 }
+
+socket.on("singleplayerAnswer", function(obj) {
+    console.log(obj);
+
+    if (obj.hasWon) {
+        if (obj.level == 1) {
+
+            guessedDigits.style.display = "none";
+            levelResult.style.display = "block";
+        } else {
+            alert("You won!");
+        }
+
+    }
+});
