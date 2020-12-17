@@ -127,6 +127,27 @@ function startGame() {
     //console.log(gamesInProgress);
 }
 
+
+function generateCode() {
+
+    let digits = [];
+
+    digits.push(getTrulyRandomNumber(digits));
+    digits.push(getTrulyRandomNumber(digits));
+    digits.push(getTrulyRandomNumber(digits));
+    digits.push(getTrulyRandomNumber(digits));
+
+
+    let code = '';
+
+    for (let i = 0; i < 4; i++) {
+
+        code += String(digits[i]);
+    }
+
+    return code
+}
+
 /*
    Process user's data, 
    @param {string} Generated ID of the game
@@ -151,4 +172,6 @@ function getGuessedData(id) {
     return renderData;
 }
 
-exports.processTurn = processTurn;
+exports.generateCode = generateCode;
+exports.calculateExactPositions = calculateExactPositions;
+exports.calculatesGuessedDigits = calculatesGuessedDigits;
