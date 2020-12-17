@@ -18,7 +18,11 @@ app.get('/', function(req, res) {
 })
 
 app.get('/singleplayer', function(req, res) {
-    res.sendFile(__dirname + '/public/singleplayer.html');
+    res.sendFile(__dirname + '/public/singleplayerJoin.html');
+});
+
+app.get('/singleplayerPlay', function(req, res) {
+    res.sendFile(__dirname + '/public/singleplayerPlay.html');
 });
 
 app.get('/multiplayer', function(req, res) {
@@ -48,8 +52,15 @@ app.get('/documentation', function(req, res) {
 
 
 
+
+
 io.on('connection', function(socket) {
     console.log('New Connection!');
+
+    socket.on('crackCode', function(guessedCode) {
+
+    })
+
 })
 
 
