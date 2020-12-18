@@ -68,7 +68,7 @@
     </form>
 
 
-    <form id="guessedDigits">
+    <form id="guessedDigits" style="display:none">
         <input type="number" min="0" , max="7" name="digit1">
         <input type="number" min="0" , max="7" name="digit2">
         <input type="number" min="0" , max="7" name="digit3">
@@ -78,9 +78,16 @@
 
     <div id="levelResult" style="display: none">
         <form id="levelActions">
+            <p>You completed level 1. Are you ready to continue</p>
             <button type="submit" value="nextLevel" class="btn">Next Level</button>
-            <a href="index.html"><button type="submit" class="btn">Surrender</button></a>
+            <a href="/"><button type="submit" class="btn">Surrender</button></a>
         </form>
+    </div>
+
+    <div id="won" style="display:none">
+        <p>You won!!!!!</p>
+        <a href="/"><button class="btn>">Home</button></a>
+        <a href="/singleplayer"><button class="btn>">Play Again</button></a>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.js" integrity="sha512-53y53BQwxZvk4YGd9SkHPqI7nDwlIIFZ4D2BSJG08Co7y6O3YsWeRtO6trPtdoyqfTCTkTbCulNosIAI6E4UvQ==" crossorigin="anonymous"></script>

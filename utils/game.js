@@ -97,35 +97,35 @@ function processTurn(input) {
    Initialise game session, 
    @return {String} Generated ID of the game
 */
-function startGame() {
+// function startGame() {
 
-    let id = uuid.v4();
+//     let id = uuid.v4();
 
-    let digits = [];
+//     let digits = [];
 
-    digits.push(getTrulyRandomNumber(digits));
-    digits.push(getTrulyRandomNumber(digits));
-    digits.push(getTrulyRandomNumber(digits));
-    digits.push(getTrulyRandomNumber(digits));
-
-
-    let number = '';
-
-    for (let i = 0; i < 4; i++) {
-
-        number += String(digits[i]);
-    }
+//     digits.push(getTrulyRandomNumber(digits));
+//     digits.push(getTrulyRandomNumber(digits));
+//     digits.push(getTrulyRandomNumber(digits));
+//     digits.push(getTrulyRandomNumber(digits));
 
 
-    // Dictionary
-    gamesInProgress[id] = {
+//     let number = '';
 
-        generatedCode: number,
-        guesses: []
-    }
+//     for (let i = 0; i < 4; i++) {
 
-    //console.log(gamesInProgress);
-}
+//         number += String(digits[i]);
+//     }
+
+
+//     // Dictionary
+//     gamesInProgress[id] = {
+
+//         generatedCode: number,
+//         guesses: []
+//     }
+
+//     //console.log(gamesInProgress);
+// }
 
 
 function generateCode() {
@@ -153,24 +153,24 @@ function generateCode() {
    @param {string} Generated ID of the game
    @return {Object} Returns object with user's guess, matches and exact matches
 */
-function getGuessedData(id) {
+// function getGuessedData(id) {
 
-    let renderData = [];
+//     let renderData = [];
 
-    for (let i = 0; i < gamesInProgress[id].guesses.length; i++) {
+//     for (let i = 0; i < gamesInProgress[id].guesses.length; i++) {
 
-        let currGuess = gamesInProgress[id].guesses[i];
-        let currNum = gamesInProgress[id].generatedCode;
+//         let currGuess = gamesInProgress[id].guesses[i];
+//         let currNum = gamesInProgress[id].generatedCode;
 
-        renderData.push({
-            guess: currGuess,
-            matches: calculatesGuessedDigits(currGuess, currNum),
-            exactMatches: calculateExactPositions(currGuess, currNum)
-        });
-    }
+//         renderData.push({
+//             guess: currGuess,
+//             matches: calculatesGuessedDigits(currGuess, currNum),
+//             exactMatches: calculateExactPositions(currGuess, currNum)
+//         });
+//     }
 
-    return renderData;
-}
+//     return renderData;
+// }
 
 exports.generateCode = generateCode;
 exports.calculateExactPositions = calculateExactPositions;
