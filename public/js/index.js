@@ -3,12 +3,14 @@ const socket = io();
 const inputUsername = document.getElementById("inputUsername");
 const guessedDigits = document.getElementById("guessedDigits");
 const levelActions = document.getElementById("levelActions");
+const won = document.getElementById("won");
 
 if (inputUsername) {
     inputUsername.addEventListener("submit", function(e) {
         e.preventDefault();
 
         inputUsername.style.display = "none";
+        guessedDigits.style.display = "block";
 
         const username = e.target.elements.username.value;
         console.log(username);
@@ -60,8 +62,11 @@ socket.on("singleplayerAnswer", function(obj) {
             guessedDigits.style.display = "none";
             levelResult.style.display = "block";
         } else {
-            alert("You won!");
+            guessedDigits.style.display = "none";
+            won.style.display = "block";
         }
 
     }
+
+
 });
