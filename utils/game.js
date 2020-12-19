@@ -29,7 +29,9 @@ function getTrulyRandomNumber(blacklister = []) {
 function calculatesGuessedDigits(inputDigits, digits) {
 
     let guessed = 0;
-
+    if (!inputDigits || !digits) {
+        return {};
+    }
 
     for (let i = 0; i < inputDigits.length; i++) {
 
@@ -53,6 +55,8 @@ function calculatesGuessedDigits(inputDigits, digits) {
 function calculateExactPositions(inputDigits, digits) {
 
     let guessedPosition = 0;
+
+
 
     for (let i = 0; i < inputDigits.length; i++) {
 

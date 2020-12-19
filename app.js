@@ -66,17 +66,24 @@ io.on('connection', function(socket) {
         console.log(code);
 
         socket.on('nextLevel', function() {
-            level = 2;
-            guessedDigits = 0;
-            guessedPosition = 0;
-            gameCount = 1;
-            code = game.generateCode(); // LEVEL 2
-            console.log(code);
-            hasWon = false;
-            hasTries = true;
+            if (hasWon) {
+                level = 2;
+                guessedDigits = 0;
+                guessedPosition = 0;
+                gameCount = 1;
+                code = game.generateCode(); // LEVEL 2
+                console.log(code);
+                hasWon = false;
+                hasTries = true;
+            }
         })
 
         socket.on('crackCodeSinglePlayer', function(guessedCode) {
+            if (!guessedCode || guessedCode.length != 4) {
+                console.log(`Invalid request: !${guessedCode}!`)
+                return {};
+            }
+
             hasTries = gameCount <= 3;
             if (hasTries) {
                 gameCount++;
