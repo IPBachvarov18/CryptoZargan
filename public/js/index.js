@@ -4,6 +4,10 @@ const inputUsername = document.getElementById("inputUsername");
 const guessedDigits = document.getElementById("guessedDigits");
 const levelActions = document.getElementById("levelActions");
 const won = document.getElementById("won");
+const lose = document.getElementById("lose");
+const triesTableBody = document.getElementById("triesTable").getElementsByTagName('tbody')[0];
+const triesTable = document.getElementById("triesTable");
+
 
 if (inputUsername) {
     inputUsername.addEventListener("submit", function(e) {
@@ -11,6 +15,8 @@ if (inputUsername) {
 
         inputUsername.style.display = "none";
         guessedDigits.style.display = "block";
+        triesTable.style.display = "block";
+
 
         const username = e.target.elements.username.value;
         console.log(username);
@@ -29,6 +35,7 @@ if (levelActions) {
 
         guessedDigits.style.display = "block";
         levelResult.style.display = "none";
+        triesTableBody.innerHTML = "";
     });
 
 }
@@ -68,5 +75,26 @@ socket.on("singleplayerAnswer", function(obj) {
 
     }
 
+    if (!obj.hasTries) {
+        lose.style.display = "block";
+        guessedDigits.style.display = "none";
+        triesTable.style.display = "none";
+
+    }
+
+    displayTries(obj);
+
 
 });
+
+function displayTries(obj) {
+
+    let newRow = triesTableBody.insertRow();
+    let cell1 = newRow.insertCell(0);
+    let cell2 = newRow.insertCell(1);
+    let cell3 = newRow.insertCell(2);
+
+    cell1.innerHTML = obj.guessedDigits;
+    cell2.innerHTML = obj.guessedPosition;
+    cell3.innerHTML = 1234;
+}
