@@ -52,47 +52,55 @@ io.on('connection', function(socket) {
 
 
     socket.on('startSingleplayer', function(username) {
-        let gameCount = 1;
-        let hasWon = false;
-        let level = 1;
-        let hasTries = true;
-        let guessedDigits = 0;
-        let guessedPosition = 0;
+        if (username != undefined) {
+            let gameCount = 1;
+            let hasWon = false;
+            let level = 1;
+            let hasTries = true;
+            let guessedDigits = 0;
+            let guessedPosition = 0;
 
-        console.log(username);
+            console.log(username);
 
-        let code = game.generateCode();
+            let code = game.generateCode();
 
-        console.log(code);
-
-        socket.on('nextLevel', function() {
-            level = 2;
-            guessedDigits = 0;
-            guessedPosition = 0;
-            gameCount = 1;
-            code = game.generateCode(); // LEVEL 2
             console.log(code);
-            hasWon = false;
-            hasTries = true;
-        })
 
-        socket.on('crackCodeSinglePlayer', function(guessedCode) {
-            hasTries = gameCount <= 3;
-            if (hasTries) {
-                gameCount++;
-                guessedDigits = game.calculatesGuessedDigits(guessedCode, code);
-                guessedPosition = game.calculateExactPositions(guessedCode, code);
-                hasWon = guessedPosition == 4;
-                if (hasWon && level == 2) {
-                    gameCount = 420;
+            socket.on('nextLevel', function() {
+                if (hasWon) {
+                    level = 2;
+                    guessedDigits = 0;
+                    guessedPosition = 0;
+                    gameCount = 1;
+                    code = game.generateCode(); // LEVEL 2
+                    console.log(code);
+                    hasWon = false;
+                    hasTries = true;
                 }
-                console.log("Digs: " + guessedDigits, "Pos: " + guessedPosition);
+            })
 
-            }
-            socket.emit("singleplayerAnswer", { guessedDigits, guessedPosition, hasTries, hasWon, level });
-        })
+            socket.on('crackCodeSinglePlayer', function(guessedCode) {
+                if (!guessedCode || guessedCode.length != 4) {
+                    console.log(`Invalid request: !${guessedCode}!`)
+                    return {};
+                }
+
+                hasTries = gameCount <= 3;
+                if (hasTries) {
+                    gameCount++;
+                    guessedDigits = game.calculatesGuessedDigits(guessedCode, code);
+                    guessedPosition = game.calculateExactPositions(guessedCode, code);
+                    hasWon = guessedPosition == 4;
+                    if (hasWon && level == 2) {
+                        gameCount = 420;
+                    }
+                    console.log("Digs: " + guessedDigits, "Pos: " + guessedPosition);
+
+                }
+                socket.emit("singleplayerAnswer", { guessedDigits, guessedPosition, hasTries, hasWon, level });
+            })
+        }
     })
-
 
 
 })
