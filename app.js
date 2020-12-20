@@ -85,7 +85,7 @@ io.on('connection', function(socket) {
                     return {};
                 }
 
-                hasTries = gameCount <= 3;
+                hasTries = gameCount <= 13;
                 if (hasTries) {
                     gameCount++;
                     guessedDigits = game.calculatesGuessedDigits(guessedCode, code);
