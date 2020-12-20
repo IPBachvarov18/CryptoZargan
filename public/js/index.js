@@ -41,6 +41,7 @@ if (levelActions) {
 }
 
 
+let number;
 
 if (guessedDigits) {
     guessedDigits.addEventListener("submit", function(e) {
@@ -51,12 +52,18 @@ if (guessedDigits) {
         const digit3 = e.target.elements.digit3.value;
         const digit4 = e.target.elements.digit4.value;
 
-        const number = String(digit1) + String(digit2) + String(digit3) + String(digit4);
+        number = String(digit1) + String(digit2) + String(digit3) + String(digit4);
 
         console.log(number);
 
         socket.emit('crackCodeSinglePlayer', number);
 
+        e.target.elements.digit1.value = "";
+        e.target.elements.digit2.value = "";
+        e.target.elements.digit3.value = "";
+        e.target.elements.digit4.value = "";
+
+        e.target.elements.digit1.focus();
     });
 }
 
@@ -96,5 +103,5 @@ function displayTries(obj) {
 
     cell1.innerHTML = obj.guessedDigits;
     cell2.innerHTML = obj.guessedPosition;
-    cell3.innerHTML = 1234;
+    cell3.innerHTML = number;
 }
