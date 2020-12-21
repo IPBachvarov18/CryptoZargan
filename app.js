@@ -4,6 +4,7 @@ const http = require('http');
 const { isObject } = require('util');
 const socketio = require('socket.io');
 const game = require('./utils/game');
+const uuid = require("uuid");
 
 const app = express();
 const server = http.createServer(app);
@@ -46,6 +47,7 @@ app.get('/documentation', function(req, res) {
     res.send('Documentation');
 });
 
+let multiGameState = {};
 
 io.on('connection', function(socket) {
     console.log('New Connection!');
@@ -101,6 +103,45 @@ io.on('connection', function(socket) {
             })
         }
     })
+
+
+
+    socket.on("chooseRole", function(nickname, role) {
+        const roomId = uuid.v4();
+        socket.join(roomId);
+
+        multiGameState[roomId] = {
+            firstPlayer: nickname,
+            firstPlayerRole: role,
+            secondPlayer: null,
+            secondPlayerRole: null
+        };
+
+        console.log(`${nickname} who is ${role} has joind in room with id ${roomId}`);
+        console.log(multiGameState);
+    })
+
+    socket.on("joinRoom", function(nickname, roomId) {
+        console.log(multiGameState);
+        const user = { nickname, roomId };
+        // TODO: check if room exist, Stoyane!
+        socket.join(user.roomId);
+
+        multiGameState[roomId].secondPlayer = nickname;
+        if (multiGameState[roomId].firstPlayerRole == "German") {
+            multiGameState[roomId].secondPlayerRole = "British";
+        } else {
+            multiGameState[roomId].secondPlayerRole = "German";
+        }
+        multiGameState[roomId].state = "In progress";
+
+        console.log(multiGameState);
+
+
+        console.log(`${nickname} who is ${multiGameState[roomId].secondPlayerRole} has joind in room with id ${roomId}`);
+
+        io.to(user.roomId).emit('qsha', user.nickname);
+    });
 
 
 })
