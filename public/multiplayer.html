@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <title>Multiplayer</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -61,6 +61,45 @@
     </nav>
 
     <h1>This is multiplayer</h1>
+
+    <div id="createOrJoin">
+        <h1>Choose:</h1>
+        <input id="create" type="button" value="Create Game" name="create">
+        <input id="join" type="button" value="Join Game" name="join">
+    </div>
+
+    <div id="waitingForPlayer" style="display: none;">
+        <p>Send this code to your friend and play together</p>
+        <p id="roomId"></p>
+    </div>
+
+    <div id="createGame">
+        <form id="createGameForm" style="display: none;">
+            Username: <input type="text" name="nickname"></br>
+            Role:<select name="role">
+                <option value="German">German</option>
+                <option value="British">British</option>
+              </select>
+            <input type="submit">
+        </form>
+    </div>
+
+    <div id="joinGame">
+        <form id="joinGameForm" style="display: none;">
+            Username: <input type="text" name="nickname"></br>
+            Game ID: <input type="text" name="gameId">
+            <input type="submit">
+        </form>
+    </div>
+
+    <p id="qshaa"></p>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.js" integrity="sha512-53y53BQwxZvk4YGd9SkHPqI7nDwlIIFZ4D2BSJG08Co7y6O3YsWeRtO6trPtdoyqfTCTkTbCulNosIAI6E4UvQ==" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <script src="js/multiplayer.js"></script>
 </body>
 
 </html>
