@@ -9,6 +9,7 @@ const triesTableBody = document.getElementById("triesTable").getElementsByTagNam
 const triesTable = document.getElementById("triesTable");
 
 
+
 if (inputUsername) {
     inputUsername.addEventListener("submit", function(e) {
         e.preventDefault();
