@@ -47,6 +47,11 @@ app.get('/documentation', function(req, res) {
     res.send('Documentation');
 });
 
+app.get('*', function(req, res) {
+    res.send('Not Found');
+});
+
+
 let multiGameState = {};
 
 io.on('connection', function(socket) {
@@ -119,13 +124,18 @@ io.on('connection', function(socket) {
 
         console.log(`${nickname} who is ${role} has joind in room with id ${roomId}`);
         console.log(multiGameState);
-    })
+
+        socket.emit("generateId", roomId)
+    });
 
     socket.on("joinRoom", function(nickname, roomId) {
-        console.log(multiGameState);
-        const user = { nickname, roomId };
+
         // TODO: check if room exist, Stoyane!
-        socket.join(user.roomId);
+        socket.join(roomId);
+
+        let size = Object.keys(multiGameState).length
+        console.log(size)
+
 
         multiGameState[roomId].secondPlayer = nickname;
         if (multiGameState[roomId].firstPlayerRole == "German") {
@@ -140,8 +150,13 @@ io.on('connection', function(socket) {
 
         console.log(`${nickname} who is ${multiGameState[roomId].secondPlayerRole} has joind in room with id ${roomId}`);
 
-        io.to(user.roomId).emit('qsha', user.nickname);
+        socket.broadcast.to(roomId).emit('playerJoined', `${nickname} has joined`, multiGameState[roomId]);
+
     });
+
+    socket.on("startGame", function() {
+        console.log("New multiplayer game has started!");
+    })
 
 
 })
