@@ -69,13 +69,13 @@
         <input id="join" type="button" value="Join Game" name="join">
     </div>
 
-    <div id="waitingForPlayer" style="display: none;">
+    <div id="waitingForPlayer" style="display: none">
         <p>Send this code to your friend and play together</p>
         <p id="roomId"></p>
     </div>
 
     <div id="createGame">
-        <form id="createGameForm" style="display: none;">
+        <form id="createGameForm" style="display: none">
             Username: <input type="text" name="nickname"></br>
             Role:<select name="role">
                 <option value="German">German</option>
@@ -95,6 +95,22 @@
 
     <p id="qshaa"></p>
 
+    <form id="guessedDigits" style="display:none">
+        <input type="number" min="0" , max="7" name="digit1">
+        <input type="number" min="0" , max="7" name="digit2">
+        <input type="number" min="0" , max="7" name="digit3">
+        <input type="number" min="0" , max="7" name="digit4">
+        <input type="submit">
+    </form>
+
+    <div id="startGame" style="display: none">
+        <p id="joinMessage"></p>
+        <input id="startButton" type="button" value="Start Game">
+    </div>
+
+    <div id="waitStart" style="display: none">
+        <p>Wait your friend to start the game</p>
+    </div>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.js" integrity="sha512-53y53BQwxZvk4YGd9SkHPqI7nDwlIIFZ4D2BSJG08Co7y6O3YsWeRtO6trPtdoyqfTCTkTbCulNosIAI6E4UvQ==" crossorigin="anonymous">

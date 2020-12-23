@@ -7,21 +7,42 @@ const joinButton = document.getElementById("join");
 const joinGameForm = document.getElementById("joinGameForm");
 const roomId = document.getElementById("roomId");
 const waitingForPlayer = document.getElementById("waitingForPlayer");
-const qshaa = document.getElementById("qshaa");
+const guessedDigits = document.getElementById("guessedDigits");
+
 
 if (joinGameForm) {
     joinGameForm.addEventListener("submit", function(e) {
         e.preventDefault();
 
-        const nickname = e.target.nickname.value
-        const roomId = e.target.gameId.value
+        const nickname = e.target.nickname.value;
+        const roomId = e.target.gameId.value;
+        const waitingForStart = document.getElementById("waitStart")
 
         socket.emit("joinRoom", nickname, roomId);
+
+        joinGameForm.style.display = "none";
+        waitingForStart.style.display = "block";
+
     })
 }
 
-socket.on("qsha", function(a) {
-    qshaa.innerText = a;
+socket.on("playerJoined", function(message, obj) {
+    const startGame = document.getElementById("startGame");
+    const joinMessage = document.getElementById("joinMessage");
+    const startButton = document.getElementById("startButton");
+
+    waitingForPlayer.style.display = "none";
+    startGame.style.display = "block";
+
+    joinMessage.innerText = message;
+
+    if (startButton) {
+        startButton.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            socket.emit("startGame");
+        })
+    }
 })
 
 if (createGameForm) {
@@ -38,11 +59,9 @@ if (createGameForm) {
     })
 }
 
-socket.on("generateId", function(obj) {
+socket.on("generateId", function(code) {
     waitingForPlayer.style.display = "block";
-    roomId.innerHTML = obj.roomId;
-
-    socket.emit("joinRoom", obj.nickname, obj.role, obj.roomId);
+    roomId.innerText = code;
 })
 
 if (createButton) {
