@@ -154,9 +154,12 @@ io.on('connection', function(socket) {
 
     });
 
-    socket.on("startGame", function() {
+    socket.on("startGame", function(roomId) {
         console.log("New multiplayer game has started!");
+        console.log(roomId);
+        socket.emit("playerInfo", multiGameState[roomId]);
     })
+
 
 
 })
