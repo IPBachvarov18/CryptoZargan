@@ -79,7 +79,7 @@ io.on('connection', function(socket) {
                     guessedDigits = 0;
                     guessedPosition = 0;
                     gameCount = 1;
-                    code = game.generateCode(); // LEVEL 2
+                    code = game.generateRepetitiveCode(); // LEVEL 2
                     console.log(code);
                     hasWon = false;
                     hasTries = true;
