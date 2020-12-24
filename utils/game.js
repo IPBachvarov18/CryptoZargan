@@ -149,7 +149,19 @@ function generateCode() {
         code += String(digits[i]);
     }
 
-    return code
+    return code;
+}
+
+function generateRepetitiveCode() {
+    let randNumber1 = Math.floor(Math.random() * 8);
+    let randNumber2 = Math.floor(Math.random() * 8);
+    let randNumber3 = Math.floor(Math.random() * 8);
+    let randNumber4 = Math.floor(Math.random() * 8);
+
+    let code = String(randNumber1) + String(randNumber2) +
+        String(randNumber3) + String(randNumber4);
+
+    return code;
 }
 
 /*
@@ -179,3 +191,4 @@ function generateCode() {
 exports.generateCode = generateCode;
 exports.calculateExactPositions = calculateExactPositions;
 exports.calculatesGuessedDigits = calculatesGuessedDigits;
+exports.generateRepetitiveCode = generateRepetitiveCode;
