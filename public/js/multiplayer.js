@@ -10,6 +10,7 @@ const waitingForPlayer = document.getElementById("waitingForPlayer");
 const guessedDigits = document.getElementById("guessedDigits");
 
 
+
 if (joinGameForm) {
     joinGameForm.addEventListener("submit", function(e) {
         e.preventDefault();
@@ -26,24 +27,26 @@ if (joinGameForm) {
     })
 }
 
+const startButton = document.getElementById("startButton");
+
 socket.on("playerJoined", function(message, obj) {
     const startGame = document.getElementById("startGame");
     const joinMessage = document.getElementById("joinMessage");
-    const startButton = document.getElementById("startButton");
 
     waitingForPlayer.style.display = "none";
     startGame.style.display = "block";
 
     joinMessage.innerText = message;
-
-    if (startButton) {
-        startButton.addEventListener("click", function(e) {
-            e.preventDefault();
-
-            socket.emit("startGame");
-        })
-    }
 })
+
+
+if (startButton) {
+    startButton.addEventListener("click", function(e) {
+        e.preventDefault();
+        const roomId = document.getElementById("roomId").innerText;
+        socket.emit("startGame", roomId);
+    })
+}
 
 if (createGameForm) {
     createGameForm.addEventListener("submit", function(e) {
@@ -62,6 +65,13 @@ if (createGameForm) {
 socket.on("generateId", function(code) {
     waitingForPlayer.style.display = "block";
     roomId.innerText = code;
+})
+
+socket.on("playerInfo", function(obj) {
+    console.log("Qshaaa");
+    if (obj.secondPlayerRole == "British") {
+        guessedDigits.style.display = "block";
+    }
 })
 
 if (createButton) {
