@@ -110,9 +110,11 @@ io.on('connection', function(socket) {
     })
 
 
+    roomExist = false;
 
     socket.on("chooseRole", function(nickname, role) {
         const roomId = uuid.v4();
+        roomExist = true;
         socket.join(roomId);
 
         multiGameState[roomId] = {
@@ -131,33 +133,44 @@ io.on('connection', function(socket) {
     socket.on("joinRoom", function(nickname, roomId) {
 
         // TODO: check if room exist, Stoyane!
-        socket.join(roomId);
+        if (roomId != undefined) {
+            if (roomExist == true) {
+                socket.join(roomId);
 
-        let size = Object.keys(multiGameState).length
-        console.log(size)
+                let size = Object.keys(multiGameState).length
+                console.log(size)
+
+                if (multiGameState[roomId].firstPlayer != undefined && multiGameState[roomId].firstPlayerRole != undefined) {
+                    multiGameState[roomId].secondPlayer = nickname;
+                    if (multiGameState[roomId].firstPlayerRole == "German") {
+                        multiGameState[roomId].secondPlayerRole = "British";
+                    } else {
+                        multiGameState[roomId].secondPlayerRole = "German";
+                    }
+                    multiGameState[roomId].state = "In progress";
+
+                    console.log(multiGameState);
 
 
-        multiGameState[roomId].secondPlayer = nickname;
-        if (multiGameState[roomId].firstPlayerRole == "German") {
-            multiGameState[roomId].secondPlayerRole = "British";
-        } else {
-            multiGameState[roomId].secondPlayerRole = "German";
+                    console.log(`${nickname} who is ${multiGameState[roomId].secondPlayerRole} has joind in room with id ${roomId}`);
+
+                    socket.broadcast.to(roomId).emit('playerJoined', `${nickname} has joined`, multiGameState[roomId]);
+                }
+            } else {
+                console.log(`!Room with ID of ${roomId} doesn't exist!`);
+            }
         }
-        multiGameState[roomId].state = "In progress";
-
-        console.log(multiGameState);
-
-
-        console.log(`${nickname} who is ${multiGameState[roomId].secondPlayerRole} has joind in room with id ${roomId}`);
-
-        socket.broadcast.to(roomId).emit('playerJoined', `${nickname} has joined`, multiGameState[roomId]);
 
     });
 
     socket.on("startGame", function(roomId) {
-        console.log("New multiplayer game has started!");
-        console.log(roomId);
-        socket.emit("playerInfo", multiGameState[roomId]);
+        if (roomId != undefined) {
+            console.log("New multiplayer game has started!");
+            console.log(roomId);
+            socket.emit("playerInfo", multiGameState[roomId]);
+        } else {
+            console.log("Cannot start game due to non-existing room")
+        }
     })
 
 

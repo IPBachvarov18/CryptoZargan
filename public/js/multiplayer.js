@@ -18,8 +18,9 @@ if (joinGameForm) {
         const nickname = e.target.nickname.value;
         const roomId = e.target.gameId.value;
         const waitingForStart = document.getElementById("waitStart")
-
-        socket.emit("joinRoom", nickname, roomId);
+        if (roomId != undefined && nickname != undefined) {
+            socket.emit("joinRoom", nickname, roomId);
+        }
 
         joinGameForm.style.display = "none";
         waitingForStart.style.display = "block";
