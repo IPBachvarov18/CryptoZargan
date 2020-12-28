@@ -8,7 +8,27 @@ const lose = document.getElementById("lose");
 const triesTableBody = document.getElementById("triesTable").getElementsByTagName('tbody')[0];
 const triesTable = document.getElementById("triesTable");
 
-
+$(() => {
+    $("#digit1").on("input", () => {
+        $("#digit2").focus();
+    })
+    
+    $("#digit2").on("input", () => {
+        $("#digit3").focus();
+    })
+    
+    $("#digit3").on("input", () => {
+        $("#digit4").focus();
+    })
+    
+    $("#digit4").on("input", () => {
+        $("#submit").focus();
+    })
+    
+    setTimeout(() =>{
+        $("#singlePlayerUsername").focus();
+    }, 100)
+})
 
 if (inputUsername) {
     inputUsername.addEventListener("submit", function(e) {
@@ -21,6 +41,7 @@ if (inputUsername) {
 
         const username = e.target.elements.username.value;
         console.log(username);
+        $("#digit1").focus();
         socket.emit('startSingleplayer', username);
     });
 }
