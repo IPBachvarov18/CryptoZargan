@@ -1,16 +1,43 @@
+'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
-const http = require('http');
 const { isObject } = require('util');
 const socketio = require('socket.io');
 const game = require('./utils/game');
 const uuid = require("uuid");
 
+const http = require('http')
 const app = express();
-const server = http.createServer(app);
+const https = require('https');
+const fs = require('fs');
+require('dotenv').config();
+
+
+const httpApp = express(http);
+
+httpApp.listen(process.env.httpPort, () => {
+    console.log(`HTTP server started on port ${process.env.httpPort}`);
+})
+
+httpApp.get("*", function(req, res) {
+    res.redirect("https://" + req.headers.host);
+})
+
+const server = https.createServer({
+    hostname: process.env.hostname,
+    path: process.env.path,
+    method: process.env.method,
+    pfx: fs.readFileSync(process.env.pfxPath),
+    passphrase: process.env.passphrase,
+    agent: process.env.agent,
+    rejectUnauthorized: process.env.rejectUnauthorized
+}, app);
+
+server.listen(process.env.httpsPort, () => {
+    console.log(`HTTPS Server running on port ${process.env.httpsPort}`);
+});
+
 const io = socketio(server);
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("./public"));
@@ -110,11 +137,10 @@ io.on('connection', function(socket) {
     })
 
 
-    roomExist = false;
+    let roomExist = false;
 
     socket.on("chooseRole", function(nickname, role) {
         const roomId = uuid.v4();
-        roomExist = true;
         socket.join(roomId);
 
         multiGameState[roomId] = {
@@ -131,7 +157,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on("joinRoom", function(nickname, roomId) {
-
+        console.log(roomExist);
         // TODO: check if room exist, Stoyane!
         if (roomId != undefined) {
             if (roomExist == true) {
@@ -176,9 +202,3 @@ io.on('connection', function(socket) {
 
 
 })
-
-
-server.listen(6969, () => {
-
-    console.log('Server started on port 6969');
-});

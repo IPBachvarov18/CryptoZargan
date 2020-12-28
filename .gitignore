@@ -71,6 +71,7 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+*.env
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -104,4 +105,4 @@ dist
 .tern-port
 
 # SSL certificate
-.pfx
+*.pfx
