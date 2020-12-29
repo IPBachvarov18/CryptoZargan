@@ -75,7 +75,7 @@ app.get('/documentation', function(req, res) {
 });
 
 app.get('*', function(req, res) {
-    res.send('Not Found');
+    res.sendFile(__dirname + '/public/error404.html');
 });
 
 
