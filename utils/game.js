@@ -132,19 +132,16 @@ function processTurn(input) {
 // }
 
 
-function generateCode() {
+function generateCode(length) {
 
     let digits = [];
 
-    digits.push(getTrulyRandomNumber(digits));
-    digits.push(getTrulyRandomNumber(digits));
-    digits.push(getTrulyRandomNumber(digits));
-    digits.push(getTrulyRandomNumber(digits));
-
-
+    for (let i = 0; i < length; i++) {
+        digits.push(getTrulyRandomNumber(digits));
+    }
     let code = '';
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < length; i++) {
 
         code += String(digits[i]);
     }
@@ -152,14 +149,20 @@ function generateCode() {
     return code;
 }
 
-function generateRepetitiveCode() {
-    let randNumber1 = Math.floor(Math.random() * 8);
-    let randNumber2 = Math.floor(Math.random() * 8);
-    let randNumber3 = Math.floor(Math.random() * 8);
-    let randNumber4 = Math.floor(Math.random() * 8);
+function generateRepetitiveCode(length) {
 
-    let code = String(randNumber1) + String(randNumber2) +
-        String(randNumber3) + String(randNumber4);
+    let digits = [];
+
+    for (let i = 0; i < length; i++) {
+        digits.push(Math.floor(Math.random() * 8));
+    }
+
+    let code = '';
+
+    for (let i = 0; i < length; i++) {
+
+        code += String(digits[i]);
+    }
 
     return code;
 }

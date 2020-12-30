@@ -7,43 +7,74 @@ const won = document.getElementById("won");
 const lose = document.getElementById("lose");
 const triesTableBody = document.getElementById("triesTable").getElementsByTagName('tbody')[0];
 const triesTable = document.getElementById("triesTable");
+const difficulty = document.getElementById("difficulty")
 
 $(() => {
     $("#digit1").on("input", () => {
         $("#digit2").focus();
     })
-    
+
     $("#digit2").on("input", () => {
         $("#digit3").focus();
     })
-    
+
     $("#digit3").on("input", () => {
         $("#digit4").focus();
     })
-    
+
     $("#digit4").on("input", () => {
+        $("#digit5").focus();
+    })
+
+    $("#digit5").on("input", () => {
         $("#submit").focus();
     })
-    
-    setTimeout(() =>{
+
+    setTimeout(() => {
         $("#singlePlayerUsername").focus();
     }, 100)
 })
+
+
 
 if (inputUsername) {
     inputUsername.addEventListener("submit", function(e) {
         e.preventDefault();
 
         inputUsername.style.display = "none";
-        guessedDigits.style.display = "block";
-        triesTable.style.display = "block";
 
-
+        difficulty.style.display = "block";
         const username = e.target.elements.username.value;
+
+        $("#easy").on("click", () => {
+            difficulty.style.display = "none";
+            socket.emit('startSingleplayer', username, "easy");
+            guessedDigits.style.display = "block";
+            triesTable.style.display = "block";
+            $("#digit4").hide();
+            $("#digit5").hide();
+        })
+
+        $("#medium").on("click", () => {
+            difficulty.style.display = "none";
+            socket.emit('startSingleplayer', username, "medium");
+            guessedDigits.style.display = "block";
+            $("#digit5").hide();
+            triesTable.style.display = "block";
+        })
+
+        $("#hard").on("click", () => {
+            difficulty.style.display = "none";
+            socket.emit('startSingleplayer', username, "hard");
+            guessedDigits.style.display = "block";
+            triesTable.style.display = "block";
+            $("#digit5").show()
+        })
+
         console.log(username);
         $("#digit1").focus();
-        socket.emit('startSingleplayer', username);
     });
+
 }
 
 if (levelActions) {
@@ -51,9 +82,7 @@ if (levelActions) {
 
         e.preventDefault();
 
-
         socket.emit("nextLevel");
-
 
         guessedDigits.style.display = "block";
         levelResult.style.display = "none";
@@ -73,8 +102,9 @@ if (guessedDigits) {
         const digit2 = e.target.elements.digit2.value;
         const digit3 = e.target.elements.digit3.value;
         const digit4 = e.target.elements.digit4.value;
+        const digit5 = e.target.elements.digit5.value;
 
-        number = String(digit1) + String(digit2) + String(digit3) + String(digit4);
+        number = String(digit1) + String(digit2) + String(digit3) + String(digit4) + String(digit5);
 
         console.log(number);
 
@@ -89,7 +119,7 @@ if (guessedDigits) {
     });
 }
 
-socket.on("singleplayerAnswer", function(obj) {
+socket.on("singleplayerMediumAnswer", function(obj) {
     console.log(obj);
 
     if (obj.hasWon) {

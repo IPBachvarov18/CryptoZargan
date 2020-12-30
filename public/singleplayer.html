@@ -65,10 +65,18 @@
     <h1>This is singleplayer</h1>
 
 
+
+
     <form id="inputUsername">
         <input type="text" name="username" id="singlePlayerUsername" placeholder="Enter username..." required />
         <button type="submit" class="btn">Play</button>
     </form>
+
+    <div id="difficulty" style="display:none">
+        <button id="easy" class="btn">Easy</button>
+        <button id="medium" class="btn">Medium</button>
+        <button id="hard" class="btn">Hard</button>
+    </div>
 
 
     <form id="guessedDigits" style="display:none">
@@ -76,6 +84,7 @@
         <input type="number" min="0" , max="7" name="digit2" id="digit2">
         <input type="number" min="0" , max="7" name="digit3" id="digit3">
         <input type="number" min="0" , max="7" name="digit4" id="digit4">
+        <input type="number" min="0" , max="7" name="digit5" id="digit5" style="display:none">
         <input type="submit" id="submit">
     </form>
 

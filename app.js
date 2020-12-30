@@ -84,19 +84,35 @@ let multiGameState = {};
 io.on('connection', function(socket) {
     console.log('New Connection!');
 
+    socket.on('startSingleplayer', function(username, difficulty) {
 
-    socket.on('startSingleplayer', function(username) {
-        if (username != undefined) {
+        console.log(username, difficulty)
+
+        if (username != undefined && difficulty != undefined) {
             let gameCount = 1;
             let hasWon = false;
             let level = 1;
             let hasTries = true;
             let guessedDigits = 0;
             let guessedPosition = 0;
+            let code;
+            let length;
 
-            console.log(username);
+            let code2;
 
-            let code = game.generateCode();
+            if (difficulty == "easy") {
+                length = 3;
+                code = game.generateCode(length);
+                code2 = game.generateRepetitiveCode(length);
+            } else if (difficulty == "medium") {
+                length = 4;
+                code = game.generateCode(length);
+                code2 = game.generateRepetitiveCode(length);
+            } else if (difficulty == "hard") {
+                length = 5;
+                code = game.generateCode(length);
+                code2 = game.generateRepetitiveCode(length);
+            }
 
             console.log(code);
 
@@ -106,7 +122,7 @@ io.on('connection', function(socket) {
                     guessedDigits = 0;
                     guessedPosition = 0;
                     gameCount = 1;
-                    code = game.generateRepetitiveCode(); // LEVEL 2
+                    code = code2; // LEVEL 2
                     console.log(code);
                     hasWon = false;
                     hasTries = true;
@@ -114,7 +130,7 @@ io.on('connection', function(socket) {
             })
 
             socket.on('crackCodeSinglePlayer', function(guessedCode) {
-                if (!guessedCode || guessedCode.length != 4) {
+                if (!guessedCode || guessedCode.length != length) {
                     console.log(`Invalid request: !${guessedCode}!`)
                     return {};
                 }
@@ -124,14 +140,14 @@ io.on('connection', function(socket) {
                     gameCount++;
                     guessedDigits = game.calculatesGuessedDigits(guessedCode, code);
                     guessedPosition = game.calculateExactPositions(guessedCode, code);
-                    hasWon = guessedPosition == 4;
+                    hasWon = guessedPosition == length;
                     if (hasWon && level == 2) {
                         gameCount = 420;
                     }
                     console.log("Digs: " + guessedDigits, "Pos: " + guessedPosition);
 
                 }
-                socket.emit("singleplayerAnswer", { guessedDigits, guessedPosition, hasTries, hasWon, level });
+                socket.emit("singleplayerMediumAnswer", { guessedDigits, guessedPosition, hasTries, hasWon, level });
             })
         }
     })
@@ -158,6 +174,7 @@ io.on('connection', function(socket) {
 
     socket.on("joinRoom", function(nickname, roomId) {
         console.log(roomExist);
+        roomExist = true;
         // TODO: check if room exist, Stoyane!
         if (roomId != undefined) {
             if (roomExist == true) {
@@ -190,13 +207,9 @@ io.on('connection', function(socket) {
     });
 
     socket.on("startGame", function(roomId) {
-        if (roomId != undefined) {
-            console.log("New multiplayer game has started!");
-            console.log(roomId);
-            socket.emit("playerInfo", multiGameState[roomId]);
-        } else {
-            console.log("Cannot start game due to non-existing room")
-        }
+
+        io.to(roomId).emit("playerInfo", multiGameState[roomId]);
+
     })
 
 

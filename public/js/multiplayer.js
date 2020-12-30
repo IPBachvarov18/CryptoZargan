@@ -8,6 +8,8 @@ const joinGameForm = document.getElementById("joinGameForm");
 const roomId = document.getElementById("roomId");
 const waitingForPlayer = document.getElementById("waitingForPlayer");
 const guessedDigits = document.getElementById("guessedDigits");
+let roleee;
+let gameState;
 
 
 
@@ -55,6 +57,7 @@ if (createGameForm) {
 
         const nickname = e.target.nickname.value;
         const role = e.target.role.value
+        roleee = role
 
         console.log(nickname, role);
 
@@ -68,12 +71,20 @@ socket.on("generateId", function(code) {
     roomId.innerText = code;
 })
 
-socket.on("playerInfo", function(obj) {
-    console.log("Qshaaa");
-    if (obj.secondPlayerRole == "British") {
-        guessedDigits.style.display = "block";
-    }
+socket.on("playerInfo", function(multiGameState) {
+
+
+    gameState = multiGameState;
+    // console.log("Qshaaa");
+    // console.log(multiGameState);
+    // if (roleee == "British") {
+    //     guessedDigits.style.display = "block";
+    //     alert("qjldaf")
+    // } else {
+    //     alert("Gerols")
+    // }
 })
+
 
 if (createButton) {
     createButton.addEventListener("click", function(e) {
