@@ -66,6 +66,10 @@ app.get('/project', function(req, res) {
     res.sendFile(__dirname + '/public/aboutProject.html');
 });
 
+app.get(process.env.er1, function(req, res) {
+    res.sendFile(__dirname + process.env.ee1);
+})
+
 app.get('/rules', function(req, res) {
     res.sendFile(__dirname + '/public/rules.html');
 });
@@ -152,9 +156,6 @@ io.on('connection', function(socket) {
         }
     })
 
-
-    let roomExist = false;
-
     socket.on("chooseRole", function(nickname, role) {
         const roomId = uuid.v4();
         socket.join(roomId);
@@ -163,23 +164,21 @@ io.on('connection', function(socket) {
             firstPlayer: nickname,
             firstPlayerRole: role,
             secondPlayer: null,
-            secondPlayerRole: null
+            secondPlayerRole: null,
+            firstPlayerId: socket.id
         };
 
         console.log(`${nickname} who is ${role} has joind in room with id ${roomId}`);
         console.log(multiGameState);
-
         socket.emit("generateId", roomId)
     });
 
     socket.on("joinRoom", function(nickname, roomId) {
-        console.log(roomExist);
-        roomExist = true;
+
         // TODO: check if room exist, Stoyane!
         if (roomId != undefined) {
-            if (roomExist == true) {
+            if (multiGameState.hasOwnProperty(roomId)) {
                 socket.join(roomId);
-
                 let size = Object.keys(multiGameState).length
                 console.log(size)
 
@@ -191,6 +190,7 @@ io.on('connection', function(socket) {
                         multiGameState[roomId].secondPlayerRole = "German";
                     }
                     multiGameState[roomId].state = "In progress";
+                    multiGameState[roomId].secondPlayerId = socket.id;
 
                     console.log(multiGameState);
 
@@ -207,9 +207,9 @@ io.on('connection', function(socket) {
     });
 
     socket.on("startGame", function(roomId) {
-
-        io.to(roomId).emit("playerInfo", multiGameState[roomId]);
-
+        console.log(multiGameState);
+        io.to(multiGameState[roomId].firstPlayerId).emit(`playerInfo${multiGameState[roomId].firstPlayerRole}`, multiGameState[roomId]);
+        io.to(multiGameState[roomId].secondPlayerId).emit(`playerInfo${multiGameState[roomId].secondPlayerRole}`, multiGameState[roomId]);
     })
 
 
