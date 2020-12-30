@@ -106,3 +106,5 @@ dist
 
 # SSL certificate
 *.pfx
+
+fikret/
