@@ -9,7 +9,6 @@ const roomId = document.getElementById("roomId");
 const waitingForPlayer = document.getElementById("waitingForPlayer");
 const guessedDigits = document.getElementById("guessedDigits");
 
-
 if (joinGameForm) {
     joinGameForm.addEventListener("submit", function(e) {
         e.preventDefault();
@@ -68,17 +67,55 @@ socket.on("generateId", function(code) {
     roomId.innerText = code;
 })
 
+$("#codeInitialSetup").on("submit", function(e) {
+    e.preventDefault();
+
+    let digit1 = e.target.create1.value;
+    let digit2 = e.target.create2.value;
+    let digit3 = e.target.create3.value;
+    let digit4 = e.target.create4.value;
+
+    let code = String(digit1) + String(digit2) + String(digit3) + String(digit4);
+
+    socket.emit("setupCode", code);
+})
+
+$("#guessedDigits").on("submit", function(e) {
+    e.preventDefault();
+
+    let digit1 = e.target.digit1.value;
+    let digit2 = e.target.digit2.value;
+    let digit3 = e.target.digit3.value;
+    let digit4 = e.target.digit4.value;
+
+    let britishCode = String(digit1) + String(digit2) + String(digit3) + String(digit4);
+
+    socket.emit("inputCode", britishCode);
+})
+
+
 socket.on("playerInfoBritish", function(multiGameState) {
+    $("#startGame").hide();
+    $("#waitStart").hide();
+    $("#waitGeneration").show();
 
-
-    $("#guessedDigits").show();
 
 })
 
 socket.on("playerInfoGerman", function(multiGameState) {
+    $("#startGame").hide();
+    $("#codeInitialSetup").show();
+    $("#waitStart").hide();
 
-    alert("MASHALA");
+})
 
+socket.on("generateCodeGerman", function(multiGameState, code) {
+    alert("Code is OK")
+})
+
+socket.on("generateCodeBritish", function(multiGameState, code) {
+    $("#waitGeneration").hide();
+    $("#guessedDigits").show();
 })
 
 

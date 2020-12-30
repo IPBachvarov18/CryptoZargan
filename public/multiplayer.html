@@ -97,10 +97,22 @@
     <p id="qshaa"></p>
 
     <form id="guessedDigits" style="display:none">
+
+        Guess Code
         <input type="number" min="0" , max="7" name="digit1">
         <input type="number" min="0" , max="7" name="digit2">
         <input type="number" min="0" , max="7" name="digit3">
         <input type="number" min="0" , max="7" name="digit4">
+        <input type="submit">
+    </form>
+
+    <form id="codeInitialSetup" style="display:none">
+
+        Create Code
+        <input type="number" min="0" , max="7" name="create1">
+        <input type="number" min="0" , max="7" name="create2">
+        <input type="number" min="0" , max="7" name="create3">
+        <input type="number" min="0" , max="7" name="create4">
         <input type="submit">
     </form>
 
@@ -113,6 +125,9 @@
         <p>Wait your friend to start the game</p>
     </div>
 
+    <div id="waitGeneration" style="display: none">
+        <p>Wait your friend to create the code</p>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.js" integrity="sha512-53y53BQwxZvk4YGd9SkHPqI7nDwlIIFZ4D2BSJG08Co7y6O3YsWeRtO6trPtdoyqfTCTkTbCulNosIAI6E4UvQ==" crossorigin="anonymous">
     </script>
@@ -126,7 +141,7 @@
             <a class="text-dark" href="https://github.com/IPBachvarov18/CryptoZargan">Crypto Zargan</a>
         </div>
     </footer>
-    
+
 </body>
 
 </html>

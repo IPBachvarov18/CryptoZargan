@@ -167,6 +167,55 @@ function generateRepetitiveCode(length) {
     return code;
 }
 
+function checkDigits(digits) {
+    let isValid = true;
+    while (digits[0] == 0) {
+        digits[0] = Math.floor(Math.random() * 8);
+    }
+    for (let i = 0; i < 4; i++) {
+        for (let j = i + 1; j < 4; j++) {
+            if (digits[i] == digits[j]) {
+                let digit;
+                isValid = true;
+                while (isValid) {
+                    digit = Math.floor(Math.random() * 8);
+                    if (digits.indexOf(digit) == -1 || digit == 0) {
+                        isValid = false;
+                    }
+                }
+                digits[i] = digit;
+            }
+        }
+    }
+    return digits;
+}
+
+function checkInput(input) {
+
+    if (input.length != 4) {
+        return false;
+    }
+
+    let usedDigits = '';
+
+    for (let i = 0; i < input.length; i++) {
+        if (input[i] <= '0' || input[i] >= '7') {
+            return false;
+        }
+
+        if (usedDigits.indexOf(input[i]) != -1) {
+            return false;
+        }
+
+        usedDigits += input[i];
+    }
+
+    return true;
+}
+
+
+console.log(checkInput('1224'))
+
 /*
    Process user's data, 
    @param {string} Generated ID of the game
@@ -195,3 +244,4 @@ exports.generateCode = generateCode;
 exports.calculateExactPositions = calculateExactPositions;
 exports.calculatesGuessedDigits = calculatesGuessedDigits;
 exports.generateRepetitiveCode = generateRepetitiveCode;
+exports.checkInput = checkInput;

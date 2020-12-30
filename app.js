@@ -165,7 +165,8 @@ io.on('connection', function(socket) {
             firstPlayerRole: role,
             secondPlayer: null,
             secondPlayerRole: null,
-            firstPlayerId: socket.id
+            firstPlayerId: socket.id,
+            code: null
         };
 
         console.log(`${nickname} who is ${role} has joind in room with id ${roomId}`);
@@ -205,13 +206,36 @@ io.on('connection', function(socket) {
         }
 
     });
-
+    let ID = null; //ne struva, ne se izpulnqva pri vtoriq user i zatova ne raboti
     socket.on("startGame", function(roomId) {
         console.log(multiGameState);
         io.to(multiGameState[roomId].firstPlayerId).emit(`playerInfo${multiGameState[roomId].firstPlayerRole}`, multiGameState[roomId]);
         io.to(multiGameState[roomId].secondPlayerId).emit(`playerInfo${multiGameState[roomId].secondPlayerRole}`, multiGameState[roomId]);
+        ID = roomId;
     })
 
+    socket.on("setupCode", function(code) {
+
+        if (game.checkInput(code)) {
+
+            io.to(multiGameState[ID].firstPlayerId).emit(`generateCode${multiGameState[ID].firstPlayerRole}`, multiGameState[ID], multiGameState[ID].code);
+
+            io.to(multiGameState[ID].secondPlayerId).emit(`generateCode${multiGameState[ID].secondPlayerRole}`, multiGameState[ID], multiGameState[ID].code);
+
+        }
+    })
+
+    socket.on("inputCode", function(britishCode) {
+        if (!britishCode || britishCode.length != 4) {
+            console.log(`Invalid request: !${britishCode}!`)
+            return {};
+        }
+        console.log(ID);
+        let guessedDigits = game.calculatesGuessedDigits(britishCode, multiGameState[ID].code)
+        let exactPositions = game.calculateExactPositions(britishCode, 4)
+
+
+    })
 
 
 })
