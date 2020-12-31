@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('body').css('display', 'none');
     $('body').fadeIn(500);
 
-    translateLabel("en");
+    Cookies.set("language", "en", { expires: 1 })
 
     $(".translate-button").on("click", function() {
         Cookies.set("language", $(this).data("lng"), { expires: 1 })

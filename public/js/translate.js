@@ -5,6 +5,104 @@ var textTranslation = {
 
         'bg': `Игра`
     },
+
+    "nav-singleplayer": {
+        'en': `Singleplayer`,
+
+        'bg': `Самостоятелна игра`
+    },
+
+    "nav-multiplayer": {
+        'en': `Multiplayer`,
+
+        'bg': `Игра с приятел`
+    },
+
+    "nav-rules": {
+        'en': `Rules`,
+
+        'bg': `Правила`
+    },
+
+    "nav-about": {
+        'en': `About`,
+
+        'bg': `Информация`
+    },
+
+    "nav-about-team": {
+        'en': `About Team`,
+
+        'bg': `За отбора`
+    },
+
+    "nav-about-project": {
+        'en': `About Project`,
+
+        'bg': `За проекта`
+    },
+
+    "nav-documentation": {
+        'en': `Documentation`,
+
+        'bg': `Документация`
+    },
+
+    "nav-language": {
+        'en': `Language`,
+
+        'bg': `Език`
+    },
+
+    "btn-en": {
+        'en': `English`,
+
+        'bg': `Английски`
+    },
+
+    "btn-bg": {
+        'en': `Bulgarian`,
+
+        'bg': `Български`
+    },
+
+    "nav-contact": {
+        'en': `Contact`,
+
+        'bg': `Контакт`
+    },
+
+    "": {
+        'en': ``,
+
+        'bg': ``
+    },
+
+    "": {
+        'en': ``,
+
+        'bg': ``
+    },
+
+    "": {
+        'en': ``,
+
+        'bg': ``
+    },
+
+    "": {
+        'en': ``,
+
+        'bg': ``
+    },
+
+    "": {
+        'en': ``,
+
+        'bg': ``
+    },
+
+
 }
 
 var currentLanguage = 'en';
