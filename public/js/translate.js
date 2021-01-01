@@ -72,22 +72,52 @@ var textTranslation = {
         'bg': `Контакт`
     },
 
-    "": {
-        'en': ``,
+    "welcome-text": {
+        'en': `Welcome to Bletchley Game`,
 
-        'bg': ``
+        'bg': `Добре дошли в Bletchley Game`
     },
 
-    "": {
-        'en': ``,
+    "team-text": {
+        'en': `By Team Crypto Zargan`,
 
-        'bg': ``
+        'bg': `От отбор Крипто Зарган`
     },
 
-    "": {
-        'en': ``,
+    "index-singleplayer": {
+        'en': `Singleplayer`,
 
-        'bg': ``
+        'bg': `Самостоятелна игра`
+    },
+
+    "index-multiplayer": {
+        'en': `Multiplayer`,
+
+        'bg': `Игра с приятел`
+    },
+
+    "index-story": {
+        'en': `Some Magic`,
+
+        'bg': `Магия`
+    },
+
+    "contact": {
+        'en': `Contact Page`,
+
+        'bg': `Страница за контакт`
+    },
+
+    "aboutTeam": {
+        'en': `About Team Page`,
+
+        'bg': `Страница за отбора`
+    },
+
+    "aboutProject": {
+        'en': `About Project Page`,
+
+        'bg': `Страница за проекта`
     },
 
     "": {
