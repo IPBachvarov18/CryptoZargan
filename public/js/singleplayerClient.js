@@ -77,19 +77,6 @@ if (inputUsername) {
 
 }
 
-if (levelActions) {
-    levelActions.addEventListener("submit", function(e) {
-
-        e.preventDefault();
-
-        socket.emit("nextLevel");
-
-        guessedDigits.style.display = "block";
-        levelResult.style.display = "none";
-        triesTableBody.innerHTML = "";
-    });
-
-}
 
 
 let number;

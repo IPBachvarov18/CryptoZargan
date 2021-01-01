@@ -1,4 +1,5 @@
 const socket = io();
+let кюфте;
 
 const createGameForm = document.getElementById("createGameForm");
 const createJoin = document.getElementById("createOrJoin");
@@ -8,6 +9,9 @@ const joinGameForm = document.getElementById("joinGameForm");
 const roomId = document.getElementById("roomId");
 const waitingForPlayer = document.getElementById("waitingForPlayer");
 const guessedDigits = document.getElementById("guessedDigits");
+const triesTableBody = document.getElementById("triesTable").getElementsByTagName('tbody')[0];
+const triesTable = document.getElementById("triesTable");
+const levelActions = document.getElementById("levelActions");
 
 if (joinGameForm) {
     joinGameForm.addEventListener("submit", function(e) {
@@ -77,7 +81,7 @@ $("#codeInitialSetup").on("submit", function(e) {
 
     let code = String(digit1) + String(digit2) + String(digit3) + String(digit4);
 
-    socket.emit("setupCode", code);
+    socket.emit("setupCode", code, кюфте);
 })
 
 $("#guessedDigits").on("submit", function(e) {
@@ -90,49 +94,114 @@ $("#guessedDigits").on("submit", function(e) {
 
     let britishCode = String(digit1) + String(digit2) + String(digit3) + String(digit4);
 
-    socket.emit("inputCode", britishCode);
+    socket.emit("inputCode", britishCode, кюфте);
 })
 
 
-socket.on("playerInfoBritish", function(multiGameState) {
+
+socket.on("playerInfoBritish", function(multiGameState, roomId) {
+    кюфте = roomId;
+    console.log(кюфте);
     $("#startGame").hide();
     $("#waitStart").hide();
     $("#waitGeneration").show();
 
-
 })
 
-socket.on("playerInfoGerman", function(multiGameState) {
+socket.on("playerInfoGerman", function(multiGameState, roomId) {
+    кюфте = roomId;
+    console.log(кюфте);
     $("#startGame").hide();
     $("#codeInitialSetup").show();
     $("#waitStart").hide();
 
 })
 
-socket.on("generateCodeGerman", function(multiGameState, code) {
-    alert("Code is OK")
-})
 
-socket.on("generateCodeBritish", function(multiGameState, code) {
+socket.on("displayBritish", function(multiGameState) {
     $("#waitGeneration").hide();
     $("#guessedDigits").show();
 })
 
+socket.on("displayGerman", function(multiGameState) {
 
-if (createButton) {
-    createButton.addEventListener("click", function(e) {
-        e.preventDefault();
+    $("#codeInitialSetup").hide();
+    $("#leaveMessage").show();
+    $("#triesTable").show();
+    $("#code").show();
+    $("#code").text(`Code: ${multiGameState.code}`)
+})
 
-        createJoin.style.display = "none";
-        createGameForm.style.display = "block";
-    })
-}
+socket.on("incorrectInput", function(message) {
+    alert(message);
+})
 
-if (joinButton) {
-    joinButton.addEventListener("click", function(e) {
-        e.preventDefault();
+socket.on("codeGenerated", function(message, code) {
+    alert(message);
+    socket.emit("poznavaiPedal", кюфте);
+})
 
-        createJoin.style.display = "none";
-        joinGameForm.style.display = "block";
-    })
+
+
+socket.on("slagaiGerman", function(britishCode, guessedDigits, exactPositions, hasTries, hasWon, level) {
+    if (hasWon) {
+        if (level == 1) {
+            $("#levelResult").show();
+            $("#nextLevelM").on("click", function() {
+                socket.emit("nextLevelM")
+            });
+        }
+    }
+    if (!hasTries) {
+        $("#lose").show();
+
+    }
+
+    addRowsToTable(guessedDigits, exactPositions, britishCode);
+})
+
+socket.on("slagaiBritish", function(britishCode, guessedDigits, exactPositions, hasTries, hasWon, level) {
+
+    if (hasWon) {
+        if (level == 1) {
+            $("#guessedDigits").hide();
+            $("#congratsLevel").show();
+            $("#waitLevel2").show();
+        }
+    }
+
+    if (!hasTries) {
+        $("#lose").show();
+        $("#guessedDigits").hide();
+    }
+})
+
+
+
+
+
+$("#createGameButton").on("click", function(e) {
+    e.preventDefault();
+
+    $("#createJoin").hide();
+    $("#createGameForm").show();
+})
+
+
+$("#joinGameButton").on("click", function(e) {
+    e.preventDefault();
+
+    $("#createJoin").hide();
+    $("#joinGameForm").show();
+})
+
+function addRowsToTable(guessedDigits, exactPositions, britishCode) {
+    let newRow = triesTableBody.insertRow();
+    let cell1 = newRow.insertCell(0);
+    let cell2 = newRow.insertCell(1);
+    let cell3 = newRow.insertCell(2);
+
+    cell1.innerHTML = guessedDigits;
+    cell2.innerHTML = exactPositions;
+    cell3.innerHTML = britishCode;
 }

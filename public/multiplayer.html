@@ -21,19 +21,16 @@
 <body>
 
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
-        <!-- Brand -->
         <a href="/"><img href="../about" src="https://cdn.discordapp.com/attachments/775422843990048818/776137118040457236/crypto_zargan.png" alt="Logo" style="width:100px;"></a>
 
-        <!-- Links -->
         <ul class="navbar-nav">
 
-            <!-- Dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle active" href="#" id="navbardrop" data-toggle="dropdown" data-lang="nav-game">
               Game
             </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/singleplayer" data-lang="nav-singleplayer">Singleplayer</a>
+                    <a class="dropdown-item" href="/singleplayer" data-lang="nav-singleplayer">Single Player</a>
                     <a class="dropdown-item active" href="/multiplayer" data-lang="nav-multiplayer">Multiplayer</a>
                     <a class="dropdown-item" href="/rules" data-lang="nav-rules">Rules</a>
                 </div>
@@ -67,11 +64,15 @@
     </nav>
 
     <h1>This is multiplayer</h1>
+    <form id="leaveMessage" style="display: none">
+        <input type="text-area" placeholder="Leave a message">
+        <input type="submit">
+    </form>
 
-    <div id="createOrJoin">
+    <div id="createJoin">
         <h1>Choose:</h1>
-        <input id="create" type="button" value="Create Game" name="create">
-        <input id="join" type="button" value="Join Game" name="join">
+        <button id="createGameButton" class="btn">Create Game</button>
+        <button id="joinGameButton" class="btn">Join Game</button>
     </div>
 
     <div id="waitingForPlayer" style="display: none">
@@ -133,16 +134,54 @@
         <p>Wait your friend to create the code</p>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.js" integrity="sha512-53y53BQwxZvk4YGd9SkHPqI7nDwlIIFZ4D2BSJG08Co7y6O3YsWeRtO6trPtdoyqfTCTkTbCulNosIAI6E4UvQ==" crossorigin="anonymous">
+    <div id="waitLevel2" style="display: none">
+        <p>Wait your friend to start level 2</p>
+    </div>
+
+    <div id="congratsLevel" style="display: none">
+        <p>Congratulations you completed level 1</p>
+    </div>
+
+    <div id="levelResult" style="display: none">
+        <form id="levelActions">
+            <p data-lang="level1">British completed level 1. Are you ready to continue</p>
+            <button id="nextLevelM" class="btn" data-lang="next-level">Next Level</button>
+            <a href="/"><button type="submit" class="btn" data-lang="ff">Surrender</button></a>
+        </form>
+    </div>
+
+    <div id="lose" style="display:none">
+        <p data-lang="lose">British Lose!!!!!</p>
+        <a href="/"><button class="btn>" data-lang="home">Home</button></a>
+        <a href="/singleplayer"><button class="btn>" data-lang="play-again">Play Again</button></a>
+    </div>
+
+    <p id="code" style="display: none">Code: </p>
+
+    <table class=" table " id="triesTable" style="display: none ">
+        <thead>
+            <tr>
+                <th>Guessed Digits</th>
+                <th>Guessed Positions</th>
+                <th>Number</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.js " integrity="sha512-53y53BQwxZvk4YGd9SkHPqI7nDwlIIFZ4D2BSJG08Co7y6O3YsWeRtO6trPtdoyqfTCTkTbCulNosIAI6E4UvQ==" crossorigin=" anonymous ">
     </script>
-    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
-    <script src="js/multiplayerClient.js"></script>
-    <script src="js/index.js"></script>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js "></script>
+    <script src="js/multiplayerClient.js "></script>
+    <script src="js/index.js "></script>
 
     <footer>
-        <div class="text-center p-3 bg-light fixed-bottom">
+        <div class="text-center p-3 bg-light fixed-bottom ">
             © 2021 Copyright:
-            <a class="text-dark" href="https://github.com/IPBachvarov18/CryptoZargan">Crypto Zargan</a>
+            <a class="text-dark " href="https://github.com/IPBachvarov18/CryptoZargan ">Crypto Zargan</a>
         </div>
     </footer>
 

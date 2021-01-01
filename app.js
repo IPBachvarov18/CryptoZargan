@@ -206,36 +206,70 @@ io.on('connection', function(socket) {
         }
 
     });
-    let ID = null; //ne struva, ne se izpulnqva pri vtoriq user i zatova ne raboti
+
     socket.on("startGame", function(roomId) {
         console.log(multiGameState);
-        io.to(multiGameState[roomId].firstPlayerId).emit(`playerInfo${multiGameState[roomId].firstPlayerRole}`, multiGameState[roomId]);
-        io.to(multiGameState[roomId].secondPlayerId).emit(`playerInfo${multiGameState[roomId].secondPlayerRole}`, multiGameState[roomId]);
-        ID = roomId;
+        io.to(multiGameState[roomId].firstPlayerId).emit(`playerInfo${multiGameState[roomId].firstPlayerRole}`, multiGameState[roomId], roomId);
+        io.to(multiGameState[roomId].secondPlayerId).emit(`playerInfo${multiGameState[roomId].secondPlayerRole}`, multiGameState[roomId], roomId);
     })
 
-    socket.on("setupCode", function(code) {
-
+    socket.on("setupCode", function(code, roomId) {
         if (game.checkInput(code)) {
-
-            io.to(multiGameState[ID].firstPlayerId).emit(`generateCode${multiGameState[ID].firstPlayerRole}`, multiGameState[ID], multiGameState[ID].code);
-
-            io.to(multiGameState[ID].secondPlayerId).emit(`generateCode${multiGameState[ID].secondPlayerRole}`, multiGameState[ID], multiGameState[ID].code);
-
+            multiGameState[roomId].code = code;
+            socket.emit("codeGenerated", "Qsha si", code);
+        } else {
+            socket.emit("incorrectInput", "Kaval");
         }
     })
 
-    socket.on("inputCode", function(britishCode) {
+    socket.on("poznavaiPedal", function(roomId) {
+        console.log(multiGameState[roomId])
+        io.to(multiGameState[roomId].firstPlayerId).emit(`display${multiGameState[roomId].firstPlayerRole}`, multiGameState[roomId]);
+        io.to(multiGameState[roomId].secondPlayerId).emit(`display${multiGameState[roomId].secondPlayerRole}`, multiGameState[roomId]);
+    })
+
+    let gameCountM = 1;
+    let hasWonM = false;
+    let hasTriesM = true;
+    let levelM = 1;
+    socket.on("inputCode", function(britishCode, roomId) {
         if (!britishCode || britishCode.length != 4) {
             console.log(`Invalid request: !${britishCode}!`)
             return {};
         }
-        console.log(ID);
-        let guessedDigits = game.calculatesGuessedDigits(britishCode, multiGameState[ID].code)
-        let exactPositions = game.calculateExactPositions(britishCode, 4)
 
+        let guessedDigitsM = game.calculatesGuessedDigits(britishCode, multiGameState[roomId].code)
+        let exactPositionsM = game.calculateExactPositions(britishCode, multiGameState[roomId].code)
+
+        socket.on('nextLevelM', function() {
+            if (hasWonM) {
+                levelM = 2;
+                guessedDigitsM = 0;
+                guessedPositionM = 0;
+                gameCountM = 1;
+                britishCode = britishCode; // LEVEL 2
+                console.log(code);
+                hasWonM = false;
+                hasTriesM = true;
+            }
+        })
+
+
+
+        hasTriesM = (gameCountM < 13);
+        if (hasTriesM) {
+            console.log("lukanka")
+            gameCountM++;
+            console.log(gameCountM)
+            hasWonM = exactPositionsM == 4;
+            if (hasWonM && levelM == 2) {
+                gameCountM = 420;
+            }
+            console.log("Digs: " + guessedDigitsM, "Pos: " + exactPositionsM);
+        }
+
+        io.to(multiGameState[roomId].firstPlayerId).emit(`slagai${multiGameState[roomId].firstPlayerRole}`, britishCode, guessedDigitsM, exactPositionsM, hasTriesM, hasWonM, levelM);
+        io.to(multiGameState[roomId].secondPlayerId).emit(`slagai${multiGameState[roomId].secondPlayerRole}`, britishCode, guessedDigitsM, exactPositionsM, hasTriesM, hasWonM, levelM);
 
     })
-
-
 })

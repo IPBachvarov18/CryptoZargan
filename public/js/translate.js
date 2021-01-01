@@ -7,7 +7,7 @@ var textTranslation = {
     },
 
     "nav-singleplayer": {
-        'en': `Singleplayer`,
+        'en': `Single Player`,
 
         'bg': `Самостоятелна игра`
     },
@@ -85,7 +85,7 @@ var textTranslation = {
     },
 
     "index-singleplayer": {
-        'en': `Singleplayer`,
+        'en': `Single Player`,
 
         'bg': `Самостоятелна игра`
     },
@@ -120,17 +120,100 @@ var textTranslation = {
         'bg': `Страница за проекта`
     },
 
-    "": {
-        'en': ``,
+    "singleplayer": {
+        'en': `This is Single Player`,
 
-        'bg': ``
+        'bg': `Това е сингълплейъра`
     },
 
-    "": {
-        'en': ``,
 
-        'bg': ``
+    "play": {
+        'en': `Play`,
+
+        'bg': `Играй`
     },
+
+    "diff-easy": {
+        'en': `Easy`,
+
+        'bg': `Лесно`
+    },
+
+    "diff-med": {
+        'en': `Medium`,
+
+        'bg': `Нормално`
+    },
+
+    "diff-hard": {
+        'en': `Hard`,
+
+        'bg': `Трудно`
+    },
+
+    "level1": {
+        'en': `You completed level 1. Are you ready to continue`,
+
+        'bg': `Ти мина ниво 1. Готов ли си да продължиш`
+    },
+
+    "next-level": {
+        'en': `Next Level`,
+
+        'bg': `Следващо ниво`
+    },
+
+    "ff": {
+        'en': `Surrender`,
+
+        'bg': `Предаване`
+    },
+
+    "home": {
+        'en': `Home`,
+
+        'bg': `Начална страница`
+    },
+
+    "play-again": {
+        'en': `Play Again`,
+
+        'bg': `Играй отново`
+    },
+
+    "win": {
+        'en': `You won!!!!!`,
+
+        'bg': `Ти спечели!!!!!`
+    },
+
+    "lose": {
+        'en': `You Lose!!!!!`,
+
+        'bg': `Ти загуби!!!!!`
+    },
+
+    "guessed-digi": {
+        'en': `Guessed Digits`,
+
+        'bg': `Познати числа`
+    },
+
+    "guessed-pos": {
+        'en': `Guessed Positions`,
+
+        'bg': `Познати позиций`
+    },
+
+    "guessed-num": {
+        'en': `Number`,
+
+        'bg': `Число`
+    },
+
+
+
+
 
 
 }

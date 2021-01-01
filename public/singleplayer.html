@@ -33,7 +33,7 @@
               Game
             </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item active" href="/singleplayer" data-lang="nav-singleplayer">Singleplayer</a>
+                    <a class="dropdown-item active" href="/singleplayer" data-lang="nav-singleplayer">Single Player</a>
                     <a class="dropdown-item" href="/multiplayer" data-lang="nav-multiplayer">Multiplayer</a>
                     <a class="dropdown-item" href="/rules" data-lang="nav-rules">Rules</a>
                 </div>
@@ -66,20 +66,20 @@
         </ul>
     </nav>
 
-    <h1>This is singleplayer</h1>
+    <h1 data-lang="singleplayer">This is singleplayer</h1>
 
 
 
 
     <form id="inputUsername">
         <input type="text" name="username" id="singlePlayerUsername" placeholder="Enter username..." required />
-        <button type="submit" class="btn">Play</button>
+        <button type="submit" class="btn" data-lang="play">Play</button>
     </form>
 
     <div id="difficulty" style="display:none">
-        <button id="easy" class="btn">Easy</button>
-        <button id="medium" class="btn">Medium</button>
-        <button id="hard" class="btn">Hard</button>
+        <button id="easy" class="btn" data-lang="diff-easy">Easy</button>
+        <button id="medium" class="btn" data-lang="diff-med">Medium</button>
+        <button id="hard" class="btn" data-lang="diff-hard">Hard</button>
     </div>
 
 
@@ -94,31 +94,31 @@
 
     <div id="levelResult" style="display: none">
         <form id="levelActions">
-            <p>You completed level 1. Are you ready to continue</p>
-            <button type="submit" value="nextLevel" class="btn">Next Level</button>
-            <a href="/"><button type="submit" class="btn">Surrender</button></a>
+            <p data-lang="level1">You completed level 1. Are you ready to continue</p>
+            <button type="submit" value="nextLevel" class="btn" data-lang="next-level">Next Level</button>
+            <a href="/"><button type="submit" class="btn" data-lang="ff">Surrender</button></a>
         </form>
     </div>
 
     <div id="won" style="display:none">
-        <p>You won!!!!!</p>
-        <a href="/"><button class="btn>">Home</button></a>
-        <a href="/singleplayer"><button class="btn>">Play Again</button></a>
+        <p data-lang="win">You won!!!!!</p>
+        <a href="/"><button class="btn>" data-lang="home">Home</button></a>
+        <a href="/singleplayer"><button class="btn>" data-lang="play-again">Play Again</button></a>
     </div>
 
 
     <div id="lose" style="display:none">
-        <p>You Lose!!!!!</p>
-        <a href="/"><button class="btn>">Home</button></a>
-        <a href="/singleplayer"><button class="btn>">Play Again</button></a>
+        <p data-lang="lose">You Lose!!!!!</p>
+        <a href="/"><button class="btn>" data-lang="home">Home</button></a>
+        <a href="/singleplayer"><button class="btn>" data-lang="play-again">Play Again</button></a>
     </div>
 
     <table class="table" id="triesTable" style="display: none">
         <thead>
             <tr>
-                <th>Guessed Digits</th>
-                <th>Guessed Positions</th>
-                <th>Number</th>
+                <th data-lang="guessed-digi">Guessed Digits</th>
+                <th data-lang="guessed-pos">Guessed Positions</th>
+                <th data-lang="guessed-num">Number</th>
             </tr>
         </thead>
         <tbody>
