@@ -232,6 +232,29 @@ io.on('connection', function(socket) {
     let hasWonM = false;
     let hasTriesM = true;
     let levelM = 1;
+    let code2;
+
+    socket.on("code2", function(code, roomId) {
+        code2 = code;
+        io.to(multiGameState[roomId].firstPlayerId).emit(`nextLevel${multiGameState[roomId].firstPlayerRole}`);
+        io.to(multiGameState[roomId].secondPlayerId).emit(`nextLevel${multiGameState[roomId].secondPlayerRole}`);
+
+    })
+
+    socket.on('nextLevelM', function(roomId) {
+
+        if (hasWonM) {
+            levelM = 2;
+            guessedDigitsM = 0;
+            guessedPositionM = 0;
+            gameCountM = 1;
+            multiGameState[roomId].code = code2; // LEVEL 2
+            console.log(code);
+            hasWonM = false;
+            hasTriesM = true;
+        }
+    })
+
     socket.on("inputCode", function(britishCode, roomId) {
         if (!britishCode || britishCode.length != 4) {
             console.log(`Invalid request: !${britishCode}!`)
@@ -240,20 +263,6 @@ io.on('connection', function(socket) {
 
         let guessedDigitsM = game.calculatesGuessedDigits(britishCode, multiGameState[roomId].code)
         let exactPositionsM = game.calculateExactPositions(britishCode, multiGameState[roomId].code)
-
-        socket.on('nextLevelM', function() {
-            if (hasWonM) {
-                levelM = 2;
-                guessedDigitsM = 0;
-                guessedPositionM = 0;
-                gameCountM = 1;
-                britishCode = britishCode; // LEVEL 2
-                console.log(code);
-                hasWonM = false;
-                hasTriesM = true;
-            }
-        })
-
 
 
         hasTriesM = (gameCountM < 13);

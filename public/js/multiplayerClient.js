@@ -121,12 +121,12 @@ socket.on("playerInfoGerman", function(multiGameState, roomId) {
 socket.on("displayBritish", function(multiGameState) {
     $("#waitGeneration").hide();
     $("#guessedDigits").show();
+    $("#triesTable").show();
 })
 
 socket.on("displayGerman", function(multiGameState) {
 
     $("#codeInitialSetup").hide();
-    $("#leaveMessage").show();
     $("#triesTable").show();
     $("#code").show();
     $("#code").text(`Code: ${multiGameState.code}`)
@@ -141,15 +141,37 @@ socket.on("codeGenerated", function(message, code) {
     socket.emit("poznavaiPedal", кюфте);
 })
 
+$("#codeInitialSetup2").on("submit", function(e) {
+    e.preventDefault();
 
+    let digit1 = e.target.create1.value;
+    let digit2 = e.target.create2.value;
+    let digit3 = e.target.create3.value;
+    let digit4 = e.target.create4.value;
+
+    let code = String(digit1) + String(digit2) + String(digit3) + String(digit4);
+
+    socket.emit("code2", code, кюфте)
+})
 
 socket.on("slagaiGerman", function(britishCode, guessedDigits, exactPositions, hasTries, hasWon, level) {
     if (hasWon) {
+        console.log(level)
         if (level == 1) {
             $("#levelResult").show();
-            $("#nextLevelM").on("click", function() {
-                socket.emit("nextLevelM")
+            $("#nextLevelM").on("click", function(e) {
+                e.preventDefault();
+                $("#tries").empty();
+
+                socket.emit("nextLevelM", кюфте);
+                console.log(level)
+                $("#levelResult").hide();
+                $("#codeInitialSetup2").show();
+                $("#code").hide();
             });
+        } else {
+            $("#guessedDigits").hide();
+            $("#won").show();
         }
     }
     if (!hasTries) {
@@ -163,10 +185,21 @@ socket.on("slagaiGerman", function(britishCode, guessedDigits, exactPositions, h
 socket.on("slagaiBritish", function(britishCode, guessedDigits, exactPositions, hasTries, hasWon, level) {
 
     if (hasWon) {
+        console.log(level)
+
         if (level == 1) {
             $("#guessedDigits").hide();
             $("#congratsLevel").show();
             $("#waitLevel2").show();
+            socket.on("nextLevelBritish", function() {
+                $("#tries").empty();
+                $("#congratsLevel").hide();
+                $("#waitLevel2").hide();
+                $("#guessedDigits").show();
+            })
+        } else {
+            $("#guessedDigits").hide();
+            $("#won").show();
         }
     }
 
@@ -174,6 +207,8 @@ socket.on("slagaiBritish", function(britishCode, guessedDigits, exactPositions, 
         $("#lose").show();
         $("#guessedDigits").hide();
     }
+
+    addRowsToTable(guessedDigits, exactPositions, britishCode);
 })
 
 

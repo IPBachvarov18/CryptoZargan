@@ -77,6 +77,19 @@ if (inputUsername) {
 
 }
 
+if (levelActions) {
+    levelActions.addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+        socket.emit("nextLevel");
+
+        guessedDigits.style.display = "block";
+        levelResult.style.display = "none";
+        triesTableBody.innerHTML = "";
+    });
+
+}
 
 
 let number;
@@ -101,7 +114,6 @@ if (guessedDigits) {
         e.target.elements.digit2.value = "";
         e.target.elements.digit3.value = "";
         e.target.elements.digit4.value = "";
-        e.target.elements.digit5.value = "";
 
         e.target.elements.digit1.focus();
     });

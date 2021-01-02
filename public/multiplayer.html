@@ -64,10 +64,14 @@
     </nav>
 
     <h1>This is multiplayer</h1>
-    <form id="leaveMessage" style="display: none">
+    <!-- <form id="leaveMessage" style="display: none">
         <input type="text-area" placeholder="Leave a message">
         <input type="submit">
-    </form>
+    </form> -->
+
+    <div id="won" style="display: none">
+        <p>British wins!</p>
+    </div>
 
     <div id="createJoin">
         <h1>Choose:</h1>
@@ -121,6 +125,17 @@
         <input type="submit">
     </form>
 
+    <form id="codeInitialSetup2" style="display:none">
+
+        Create Code
+        <input type="number" min="0" , max="7" name="create1">
+        <input type="number" min="0" , max="7" name="create2">
+        <input type="number" min="0" , max="7" name="create3">
+        <input type="number" min="0" , max="7" name="create4">
+        <input type="submit">
+    </form>
+
+
     <div id="startGame" style="display: none">
         <p id="joinMessage"></p>
         <input id="startButton" type="button" value="Start Game">
@@ -166,7 +181,7 @@
                 <th>Number</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tries">
 
         </tbody>
     </table>
