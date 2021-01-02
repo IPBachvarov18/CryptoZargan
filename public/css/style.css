@@ -1,6 +1,44 @@
 body {
     display: none;
 }
-nav{
+
+nav {
     font-size: 24px;
+}
+
+.btn1 {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+    
+}
+
+
+.multyp {
+    margin-top:-73px;
+    margin-left: 40%;
+    width:20%;
+}
+.sigl
+{
+    width:20%;
+}
+
+.rules
+{
+    margin-top: 50px;
+}
+
+.card-body
+{
+width: 20%;
+border:none;
+
+}
+#multy
+{
+    margin-left: 40%;
 }
