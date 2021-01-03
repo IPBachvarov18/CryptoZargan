@@ -44,7 +44,7 @@ function calculatesGuessedDigits(inputDigits, digits) {
     return guessed;
 
 }
-
+//console.log(calculatesGuessedDigits("rrrr", "1234"))
 
 /*
    Calculate exact positions,
@@ -55,11 +55,13 @@ function calculatesGuessedDigits(inputDigits, digits) {
 function calculateExactPositions(inputDigits, digits) {
 
     let guessedPosition = 0;
-
-
-
+    //let allowedNumbers = "/^[0-7]+$/"
+    for (let i = 0; i < 4; i++) {
+        if (inputDigits[i] < '0' || inputDigits[i] > '7') {
+            return 0;
+        }
+    }
     for (let i = 0; i < inputDigits.length; i++) {
-
         if (inputDigits[i] == digits[i]) {
 
             guessedPosition++;
@@ -68,6 +70,7 @@ function calculateExactPositions(inputDigits, digits) {
 
     return guessedPosition;
 }
+console.log(calculateExactPositions("2165", "1256"))
 
 function checkUserInput(input) {
 
@@ -78,7 +81,7 @@ function checkUserInput(input) {
     let usedDigits = '';
 
     for (let i = 0; i < input.length; i++) {
-        if (input[i] <= '0' || input[i] >= '7') {
+        if (input[i] < '0' || input[i] > '7') {
             return false;
         }
 
@@ -199,7 +202,7 @@ function checkInput(input) {
     let usedDigits = '';
 
     for (let i = 0; i < input.length; i++) {
-        if (input[i] <= '0' || input[i] >= '7') {
+        if (input[i] < '0' || input[i] > '7') {
             return false;
         }
 
@@ -214,7 +217,7 @@ function checkInput(input) {
 }
 
 
-console.log(checkInput('1224'))
+console.log(checkInput('5017'))
 
 /*
    Process user's data, 
