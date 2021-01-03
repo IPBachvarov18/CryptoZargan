@@ -1,342 +1,338 @@
 var textTranslation = {
+	"nav-game": {
+		en: `Game`,
 
-    "nav-game": {
-        'en': `Game`,
-
-        'bg': `Игра`
-    },
+		bg: `Игра`,
+	},
 
     "nav-singleplayer": {
-        'en': `Singleplayer`,
+		en: `Singleplayer`,
+		bg: `Самостоятелна игра`,
+	},
 
-        'bg': `Самостоятелна игра`
-    },
+	"nav-multiplayer": {
+		en: `Multiplayer`,
 
-    "nav-multiplayer": {
-        'en': `Multiplayer`,
+		bg: `Игра с приятел`,
+	},
 
-        'bg': `Игра с приятел`
-    },
+	"nav-rules": {
+		en: `Rules`,
 
-    "nav-rules": {
-        'en': `Rules`,
+		bg: `Правила`,
+	},
 
-        'bg': `Правила`
-    },
+	"nav-about": {
+		en: `About`,
 
-    "nav-about": {
-        'en': `About`,
+		bg: `Информация`,
+	},
 
-        'bg': `Информация`
-    },
+	"nav-about-team": {
+		en: `About Team`,
 
-    "nav-about-team": {
-        'en': `About Team`,
+		bg: `За отбора`,
+	},
 
-        'bg': `За отбора`
-    },
+	"nav-about-project": {
+		en: `About Project`,
 
-    "nav-about-project": {
-        'en': `About Project`,
+		bg: `За проекта`,
+	},
 
-        'bg': `За проекта`
-    },
+	"nav-documentation": {
+		en: `Documentation`,
 
-    "nav-documentation": {
-        'en': `Documentation`,
+		bg: `Документация`,
+	},
 
-        'bg': `Документация`
-    },
+	"nav-language": {
+		en: `Language`,
 
-    "nav-language": {
-        'en': `Language`,
+		bg: `Език`,
+	},
 
-        'bg': `Език`
-    },
+	"btn-en": {
+		en: `English`,
 
-    "btn-en": {
-        'en': `English`,
+		bg: `Английски`,
+	},
 
-        'bg': `Английски`
-    },
+	"btn-bg": {
+		en: `Bulgarian`,
 
-    "btn-bg": {
-        'en': `Bulgarian`,
+		bg: `Български`,
+	},
 
-        'bg': `Български`
-    },
+	"nav-contact": {
+		en: `Contact`,
 
-    "nav-contact": {
-        'en': `Contact`,
+		bg: `Контакт`,
+	},
 
-        'bg': `Контакт`
-    },
+	"welcome-text": {
+		en: `Welcome to Bletchley Game`,
 
-    "welcome-text": {
-        'en': `Welcome to Bletchley Game`,
+		bg: `Добре дошли в Bletchley Game`,
+	},
 
-        'bg': `Добре дошли в Bletchley Game`
-    },
+	"team-text": {
+		en: `By Team Crypto Zargan`,
 
-    "team-text": {
-        'en': `By Team Crypto Zargan`,
+		bg: `От отбор Крипто Зарган`,
+	},
 
-        'bg': `От отбор Крипто Зарган`
-    },
+	"index-singleplayer": {
+		en: `Single Player`,
 
-    "index-singleplayer": {
-        'en': `Single Player`,
+		bg: `Самостоятелна игра`,
+	},
 
-        'bg': `Самостоятелна игра`
-    },
+	"index-multiplayer": {
+		en: `Multiplayer`,
 
-    "index-multiplayer": {
-        'en': `Multiplayer`,
+		bg: `Игра с приятел`,
+	},
 
-        'bg': `Игра с приятел`
-    },
+	"index-story": {
+		en: `Some Magic`,
 
-    "index-story": {
-        'en': `Some Magic`,
+		bg: `Магия`,
+	},
 
-        'bg': `Магия`
-    },
+	contact: {
+		en: `Contact Page`,
 
-    "contact": {
-        'en': `Contact Page`,
+		bg: `Страница за контакт`,
+	},
 
-        'bg': `Страница за контакт`
-    },
+	aboutTeam: {
+		en: `About Team Page`,
 
-    "aboutTeam": {
-        'en': `About Team Page`,
+		bg: `Страница за отбора`,
+	},
 
-        'bg': `Страница за отбора`
-    },
+	aboutProject: {
+		en: `About Project Page`,
 
-    "aboutProject": {
-        'en': `About Project Page`,
+		bg: `Страница за проекта`,
+	},
 
-        'bg': `Страница за проекта`
-    },
+	singleplayer: {
+		en: `This is Single Player`,
 
-    "singleplayer": {
-        'en': `This is Single Player`,
+		bg: `Това е сингълплейъра`,
+	},
 
-        'bg': `Това е сингълплейъра`
-    },
+	play: {
+		en: `Play`,
 
+		bg: `Играй`,
+	},
 
-    "play": {
-        'en': `Play`,
+	"diff-easy": {
+		en: `Easy`,
 
-        'bg': `Играй`
-    },
+		bg: `Лесно`,
+	},
 
-    "diff-easy": {
-        'en': `Easy`,
+	"diff-med": {
+		en: `Medium`,
 
-        'bg': `Лесно`
-    },
+		bg: `Нормално`,
+	},
 
-    "diff-med": {
-        'en': `Medium`,
+	"diff-hard": {
+		en: `Hard`,
 
-        'bg': `Нормално`
-    },
+		bg: `Трудно`,
+	},
 
-    "diff-hard": {
-        'en': `Hard`,
+	level1: {
+		en: `British completed level 1. Are you ready to continue?`,
 
-        'bg': `Трудно`
-    },
+		bg: `Британеца мина ниво 1. Готов ли си да продължиш?`,
+	},
 
-    "level1": {
-        'en': `British completed level 1. Are you ready to continue?`,
+	"next-level": {
+		en: `Next Level`,
 
-        'bg': `Британеца мина ниво 1. Готов ли си да продължиш?`
-    },
+		bg: `Следващо ниво`,
+	},
 
-    "next-level": {
-        'en': `Next Level`,
+	ff: {
+		en: `Surrender`,
 
-        'bg': `Следващо ниво`
-    },
+		bg: `Предаване`,
+	},
 
-    "ff": {
-        'en': `Surrender`,
+	home: {
+		en: `Home`,
 
-        'bg': `Предаване`
-    },
+		bg: `Начална страница`,
+	},
 
-    "home": {
-        'en': `Home`,
+	"play-again": {
+		en: `Play Again`,
 
-        'bg': `Начална страница`
-    },
+		bg: `Играй отново`,
+	},
 
-    "play-again": {
-        'en': `Play Again`,
+	win: {
+		en: `You won!!!!!`,
 
-        'bg': `Играй отново`
-    },
+		bg: `Ти спечели!!!!!`,
+	},
 
-    "win": {
-        'en': `You won!!!!!`,
+	lose: {
+		en: `You Lose!!!!!`,
 
-        'bg': `Ти спечели!!!!!`
-    },
+		bg: `Ти загуби!!!!!`,
+	},
 
-    "lose": {
-        'en': `You Lose!!!!!`,
+	"guessed-digi": {
+		en: `Guessed Digits`,
 
-        'bg': `Ти загуби!!!!!`
-    },
+		bg: `Познати числа`,
+	},
 
-    "guessed-digi": {
-        'en': `Guessed Digits`,
+	"guessed-pos": {
+		en: `Guessed Positions`,
 
-        'bg': `Познати числа`
-    },
+		bg: `Познати позиции`,
+	},
 
-    "guessed-pos": {
-        'en': `Guessed Positions`,
+	"guessed-num": {
+		en: `Number`,
 
-        'bg': `Познати позиции`
-    },
+		bg: `Число`,
+	},
 
-    "guessed-num": {
-        'en': `Number`,
+	opening: {
+		en: `This is multiplayer`,
 
-        'bg': `Число`
-    },
+		bg: `Това е мултиплейъра`,
+	},
 
-    "opening": {
-        'en': `This is multiplayer`,
+	choose: {
+		en: `Choose:`,
 
-        'bg': `Това е мултиплейъра`
-    },
+		bg: `Избери:`,
+	},
 
-    "choose": {
-        'en': `Choose:`,
+	winner: {
+		en: `British wins!`,
 
-        'bg': `Избери:`
-    },
+		bg: `Британеца печели!`,
+	},
 
-    "winner": {
-        'en': `British wins!`,
+	create: {
+		en: `Create Game`,
 
-        'bg': `Британеца печели!`
-    },
+		bg: `Създай игра`,
+	},
 
-    "create": {
-        'en': `Create Game`,
+	join: {
+		en: `Join Game`,
 
-        'bg': `Създай игра`
-    },
+		bg: `Присъедини се в игра`,
+	},
 
-    "join": {
-        'en': `Join Game`,
+	"send-code": {
+		en: `Send this code to your friend and play together`,
 
-        'bg': `Присъедини се в игра`
-    },
+		bg: `Прати кода на твоя приятел и играйте заедно`,
+	},
 
-    "send-code": {
-        'en': `Send this code to your friend and play together`,
+	username: {
+		en: `Username:`,
 
-        'bg': `Прати кода на твоя приятел и играйте заедно`
-    },
+		bg: `Потребителско име:`,
+	},
 
-    "username": {
-        'en': `Username:`,
+	role: {
+		en: `Role:`,
 
-        'bg': `Потребителско име:`
-    },
+		bg: `Роля:`,
+	},
 
-    "role": {
-        'en': `Role:`,
+	german: {
+		en: `German`,
 
-        'bg': `Роля:`
-    },
+		bg: `Германец`,
+	},
 
-    "german": {
-        'en': `German`,
+	british: {
+		en: `British`,
 
-        'bg': `Германец`
-    },
+		bg: `Британец`,
+	},
 
-    "british": {
-        'en': `British`,
+	ID: {
+		en: `Game ID:`,
 
-        'bg': `Британец`
-    },
+		bg: `Идентификатор на играта:`,
+	},
 
-    "ID": {
-        'en': `Game ID:`,
+	"guess-code": {
+		en: `Guess Code`,
 
-        'bg': `Идентификатор на играта:`
-    },
+		bg: `Познай кода`,
+	},
 
-    "guess-code": {
-        'en': `Guess Code`,
+	"create-code": {
+		en: `Create code`,
 
-        'bg': `Познай кода`
-    },
+		bg: `Създай кода`,
+	},
 
-    "create-code": {
-        'en': `Create code`,
+	code: {
+		en: `Code: `,
 
-        'bg': `Създай кода`
-    },
+		bg: `Код: `,
+	},
 
+	table1: {
+		en: `Guessed Digits`,
 
-    "code": {
-        'en': `Code: `,
+		bg: `Познати цифри`,
+	},
 
-        'bg': `Код: `
-    },
+	table2: {
+		en: `Guessed Positions`,
 
-    "table1": {
-        'en': `Guessed Digits`,
+		bg: `Познати позиции`,
+	},
 
-        'bg': `Познати цифри`
-    },
+	table3: {
+		en: `Number`,
 
-    "table2": {
-        'en': `Guessed Positions`,
+		bg: `Число`,
+	},
 
-        'bg': `Познати позиции`
-    },
+	"level1-win": {
+		en: `Congratulations you completed level 1`,
 
-    "table3": {
-        'en': `Number`,
+		bg: `Поздравления ти завърши първо ниво`,
+	},
 
-        'bg': `Число`
-    },
+	"wait-level2": {
+		en: `Wait for your friend to start level 2`,
 
-    "level1-win": {
-        'en': `Congratulations you completed level 1`,
+		bg: `Изчакай приятеля си да стартира второ ниво`,
+	},
 
-        'bg': `Поздравления ти завърши първо ниво`
-    },
+	"wait-create-code": {
+		en: `Wait for your friend to create the code`,
 
-    "wait-level2": {
-        'en': `Wait for your friend to start level 2`,
+		bg: `Изчакай приятеля си да напише кода`,
+	},
 
-        'bg': `Изчакай приятеля си да стартира второ ниво`
-    },
+	"wait-start-game": {
+		en: `Wait for your friend to start the game`,
 
-    "wait-create-code": {
-        'en': `Wait for your friend to create the code`,
-
-        'bg': `Изчакай приятеля си да напише кода`
-    },
-
-    "wait-start-game": {
-        'en': `Wait for your friend to start the game`,
-
-        'bg': `Изчакай приятеля си да стартира игра`
-    },
+		bg: `Изчакай приятеля си да стартира игра`,
+	},
 
     "download": {
         'en': `Download the full rules here`,
@@ -350,7 +346,7 @@ var textTranslation = {
         tasks - first task in which numbers cannot be repeated, and second task where numbers can be repeated. You have
         13 attempts to guess the number, otherwise you lose.`,
 
-        'bg': `В самостоятената игра се играе срещу компютъра - произволно число се генерира и трябва да се познае, 
+        'bg': `В самостоятената игра се играе срещу компютъра - произволно число се генерира и трябва да се познае,
         за да се продължи напред. Има 3 трудности - лесно, средно и трудно. Също така има и 2 задачи. В първата задача цифрите не могат
         да се повтарят, а във втората те могат да се повтарят. Имате 13 опита, за да познаете числото, в противен случай губите`
     },
@@ -365,34 +361,38 @@ var textTranslation = {
     },
 }
 
-var currentLanguage = 'en';
+var currentLanguage = "en";
 
 function replaceElementText(item, text) {
-    if (!item.is("button")) {
-        item.html(text);
-    } else {
-        item.text(text);
-    }
+	if (!item.is("button")) {
+		item.html(text);
+	} else {
+		item.text(text);
+	}
 }
 
 function translateLabel(langId) {
+	console.log(langId);
+	currentLanguage = langId;
 
-    console.log(langId)
-    currentLanguage = langId;
-
-    // Gets all tags that have 'data-lang' attribute present
-    $("[data-lang]")
-        .each(function () {
-            let item = $(this);
-            if (textTranslation.hasOwnProperty(item.data("lang")) && textTranslation[item.data("lang")].hasOwnProperty(langId)) {
-                let text = textTranslation[item.data("lang")][langId];
-                replaceElementText(item, text);
-            } else {
-                replaceElementText(item, "<font color='red'>" + item.data("lang") + "</font>");
-            }
-        })
-};
+	// Gets all tags that have 'data-lang' attribute present
+	$("[data-lang]").each(function () {
+		let item = $(this);
+		if (
+			textTranslation.hasOwnProperty(item.data("lang")) &&
+			textTranslation[item.data("lang")].hasOwnProperty(langId)
+		) {
+			let text = textTranslation[item.data("lang")][langId];
+			replaceElementText(item, text);
+		} else {
+			replaceElementText(
+				item,
+				"<font color='red'>" + item.data("lang") + "</font>"
+			);
+		}
+	});
+}
 
 function getTranslatedText(elementId) {
-    return textTranslation[elementId][currentLanguage];
+	return textTranslation[elementId][currentLanguage];
 }

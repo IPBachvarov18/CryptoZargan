@@ -1,92 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Crypto Zargan</title>
+		<link rel="stylesheet" href="css/style.css" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Zargan</title>
-    <link rel="stylesheet" href="css/style.css">
+		<!-- Bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+			integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="js/index.js"></script>
+		<script src="js/translate.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+	</head>
 
-    <script src="js/index.js"></script>
-    <script src="js/translate.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+	<body style="display: none">
+		<nav class="navbar navbar-expand-sm bg-light navbar-light">
+			<!-- Brand -->
+			<a href="/"
+				><img
+					href="../about"
+					src="https://cdn.discordapp.com/attachments/775422843990048818/776137118040457236/crypto_zargan.png"
+					alt="Logo"
+					style="width: 100px"
+			/></a>
 
-</head>
+			<!-- Links -->
+			<ul class="navbar-nav">
+				<!-- Dropdown -->
+				<li class="nav-item dropdown">
+					<a
+						class="nav-link dropdown-toggle"
+						href="#"
+						id="navbardrop"
+						data-toggle="dropdown"
+						data-lang="nav-game"
+					>
+						Game
+					</a>
+					<div class="dropdown-menu">
+						<a
+							class="dropdown-item"
+							href="/singleplayer"
+							data-lang="nav-singleplayer"
+							>Single Player</a
+						>
+						<a
+							class="dropdown-item"
+							href="/multiplayer"
+							data-lang="nav-multiplayer"
+							>Multiplayer</a
+						>
+						<a
+							class="dropdown-item"
+							href="/rules"
+							data-lang="nav-rules"
+							>Rules</a
+						>
+					</div>
+				</li>
 
-<body style="display:none">
+				<li class="nav-item dropdown">
+					<a
+						class="nav-link dropdown-toggle"
+						href="#"
+						id="navbardrop"
+						data-toggle="dropdown"
+						data-lang="nav-about"
+					>
+						About
+					</a>
+					<div class="dropdown-menu">
+						<a
+							class="dropdown-item"
+							href="/team"
+							data-lang="nav-about-team"
+							>About Team</a
+						>
+						<a
+							class="dropdown-item"
+							href="/project"
+							data-lang="nav-about-project"
+							>About Project</a
+						>
+						<a
+							class="dropdown-item"
+							href="/documentation"
+							data-lang="nav-documentation"
+							>Project Documentation</a
+						>
+					</div>
+				</li>
 
+				<li class="nav-item dropdown">
+					<a
+						class="nav-link dropdown-toggle"
+						href="#"
+						id="navbardrop"
+						data-toggle="dropdown"
+						data-lang="nav-language"
+					>
+						Language
+					</a>
+					<div class="dropdown-menu">
+						<a
+							class="dropdown-item translate-button"
+							href="#"
+							data-lng="en"
+							data-lang="btn-en"
+							>English</a
+						>
+						<a
+							class="dropdown-item translate-button"
+							href="#"
+							data-lng="bg"
+							data-lang="btn-bg"
+							>Bulgarian</a
+						>
+					</div>
+				</li>
 
+				<li class="nav-item">
+					<a class="nav-link" href="/contact" data-lang="nav-contact"
+						>Contact</a
+					>
+				</li>
+			</ul>
+		</nav>
 
-    <nav class="navbar navbar-expand-sm bg-light navbar-light">
-        <!-- Brand -->
-        <a href="/"><img href="../about" src="https://cdn.discordapp.com/attachments/775422843990048818/776137118040457236/crypto_zargan.png" alt="Logo" style="width:100px;"></a>
+		<div class="headings mt-2">
+			<h1 style="text-align: center" data-lang="welcome-text">
+				Welcome to Bletchley Game
+			</h1>
+			<h5 style="text-align: center" data-lang="team-text">
+				By Team Crypto Zargan
+			</h5>
+		</div>
 
-        <!-- Links -->
-        <ul class="navbar-nav">
+		<div class="playButtons mt-5" style="text-align: center">
+			<a href="/singleplayer"
+				><button
+					class="btn btn-outline-primary"
+					data-lang="index-singleplayer"
+				>
+					Single Player
+				</button></a
+			>
+			<a href="/multiplayer"
+				><button
+					class="btn btn-outline-primary"
+					data-lang="index-multiplayer"
+				>
+					Multiplayer
+				</button></a
+			>
+			<a href="#"
+				><button
+					class="btn btn-outline-primary"
+					data-lang="index-story"
+				>
+					Some Magic
+				</button></a
+			>
+		</div>
 
-            <!-- Dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" data-lang="nav-game">
-              Game
-            </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/singleplayer" data-lang="nav-singleplayer">Singleplayer</a>
-                    <a class="dropdown-item" href="/multiplayer" data-lang="nav-multiplayer">Multiplayer</a>
-                    <a class="dropdown-item" href="/rules" data-lang="nav-rules">Rules</a>
-                </div>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle " href="#" id="navbardrop" data-toggle="dropdown" data-lang="nav-about">
-              About
-            </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/team" data-lang="nav-about-team">About Team</a>
-                    <a class="dropdown-item " href="/project" data-lang="nav-about-project">About Project</a>
-                    <a class="dropdown-item" href="/documentation" data-lang="nav-documentation">Project Documentation</a>
-                </div>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" data-lang="nav-language">
-              Language
-            </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item translate-button" href="#" data-lng="en" data-lang="btn-en">English</a>
-                    <a class="dropdown-item translate-button" href="#" data-lng="bg" data-lang="btn-bg">Bulgarian</a>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/contact" data-lang="nav-contact">Contact</a>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="headings mt-2">
-        <h1 style="text-align: center" data-lang="welcome-text">Welcome to Bletchley Game</h1>
-        <h5 style="text-align: center" data-lang="team-text">By Team Crypto Zargan</h5>
-    </div>
-
-    <div class="playButtons mt-5" style="text-align: center;">
-        <a href="/singleplayer"><button class = "btn btn-outline-primary" data-lang="index-singleplayer">Single Player</button></a>
-        <a href="/multiplayer"><button class = "btn btn-outline-primary" data-lang="index-multiplayer">Multiplayer</button></a>
-        <a href="#"><button class = "btn btn-outline-primary" data-lang="index-story">Some Magic</button></a>
-    </div>
-
-    <footer>
-        <div class="text-center p-3 bg-light fixed-bottom">
-            © 2021 Copyright:
-            <a class="text-dark" href="https://github.com/IPBachvarov18/CryptoZargan">Crypto Zargan</a>
-        </div>
-    </footer>
-
-</body>
-
+		<footer>
+			<div class="text-center p-3 bg-light fixed-bottom">
+				© 2021 Copyright:
+				<a
+					class="text-dark"
+					href="https://github.com/IPBachvarov18/CryptoZargan"
+					>Crypto Zargan</a
+				>
+			</div>
+		</footer>
+	</body>
 </html>

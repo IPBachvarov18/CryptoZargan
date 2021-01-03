@@ -1,8 +1,8 @@
-'use strict'
+"use strict";
 
 let gamesInProgress;
 
-const uuid = require('uuid');
+const uuid = require("uuid");
 
 /*
    Generate unique random number
@@ -10,14 +10,13 @@ const uuid = require('uuid');
    @return {Number} Unique random number 
 */
 function getTrulyRandomNumber(blacklister = []) {
-    let randNumber;
+	let randNumber;
 
-    do {
+	do {
+		randNumber = Math.floor(Math.random() * 8);
+	} while (blacklister.indexOf(randNumber) != -1);
 
-        randNumber = Math.floor(Math.random() * 8);
-    } while (blacklister.indexOf(randNumber) != -1);
-
-    return randNumber;
+	return randNumber;
 }
 
 /*
@@ -27,22 +26,18 @@ function getTrulyRandomNumber(blacklister = []) {
    @return {Number} The number of guessed digits
 */
 function calculatesGuessedDigits(inputDigits, digits) {
+	let guessed = 0;
+	if (!inputDigits || !digits) {
+		return {};
+	}
 
-    let guessed = 0;
-    if (!inputDigits || !digits) {
-        return {};
-    }
+	for (let i = 0; i < inputDigits.length; i++) {
+		if (digits.indexOf(inputDigits[i]) != -1) {
+			guessed++;
+		}
+	}
 
-    for (let i = 0; i < inputDigits.length; i++) {
-
-        if (digits.indexOf(inputDigits[i]) != -1) {
-
-            guessed++;
-        }
-    }
-
-    return guessed;
-
+	return guessed;
 }
 //console.log(calculatesGuessedDigits("rrrr", "1234"))
 
@@ -53,51 +48,47 @@ function calculatesGuessedDigits(inputDigits, digits) {
    @return {Number} The number of digits on exact positions
 */
 function calculateExactPositions(inputDigits, digits) {
+	let guessedPosition = 0;
+	//let allowedNumbers = "/^[0-7]+$/"
+	for (let i = 0; i < 4; i++) {
+		if (inputDigits[i] < "0" || inputDigits[i] > "7") {
+			return 0;
+		}
+	}
+	for (let i = 0; i < inputDigits.length; i++) {
+		if (inputDigits[i] == digits[i]) {
+			guessedPosition++;
+		}
+	}
 
-    let guessedPosition = 0;
-    //let allowedNumbers = "/^[0-7]+$/"
-    for (let i = 0; i < 4; i++) {
-        if (inputDigits[i] < '0' || inputDigits[i] > '7') {
-            return 0;
-        }
-    }
-    for (let i = 0; i < inputDigits.length; i++) {
-        if (inputDigits[i] == digits[i]) {
-
-            guessedPosition++;
-        }
-    }
-
-    return guessedPosition;
+	return guessedPosition;
 }
-console.log(calculateExactPositions("2165", "1256"))
+console.log(calculateExactPositions("2165", "1256"));
 
 function checkUserInput(input) {
+	if (input.length > 4) {
+		return false;
+	}
 
-    if (input.length > 4) {
-        return false;
-    }
+	let usedDigits = "";
 
-    let usedDigits = '';
+	for (let i = 0; i < input.length; i++) {
+		if (input[i] < "0" || input[i] > "7") {
+			return false;
+		}
 
-    for (let i = 0; i < input.length; i++) {
-        if (input[i] < '0' || input[i] > '7') {
-            return false;
-        }
+		if (usedDigits.indexOf(input[i]) != -1) {
+			return false;
+		}
 
-        if (usedDigits.indexOf(input[i]) != -1) {
-            return false;
-        }
+		usedDigits += input[i];
+	}
 
-        usedDigits += input[i];
-    }
-
-    return true;
+	return true;
 }
 
 function processTurn(input) {
-
-    console.log(input);
+	console.log(input);
 }
 
 /*
@@ -115,14 +106,12 @@ function processTurn(input) {
 //     digits.push(getTrulyRandomNumber(digits));
 //     digits.push(getTrulyRandomNumber(digits));
 
-
 //     let number = '';
 
 //     for (let i = 0; i < 4; i++) {
 
 //         number += String(digits[i]);
 //     }
-
 
 //     // Dictionary
 //     gamesInProgress[id] = {
@@ -134,90 +123,83 @@ function processTurn(input) {
 //     //console.log(gamesInProgress);
 // }
 
-
 function generateCode(length) {
+	let digits = [];
 
-    let digits = [];
+	for (let i = 0; i < length; i++) {
+		digits.push(getTrulyRandomNumber(digits));
+	}
+	let code = "";
 
-    for (let i = 0; i < length; i++) {
-        digits.push(getTrulyRandomNumber(digits));
-    }
-    let code = '';
+	for (let i = 0; i < length; i++) {
+		code += String(digits[i]);
+	}
 
-    for (let i = 0; i < length; i++) {
-
-        code += String(digits[i]);
-    }
-
-    return code;
+	return code;
 }
 
 function generateRepetitiveCode(length) {
+	let digits = [];
 
-    let digits = [];
+	for (let i = 0; i < length; i++) {
+		digits.push(Math.floor(Math.random() * 8));
+	}
 
-    for (let i = 0; i < length; i++) {
-        digits.push(Math.floor(Math.random() * 8));
-    }
+	let code = "";
 
-    let code = '';
+	for (let i = 0; i < length; i++) {
+		code += String(digits[i]);
+	}
 
-    for (let i = 0; i < length; i++) {
-
-        code += String(digits[i]);
-    }
-
-    return code;
+	return code;
 }
 
 function checkDigits(digits) {
-    let isValid = true;
-    while (digits[0] == 0) {
-        digits[0] = Math.floor(Math.random() * 8);
-    }
-    for (let i = 0; i < 4; i++) {
-        for (let j = i + 1; j < 4; j++) {
-            if (digits[i] == digits[j]) {
-                let digit;
-                isValid = true;
-                while (isValid) {
-                    digit = Math.floor(Math.random() * 8);
-                    if (digits.indexOf(digit) == -1 || digit == 0) {
-                        isValid = false;
-                    }
-                }
-                digits[i] = digit;
-            }
-        }
-    }
-    return digits;
+	let isValid = true;
+	while (digits[0] == 0) {
+		digits[0] = Math.floor(Math.random() * 8);
+	}
+	for (let i = 0; i < 4; i++) {
+		for (let j = i + 1; j < 4; j++) {
+			if (digits[i] == digits[j]) {
+				let digit;
+				isValid = true;
+				while (isValid) {
+					digit = Math.floor(Math.random() * 8);
+					if (digits.indexOf(digit) == -1 || digit == 0) {
+						isValid = false;
+					}
+				}
+				digits[i] = digit;
+			}
+		}
+	}
+	return digits;
 }
 
 function checkInput(input) {
+	if (input.length != 4) {
+		return false;
+	}
 
-    if (input.length != 4) {
-        return false;
-    }
+	let usedDigits = "";
 
-    let usedDigits = '';
+	for (let i = 0; i < input.length; i++) {
+		if (input[i] < "0" || input[i] > "7") {
+			return false;
+		}
 
-    for (let i = 0; i < input.length; i++) {
-        if (input[i] < '0' || input[i] > '7') {
-            return false;
-        }
+		if (usedDigits.indexOf(input[i]) != -1) {
+			return false;
+		}
 
-        if (usedDigits.indexOf(input[i]) != -1) {
-            return false;
-        }
+		usedDigits += input[i];
+	}
 
-        usedDigits += input[i];
-    }
-
-    return true;
+	return true;
 }
 
-
-console.log(checkInput('5017'))
+console.log(checkInput("5017"));
 
 /*
    Process user's data, 

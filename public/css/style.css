@@ -1,9 +1,9 @@
 body {
-    display: none;
+	display: none;
 }
 
 nav {
-    font-size: 24px;
+	font-size: 24px;
 }
 
 .btn1 {
@@ -28,7 +28,7 @@ nav {
 
 .single-btn {
     margin-left: 25%;
-   
+
 }
 
 .multip-btn {

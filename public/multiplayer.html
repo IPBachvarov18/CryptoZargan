@@ -13,12 +13,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-    <script src="js/translate.js"></script>
+  <!-- <script src="js/translate.js"></script>--> 
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 
 </head>
 
 <body>
+   
 
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
         <a href="/"><img href="../about" src="https://cdn.discordapp.com/attachments/775422843990048818/776137118040457236/crypto_zargan.png" alt="Logo" style="width:100px;"></a>
@@ -62,12 +63,8 @@
             </li>
         </ul>
     </nav>
-
+    
     <h1 data-lang="opening">This is multiplayer</h1>
-    <!-- <form id="leaveMessage" style="display: none">
-        <input type="text-area" placeholder="Leave a message">
-        <input type="submit">
-    </form> -->
 
     <div id="won" style="display: none">
         <p data-lang="winner">British wins!</p>
@@ -86,7 +83,7 @@
 
     <div id="createGame">
         <form id="createGameForm" style="display: none" data-lang="username">
-            Username: <input type="text" name="nickname" data-lang="role"></br>
+            Username!: <input type="text" name="nickname" data-lang="role"></br>
             Role:<select name="role">
                 <option value="German" data-lang="german">German</option>
                 <option value="British" data-lang="british">British</option>
@@ -102,8 +99,6 @@
             <input type="submit">
         </form>
     </div>
-
-    <p id="qshaa"></p>
 
     <form id="guessedDigits" style="display:none" data-lang="guess-code">
 
@@ -125,42 +120,31 @@
         <input type="submit">
     </form>
 
-    <form id="codeInitialSetup2" style="display:none" data-lang="create-code">
-
-        Create Code
-        <input type="number" min="0" , max="7" name="create1">
-        <input type="number" min="0" , max="7" name="create2">
-        <input type="number" min="0" , max="7" name="create3">
-        <input type="number" min="0" , max="7" name="create4">
-        <input type="submit">
-    </form>
-
-
     <div id="startGame" style="display: none">
         <p id="joinMessage"></p>
         <input id="startButton" type="button" value="Start Game">
     </div>
 
-    <div id="waitStart" style="display: none">
+    <div id="waitForStart" style="display: none">
         <p data-lang="wait-start-game">Wait for your friend to start the game</p>
     </div>
 
-    <div id="waitGeneration" style="display: none">
+    <div id="waitForCode" style="display: none">
         <p data-lang="wait-create-code">Wait for your friend to create the code</p>
     </div>
 
-    <div id="waitLevel2" style="display: none">
+    <div id="waitForNextLevel" style="display: none">
         <p data-lang="wait-level2">Wait for your friend to start level 2</p>
     </div>
 
-    <div id="congratsLevel" style="display: none">
+    <div id="congratulationsLevel" style="display: none">
         <p data-lang="level1-win">Congratulations you completed level 1</p>
     </div>
 
     <div id="levelResult" style="display: none">
         <form id="levelActions">
             <p data-lang="level1">British completed level 1. Are you ready to continue?</p>
-            <button id="nextLevelM" class="btn" data-lang="next-level">Next Level</button>
+            <button id="nextLevelMultiplayer" class="btn" data-lang="next-level">Next Level</button>
             <a href="/"><button type="submit" class="btn" data-lang="ff">Surrender</button></a>
         </form>
     </div>
