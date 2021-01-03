@@ -63,41 +63,41 @@
         </ul>
     </nav>
 
-    <h1>This is multiplayer</h1>
+    <h1 data-lang="opening">This is multiplayer</h1>
     <!-- <form id="leaveMessage" style="display: none">
         <input type="text-area" placeholder="Leave a message">
         <input type="submit">
     </form> -->
 
     <div id="won" style="display: none">
-        <p>British wins!</p>
+        <p data-lang="winner">British wins!</p>
     </div>
 
     <div id="createJoin">
-        <h1>Choose:</h1>
-        <button id="createGameButton" class="btn">Create Game</button>
-        <button id="joinGameButton" class="btn">Join Game</button>
+        <h1 data-lang="choose">Choose:</h1>
+        <button id="createGameButton" class="btn" data-lang="create">Create Game</button>
+        <button id="joinGameButton" class="btn" data-lang="join">Join Game</button>
     </div>
 
     <div id="waitingForPlayer" style="display: none">
-        <p>Send this code to your friend and play together</p>
+        <p data-lang="send-code">Send this code to your friend and play together</p>
         <p id="roomId"></p>
     </div>
 
     <div id="createGame">
-        <form id="createGameForm" style="display: none">
-            Username: <input type="text" name="nickname"></br>
+        <form id="createGameForm" style="display: none" data-lang="username">
+            Username: <input type="text" name="nickname" data-lang="role"></br>
             Role:<select name="role">
-                <option value="German">German</option>
-                <option value="British">British</option>
+                <option value="German" data-lang="german">German</option>
+                <option value="British" data-lang="british">British</option>
               </select>
             <input type="submit">
         </form>
     </div>
 
     <div id="joinGame">
-        <form id="joinGameForm" style="display: none;">
-            Username: <input type="text" name="nickname"></br>
+        <form id="joinGameForm" style="display: none;"  data-lang="username">
+            Username: <input type="text" name="nickname" data-lang="ID"></br>
             Game ID: <input type="text" name="gameId">
             <input type="submit">
         </form>
@@ -105,7 +105,7 @@
 
     <p id="qshaa"></p>
 
-    <form id="guessedDigits" style="display:none">
+    <form id="guessedDigits" style="display:none" data-lang="guess-code">
 
         Guess Code
         <input type="number" min="0" , max="7" name="digit1">
@@ -115,7 +115,7 @@
         <input type="submit">
     </form>
 
-    <form id="codeInitialSetup" style="display:none">
+    <form id="codeInitialSetup" style="display:none" data-lang="create-code">
 
         Create Code
         <input type="number" min="0" , max="7" name="create1">
@@ -125,7 +125,7 @@
         <input type="submit">
     </form>
 
-    <form id="codeInitialSetup2" style="display:none">
+    <form id="codeInitialSetup2" style="display:none" data-lang="create-code">
 
         Create Code
         <input type="number" min="0" , max="7" name="create1">
@@ -142,24 +142,24 @@
     </div>
 
     <div id="waitStart" style="display: none">
-        <p>Wait your friend to start the game</p>
+        <p data-lang="wait-start-game">Wait for your friend to start the game</p>
     </div>
 
     <div id="waitGeneration" style="display: none">
-        <p>Wait your friend to create the code</p>
+        <p data-lang="wait-create-code">Wait for your friend to create the code</p>
     </div>
 
     <div id="waitLevel2" style="display: none">
-        <p>Wait your friend to start level 2</p>
+        <p data-lang="wait-level2">Wait for your friend to start level 2</p>
     </div>
 
     <div id="congratsLevel" style="display: none">
-        <p>Congratulations you completed level 1</p>
+        <p data-lang="level1-win">Congratulations you completed level 1</p>
     </div>
 
     <div id="levelResult" style="display: none">
         <form id="levelActions">
-            <p data-lang="level1">British completed level 1. Are you ready to continue</p>
+            <p data-lang="level1">British completed level 1. Are you ready to continue?</p>
             <button id="nextLevelM" class="btn" data-lang="next-level">Next Level</button>
             <a href="/"><button type="submit" class="btn" data-lang="ff">Surrender</button></a>
         </form>
@@ -171,14 +171,14 @@
         <a href="/singleplayer"><button class="btn>" data-lang="play-again">Play Again</button></a>
     </div>
 
-    <p id="code" style="display: none">Code: </p>
+    <p id="code" style="display: none" data-lang="code">Code: </p>
 
     <table class=" table " id="triesTable" style="display: none ">
         <thead>
             <tr>
-                <th>Guessed Digits</th>
-                <th>Guessed Positions</th>
-                <th>Number</th>
+                <th data-lang="table1">Guessed Digits</th>
+                <th data-lang="table2">Guessed Positions</th>
+                <th data-lang="table3">Number</th>
             </tr>
         </thead>
         <tbody id="tries">

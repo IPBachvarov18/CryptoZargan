@@ -13,32 +13,43 @@ nav {
     padding: 12px 30px;
     cursor: pointer;
     font-size: 20px;
+    margin-top: 10%;
+}
+
+.sigl{
+    margin-left: 5%;
     
 }
 
+#single {
+    margin-left: 5%;
+    width: 50%;
+}
 
-.multyp {
-    margin-top:-73px;
+.rules {
     margin-left: 40%;
-    width:20%;
-}
-.sigl
-{
-    width:20%;
-}
-
-.rules
-{
     margin-top: 50px;
 }
 
-.card-body
-{
-width: 20%;
-border:none;
-
+.multyp {
+    margin-top: -73px;
+    margin-left: 50%;
+    width: 50%;
 }
-#multy
-{
-    margin-left: 40%;
+
+.card-body {
+    width: 20%;
+    margin-left: -1%;
+}
+
+#multy {
+    margin-left: 50%;
+}
+
+.collapse {
+    width: 30%;
+}
+
+#single {
+    width: 90%;
 }

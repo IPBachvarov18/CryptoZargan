@@ -152,9 +152,9 @@ var textTranslation = {
     },
 
     "level1": {
-        'en': `You completed level 1. Are you ready to continue`,
+        'en': `British completed level 1. Are you ready to continue?`,
 
-        'bg': `Ти мина ниво 1. Готов ли си да продължиш`
+        'bg': `Британеца мина ниво 1. Готов ли си да продължиш?`
     },
 
     "next-level": {
@@ -202,7 +202,7 @@ var textTranslation = {
     "guessed-pos": {
         'en': `Guessed Positions`,
 
-        'bg': `Познати позиций`
+        'bg': `Познати позиции`
     },
 
     "guessed-num": {
@@ -211,10 +211,132 @@ var textTranslation = {
         'bg': `Число`
     },
 
+    "opening": {
+        'en': `This is multiplayer`,
+
+        'bg': `Това е мултиплейъра`
+    },
+
+    "choose": {
+        'en': `Choose:`,
+
+        'bg': `Избери:`
+    },
+
+    "winner": {
+        'en': `British wins!`,
+
+        'bg': `Британеца печели!`
+    },
+
+    "create": {
+        'en': `Create Game`,
+
+        'bg': `Създай игра`
+    },
+
+    "join": {
+        'en': `Join Game`,
+
+        'bg': `Присъедини се в игра`
+    },
+
+    "send-code": {
+        'en': `Send this code to your friend and play together`,
+
+        'bg': `Прати кода на твоя приятел и играйте заедно`
+    },
+
+    "username": {
+        'en': `Username:`,
+
+        'bg': `Потребителско име:`
+    },
+
+    "role": {
+        'en': `Role:`,
+
+        'bg': `Роля:`
+    },
+
+    "german": {
+        'en': `German`,
+
+        'bg': `Германец`
+    },
+
+    "british": {
+        'en': `British`,
+
+        'bg': `Британец`
+    },
+
+    "ID": {
+        'en': `Game ID:`,
+
+        'bg': `Идентификатор на играта:`
+    },
+
+    "guess-code": {
+        'en': `Guess Code`,
+
+        'bg': `Познай кода`
+    },
+
+    "create-code": {
+        'en': `Create code`,
+
+        'bg': `Създай кода`
+    },
 
 
+    "code": {
+        'en': `Code: `,
 
+        'bg': `Код: `
+    },
 
+    "table1": {
+        'en': `Guessed Digits`,
+
+        'bg': `Познати цифри`
+    },
+
+    "table2": {
+        'en': `Guessed Positions`,
+
+        'bg': `Познати позиции`
+    },
+
+    "table3": {
+        'en': `Number`,
+
+        'bg': `Число`
+    },
+
+    "level1-win": {
+        'en': `Congratulations you completed level 1`,
+
+        'bg': `Поздравления ти завърши първо ниво`
+    },
+
+    "wait-level2": {
+        'en': `Wait for your friend to start level 2`,
+
+        'bg': `Изчакай приятеля си да стартира второ ниво`
+    },
+
+    "wait-create-code": {
+        'en': `Wait for your friend to create the code`,
+
+        'bg': `Изчакай приятеля си да напише кода`
+    },
+
+    "wait-start-game": {
+        'en': `Wait for your friend to start the game`,
+
+        'bg': `Изчакай приятеля си да стартира игра`
+    },
 
 }
 
