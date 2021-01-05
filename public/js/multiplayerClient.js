@@ -171,12 +171,12 @@ socket.on(
 	) {
 		if (hasWon) {
 			console.log(level);
-			if (level == 1) {
+			if (level == 2) {
 				$("#levelResult").show();
 				$("#nextLevelMultiplayer").on("click", function (e) {
 					e.preventDefault();
 					$("#tries").empty();
-
+					alert("BABUN");
 					socket.emit("nextLevelMultiplayer", hasWon);
 					console.log(level);
 					$("#levelResult").hide();
@@ -209,7 +209,7 @@ socket.on(
 		if (hasWon) {
 			console.log(level);
 
-			if (level == 1) {
+			if (level == 2) {
 				$("#guessedDigits").hide();
 				$("#congratulationsLevel").show();
 				$("#waitForNextLevel").show();

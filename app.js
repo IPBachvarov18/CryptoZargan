@@ -125,6 +125,14 @@ let ROLES = {
 	BRITISH: "British",
 };
 
+let GAME_PROGRESS = {
+	PREPARE: 0,
+	STARTED: 1,
+	LEVEL_1: 2,
+	LEVEL_2: 3,
+	FINISH: 4,
+};
+
 io.on("connection", function (socket) {
 	console.log("New Connection!");
 
@@ -220,6 +228,7 @@ io.on("connection", function (socket) {
 			secondPlayerRole: null,
 			firstPlayerId: socket.id,
 			code: null,
+			progress: GAME_PROGRESS.PREPARE,
 		};
 
 		console.log(
@@ -247,7 +256,6 @@ io.on("connection", function (socket) {
 					} else {
 						multiGameState[roomId].secondPlayerRole = "German";
 					}
-					multiGameState[roomId].state = "In progress";
 					multiGameState[roomId].secondPlayerId = socket.id;
 
 					console.log(multiGameState);
@@ -273,9 +281,13 @@ io.on("connection", function (socket) {
 	socket.on("startGame", function () {
 		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
-
+		if (roomId == null) {
+			return {};
+		}
 		// !Check if id is null
 		let players = multiGameState.getUsersByRoles();
+
+		multiGameState[roomId].progress = GAME_PROGRESS.STARTED;
 
 		io.to(players.germanPlayerId).emit(`gameStatusGerman`);
 		io.to(players.britishPlayerId).emit(`gameStatusBritish`);
@@ -284,9 +296,13 @@ io.on("connection", function (socket) {
 	socket.on("gameStarted", function () {
 		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
-
+		if (roomId == null) {
+			return {};
+		}
 		// !Check if id is null
 		let players = multiGameState.getUsersByRoles();
+
+		multiGameState[roomId].progress = GAME_PROGRESS.LEVEL_1;
 
 		io.to(players.germanPlayerId).emit(
 			`displayGerman`,
@@ -298,35 +314,40 @@ io.on("connection", function (socket) {
 	let gameCountMultiplayer = 1;
 	let hasWonMultiplayer = false;
 	let hasTriesMultiplayer = true;
-	let levelMultiplayer = 1;
 	let code2;
 	let guessedDigitsMultiplayer;
 	let exactPositionsMultiplayer;
 
-	socket.on("nextlevelMultiplayer", function (hasWon1) {
+	socket.on("nextLevelMultiplayer", function (hasWon1) {
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
-
 		if (hasWon1) {
-			levelMultiplayer = 2;
+			multiGameState[roomId].progress = GAME_PROGRESS.LEVEL_2;
 			guessedDigitsMultiplayer = 0;
 			exactPositionsMultiplayer = 0;
 			gameCountMultiplayer = 1;
 			hasWonMultiplayer = false;
 			hasTriesMultiplayer = true;
 		}
+		console.log("kur");
 		console.log(multiGameState[roomId].code);
 	});
 
 	socket.on("setupCode", function (code) {
 		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
+		if (roomId == null) {
+			return {};
+		}
+
 		let players = multiGameState.getUsersByRoles();
 
+		console.log(multiGameState[roomId].progress);
+
 		if (game.checkInput(code)) {
-			if (levelMultiplayer == 1) {
+			if (multiGameState[roomId].progress + 1 == 2) {
 				multiGameState[roomId].code = code;
 				socket.emit("codeGenerated", "Qsha si", code);
-			} else {
+			} else if (multiGameState[roomId].progress == 3) {
 				multiGameState[roomId].code = code;
 				io.to(players.britishPlayerId).emit(`nextLevelBritish`);
 			}
@@ -338,6 +359,9 @@ io.on("connection", function (socket) {
 	socket.on("inputCode", function (britishCode) {
 		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
+		if (roomId == null) {
+			return {};
+		}
 
 		// !Check if id is null
 		let players = multiGameState.getUsersByRoles();
@@ -361,7 +385,7 @@ io.on("connection", function (socket) {
 		if (hasTriesMultiplayer) {
 			gameCountMultiplayer++;
 			hasWonMultiplayer = exactPositionsMultiplayer == 4;
-			if (hasWonMultiplayer && levelMultiplayer == 2) {
+			if (hasWonMultiplayer && multiGameState[roomId].progress == 3) {
 				gameCountMultiplayer = 420;
 			}
 			console.log(
@@ -369,7 +393,7 @@ io.on("connection", function (socket) {
 				"Pos: " + exactPositionsMultiplayer + " " + hasWonMultiplayer
 			);
 		}
-		console.log(levelMultiplayer);
+		console.log(multiGameState[roomId].progress);
 		io.to(players.germanPlayerId).emit(
 			`resultGerman`,
 			britishCode,
@@ -377,7 +401,7 @@ io.on("connection", function (socket) {
 			exactPositionsMultiplayer,
 			hasTriesMultiplayer,
 			hasWonMultiplayer,
-			levelMultiplayer
+			multiGameState[roomId].progress
 		);
 
 		io.to(players.britishPlayerId).emit(
@@ -387,7 +411,7 @@ io.on("connection", function (socket) {
 			exactPositionsMultiplayer,
 			hasTriesMultiplayer,
 			hasWonMultiplayer,
-			levelMultiplayer
+			multiGameState[roomId].progress
 		);
 	});
 });
