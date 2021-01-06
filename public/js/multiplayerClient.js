@@ -159,79 +159,83 @@ socket.on("codeGenerated", function (message, code) {
 	socket.emit("gameStarted");
 });
 
-socket.on(
-	"resultGerman",
-	function (
-		britishCode,
-		guessedDigits,
-		exactPositions,
-		hasTries,
-		hasWon,
-		level
-	) {
-		if (hasWon) {
-			console.log(level);
-			if (level == 2) {
-				$("#levelResult").show();
-				$("#nextLevelMultiplayer").on("click", function (e) {
-					e.preventDefault();
-					$("#tries").empty();
-					alert("BABUN");
-					socket.emit("nextLevelMultiplayer", hasWon);
-					console.log(level);
-					$("#levelResult").hide();
-					$("#codeInitialSetup").show();
-					$("#code").hide();
-				});
-			} else {
-				$("#guessedDigits").hide();
-				$("#won").show();
-			}
-		}
-		if (!hasTries) {
-			$("#lose").show();
-		}
+socket.on("cheaterDetected", function(message) {
+    alert(message)
+});
 
-		addRowsToTable(guessedDigits, exactPositions, britishCode);
-	}
+socket.on(
+    "resultGerman",
+    function(
+        britishCode,
+        guessedDigits,
+        exactPositions,
+        hasTries,
+        hasWon,
+        level
+    ) {
+        if (hasWon) {
+            console.log(level);
+            if (level == 2) {
+                $("#levelResult").show();
+                $("#nextLevelMultiplayer").on("click", function(e) {
+                    e.preventDefault();
+                    $("#tries").empty();
+                    alert("BABUN");
+                    socket.emit("nextLevelMultiplayer", hasWon);
+                    console.log(level);
+                    $("#levelResult").hide();
+                    $("#codeInitialSetup").show();
+                    $("#code").hide();
+                });
+            } else {
+                $("#guessedDigits").hide();
+                $("#won").show();
+            }
+        }
+        if (!hasTries) {
+            $("#lose").show();
+        }
+
+        addRowsToTable(guessedDigits, exactPositions, britishCode);
+    }
 );
 
 socket.on(
-	"guessBritish",
-	function (
-		britishCode,
-		guessedDigits,
-		exactPositions,
-		hasTries,
-		hasWon,
-		level
-	) {
-		if (hasWon) {
-			console.log(level);
+    "guessBritish",
+    function(
+        britishCode,
+        guessedDigits,
+        exactPositions,
+        hasTries,
+        hasWon,
+        level
+    ) {
+        if (hasWon) {
+            console.log(level);
 
-			if (level == 2) {
-				$("#guessedDigits").hide();
-				$("#congratulationsLevel").show();
-				$("#waitForNextLevel").show();
-				socket.on("nextLevelBritish", function () {
-					$("#tries").empty();
-					$("#congratulationsLevel").hide();
-					$("#waitForNextLevel").hide();
-					$("#guessedDigits").show();
-				});
-			} else {
-				$("#guessedDigits").hide();
-				$("#won").show();
-			}
-		}
+            if (level == 2) {
+                $("#guessedDigits").hide();
+                $("#congratulationsLevel").show();
+                $("#waitForNextLevel").show();
+                socket.on("nextLevelBritish", function() {
+                    $("#tries").empty();
+                    $("#congratulationsLevel").hide();
+                    $("#waitForNextLevel").hide();
+                    $("#guessedDigits").show();
+                });
+            } else {
+                $("#guessedDigits").hide();
+                $("#won").show();
+            }
+        }
 
-		if (!hasTries) {
-			$("#lose").show();
-			$("#guessedDigits").hide();
-		}
+        if (!hasTries) {
+            $("#lose").show();
+            $("#guessedDigits").hide();
+        }
 
-		addRowsToTable(guessedDigits, exactPositions, britishCode);
-	}
+        addRowsToTable(guessedDigits, exactPositions, britishCode);
+    }
 );
 
 $("#createGameButton").on("click", function (e) {
