@@ -7,7 +7,7 @@ var textTranslation = {
     },
 
     "nav-singleplayer": {
-        'en': `Single Player`,
+        'en': `Singleplayer`,
 
         'bg': `Самостоятелна игра`
     },
@@ -338,6 +338,31 @@ var textTranslation = {
         'bg': `Изчакай приятеля си да стартира игра`
     },
 
+    "download": {
+        'en': `Download the full rules here`,
+
+        'bg': `Изтегли правилата от тук`
+    },
+
+    "single-rules": {
+        'en': `In the singleplayer mode of the game you play against the computer - a random number generates and you
+        have to guess it to progress further. There are 3 difficulties - Easy, Medium and Hard. There are also 2
+        tasks - first task in which numbers cannot be repeated, and second task where numbers can be repeated. You have
+        13 attempts to guess the number, otherwise you lose.`,
+
+        'bg': `В самостоятената игра се играе срещу компютъра - произволно число се генерира и трябва да се познае, 
+        за да се продължи напред. Има 3 трудности - лесно, средно и трудно. Също така има и 2 задачи. В първата задача цифрите не могат
+        да се повтарят, а във втората те могат да се повтарят. Имате 13 опита, за да познаете числото, в противен случай губите`
+    },
+
+    "multi-rules": {
+        'en': ` In the multiplayer mode of the game 2 people can play against each other. One person creates a room and
+        gives the code that was given to him so that the other one can join it. The person who creates the room
+        can chose his role.`,
+
+        'bg': `В мултиплейъра на играта 2 човека могат да играят един срещу друг. Единия създава стая и дава кода за
+        съответната стая на приятеля си, така че той да може да влезе. Този, който е създал стаята може да избере ролята си.`
+    },
 }
 
 var currentLanguage = 'en';
@@ -357,7 +382,7 @@ function translateLabel(langId) {
 
     // Gets all tags that have 'data-lang' attribute present
     $("[data-lang]")
-        .each(function() {
+        .each(function () {
             let item = $(this);
             if (textTranslation.hasOwnProperty(item.data("lang")) && textTranslation[item.data("lang")].hasOwnProperty(langId)) {
                 let text = textTranslation[item.data("lang")][langId];

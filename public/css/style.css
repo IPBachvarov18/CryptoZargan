@@ -13,43 +13,32 @@ nav {
     padding: 12px 30px;
     cursor: pointer;
     font-size: 20px;
-    margin-top: 10%;
-}
-
-.sigl{
-    margin-left: 5%;
-    
-}
-
-#single {
-    margin-left: 5%;
-    width: 50%;
-}
-
-.rules {
-    margin-left: 40%;
-    margin-top: 50px;
-}
-
-.multyp {
-    margin-top: -73px;
-    margin-left: 50%;
-    width: 50%;
-}
-
-.card-body {
-    width: 20%;
-    margin-left: -1%;
-}
-
-#multy {
-    margin-left: 50%;
+    position: relative;
+    top: 500px;
 }
 
 .collapse {
     width: 30%;
+    position: absolute;
 }
 
-#single {
-    width: 90%;
+.single-rules {
+    margin-left: 10%;
+}
+
+.single-btn {
+    margin-left: 25%;
+   
+}
+
+.multip-btn {
+    margin-left: 30%;
+}
+
+.multi-rules {
+    margin-left: 40%;
+}
+
+.rules {
+    text-align: center;
 }

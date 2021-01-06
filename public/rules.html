@@ -78,38 +78,38 @@
         </ul>
     </nav>
 
-    <h1>This is rules</h1>
+    <h1>Game rules</h1>
 
+      
+            <button class="single-btn btn btn-outline-primary mt-3 m" data-toggle="collapse" data-target="#single" aria-expanded="false" data-lang="index-singleplayer">
+                Single player
+       
 
-    <div class="sigl">
-        <p>
-            <a class="btn btn-primary mt-3" data-toggle="collapse" href="#single" role="button" aria-expanded="false"
-                aria-controls="collapseExample">
-                Singlyplayer
-            </a>
-    </div>
+    
+        <button class="multip-btn btn btn-outline-primary mt-3 m" data-toggle="collapse" data-target="#multy" aria-expanded="false" data-lang="index-multiplayer">
+            Multiplayer
+        </button>
 
-
+  
     <div class="collapse" id="single">
-        <div class="card card-body">
-            In the singleplayer mode of the game you play against the computer - a random number generates and you have
-            to guess it to progress further. There are 3 difficulties - Easy, Medium and Hard. There are also 2 tasks -
-            First task in which numbers cannot be repeated, and Second task where numbers can be repeated. You have 13
+        <div class="single-rules" data-lang="single-rules">
+            In the singleplayer mode of the game you play against the computer - a random number generates and you
+            have
+            to guess it to progress further. There are 3 difficulties - Easy, Medium and Hard. There are also 2
+            tasks -
+            First task in which numbers cannot be repeated, and Second task where numbers can be repeated. You have
+            13
             attempts to guess the number, otherwise you lose.
         </div>
     </div>
 
-    <div class="multyp">
-        <button class="btn btn-primary mt-3 m" data-toggle="collapse" data-target="#multy" aria-expanded="false">
-            Multiplayer
-        </button>
-        </p>
-    </div>
+
 
     <div class="collapse" id="multy">
-        <div class="card card-body">
+        <div class="multi-rules" data-lang="multi-rules">
             In the multiplayer mode of the game 2 people can play against each other. One person creates a room and
-            gives the code that was given to him so that the other one can join it. The person who creates the room can
+            gives the code that was given to him so that the other one can join it. The person who creates the room
+            can
             chose his role.
         </div>
     </div>
@@ -118,7 +118,7 @@
 
     <div class="rules">
         <a href="docs\Rules of the game-converted.pdf" download>
-            <button class="btn1"></i> Download the full rules here</button>
+            <button class="btn1" data-lang="download"></i> Download the full rules here</button>
         </a>
     </div>
 
