@@ -5,11 +5,13 @@ const { isObject } = require("util");
 const socketio = require("socket.io");
 const game = require("./utils/game");
 const uuid = require("uuid");
+const mailer = require("nodemailer");
 
 const http = require("http");
 const app = express();
 const https = require("https");
 const fs = require("fs");
+const { listeners } = require("cluster");
 require("dotenv").config();
 
 const httpApp = express(http);
@@ -34,6 +36,18 @@ const server = https.createServer(
 	},
 	app
 );
+
+const smtpConfig = {
+	host: process.env.gmailHost,
+	port: process.env.gmailPORT,
+	secure: true,
+	auth: {
+		user: process.env.gmailID,
+		pass: process.env.gmailPass,
+	},
+};
+
+const transporter = mailer.createTransport(smtpConfig);
 
 server.listen(process.env.httpsPort, () => {
 	console.log(`HTTPS Server running on port ${process.env.httpsPort}`);
@@ -82,6 +96,52 @@ app.get("/documentation", function (req, res) {
 
 app.get("*", function (req, res) {
 	res.sendFile(__dirname + "/public/error404.html");
+});
+
+app.post("processContact1", function (req, res) {
+	let data = req.body;
+
+	let mailOptions = {
+		from: data.email,
+		to: process.env.gmailID,
+		subject: data.subject,
+		html: `
+		 <h1> ${data.username} send you a message </h1>
+
+		<h2> Message: </h2> <p> data.message </p>
+		`,
+	};
+
+	transporter.sendMail(mailOptions, (error, info) => {
+		if (error) {
+			console.log(error);
+		}
+		console.log(info);
+	});
+});
+
+app.post("/processContact", function (req, res) {
+	let data = req.body;
+
+	let mailOptions = {
+		from: data.email,
+		to: process.env.gmailID,
+		subject: data.subject,
+		html: `
+		 <h1> ${data.username} send you a message </h1>
+
+		<h2> Message: </h2> <p> data.message </p>
+		`,
+	};
+	console.log(mailOptions);
+
+	transporter.sendMail(mailOptions, (error, info) => {
+		if (error) {
+			console.log(error);
+		}
+	});
+
+	res.redirect("/contact");
 });
 
 let multiGameState = {
@@ -328,7 +388,6 @@ io.on("connection", function (socket) {
 			hasWonMultiplayer = false;
 			hasTriesMultiplayer = true;
 		}
-		console.log("kur");
 		console.log(multiGameState[roomId].code);
 	});
 
