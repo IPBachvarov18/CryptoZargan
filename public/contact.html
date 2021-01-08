@@ -30,7 +30,9 @@
 		<script src="js/translate.js"></script>
 	</head>
 
-	<body>
+	<body
+		style="background-image: url('../docs/background.png'); height: 900px"
+	>
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<!-- Brand -->
 			<a href="/"
@@ -147,24 +149,89 @@
 			</ul>
 		</nav>
 
-		<h1 data-lang="contact">This is contact</h1>
+		<div class="d-flex justify-content-center pt-3">
+			<div class="jumbotron" style="height: 810px">
+				<h1 data-lang="contact" style="text-align: center">
+					This is contact
+				</h1>
 
-		<form action="/processContact" method="POST">
-      
-                <label for="username">Name</label>
-				<input type="text" name="username"></br>
-				
-				<label for="email">Email</label>
-				<input type="email" name="email" required /></br>
-	
-				<label for="subject">Subject</label>
-				<input type="text" name="subject" required /></br>
-	
-				<label for="message">Message</label>
-				<input type="text-aria" name="message" required /></br>
+				<div style="width: 350px">
+					<form
+						action="/processContact"
+						method="POST"
+						class="was-validated"
+					>
+						<div class="form-group">
+							<label for="username">Name</label>
+							<input
+								type="text"
+								name="username"
+								class="form-control mb-2 mr-sm-2"
+								placeholder="Enter name"
+								class="form-control"
+								required
+							/>
+							<div class="valid-feedback"></div>
+							<div class="invalid-feedback">
+								Please fill out this field.
+							</div>
+						</div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input
+								type="email"
+								name="email"
+								class="form-control mb-2 mr-sm-2"
+								placeholder="Enter email"
+								class="form-control"
+								required
+							/>
+							<div class="valid-feedback"></div>
+							<div class="invalid-feedback">
+								Please fill out this field.
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="subject">Subject</label>
+							<input
+								type="text"
+								name="subject"
+								class="form-control mb-2 mr-sm-2"
+								placeholder="Enter subject"
+								class="form-control"
+								required
+							/>
+							<div class="valid-feedback"></div>
+							<div class="invalid-feedback">
+								Please fill out this field.
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="message">Message</label>
+							<input
+								type="text-aria"
+								name="message"
+								class="form-control mb-2 mr-sm-2"
+								placeholder="Enter message"
+								class="form-control"
+								required
+							/>
+							<div class="valid-feedback"></div>
+							<div class="invalid-feedback">
+								Please fill out this field.
+							</div>
+						</div>
+
+						<button type="submit" class="btn btn-primary">
+							Submit
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
 
 		<footer>
 			<div class="text-center p-3 bg-light fixed-bottom">
