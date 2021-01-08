@@ -1,5 +1,6 @@
 body {
-	display: none;
+    display: none;
+    background-image: url('../../docs/bg.jpg');
 }
 
 nav {
@@ -41,4 +42,13 @@ nav {
 
 .rules {
     text-align: center;
+}
+
+.margtop{
+    margin-top:12%;
+}
+.margtopbutton
+{
+    margin-top:5%;
+}
 }
