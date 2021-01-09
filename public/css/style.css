@@ -1,7 +1,8 @@
 body {
+    height: 100%;
     display: none;
-    background-image: url('../../docs/bg.png');
-    
+    background-image: url('../img/bg.png');
+    background-size: cover;
 }
 
 nav {
