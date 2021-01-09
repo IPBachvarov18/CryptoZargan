@@ -1,0 +1,1 @@
+jsdoc .\app.js .\utils\game.js .\public\js\index.js .\public\js\multiplayerClient.js .\public\js\singleplayerClient.js .\public\js\translate.js
