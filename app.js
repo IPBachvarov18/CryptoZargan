@@ -91,7 +91,7 @@ app.get("/rules", function (req, res) {
 });
 
 app.get("/documentation", function (req, res) {
-	res.send("Documentation");
+	res.sendFile(__dirname + "/out/global.html");
 });
 
 app.get("*", function (req, res) {
