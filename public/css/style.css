@@ -1,6 +1,7 @@
 body {
     display: none;
-    background-image: url('../../docs/bg.jpg');
+    background-image: url('../../docs/bg.png');
+    
 }
 
 nav {
@@ -51,4 +52,4 @@ nav {
 {
     margin-top:5%;
 }
-}
+
