@@ -192,13 +192,13 @@ socket.on(
 					$("#codeInitialSetup").show();
 				});
 			} else {
-				$("#guessedDigits").hide();
-				$("#won").show();
+				$("#loseImg").attr("src", "img/GermanLose.png");
+				$("#lose").show();
 			}
 		}
 		if (!hasTries) {
-			$("#lose").show();
-			$("#guessedDigits").hide();
+			$("#winImg").attr("src", "img/germanWon.jpg");
+			$("#win").show();
 		}
 
 		addRowsToTable(guessedDigits, exactPositions, britishCode);
@@ -229,12 +229,15 @@ socket.on(
 					$("#guessedDigits").show();
 				});
 			} else {
-				$("#lose").show();
+				$("#winImg").attr("src", "img/britishWinImg.png");
+				$("#win").show();
 			}
 		}
 
 		if (!hasTries) {
-			$("#won").show();
+			$("#guessedDigits").hide();
+			$("#loseImg").attr("src", "img/britishLoseImg.png");
+			$("#lose").show();
 		}
 
 		addRowsToTable(guessedDigits, exactPositions, britishCode);
