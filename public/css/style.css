@@ -23,8 +23,11 @@ nav {
     position: absolute;
 }
 
+
 .single-rules {
-    margin-left: 10%;
+    margin-left: 20%;
+    text-align: right;
+    
 }
 
 .single-btn {
@@ -37,7 +40,10 @@ nav {
 }
 
 .multi-rules {
-    margin-left: 40%;
+    text-align: left;
+     position: relative;
+     left: 205%;
+
 }
 
 .rules {
@@ -51,4 +57,4 @@ nav {
 {
     margin-top:5%;
 }
-}
+
