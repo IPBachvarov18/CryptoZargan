@@ -297,7 +297,7 @@ io.on("connection", function (socket) {
 		};
 
 		console.log(
-			`${nickname} who is ${role} has joind in room with id ${roomId}`
+			`${nickname} who is ${role} has joined in room with id ${roomId}`
 		);
 		console.log(multiGameState);
 		socket.emit("generateId", roomId);

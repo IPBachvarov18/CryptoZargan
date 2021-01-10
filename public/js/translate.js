@@ -119,9 +119,9 @@ var textTranslation = {
 	},
 
 	singleplayer: {
-		en: `This is Single Player`,
+		en: `Singleplayer Mode`,
 
-		bg: `Това е сингълплейъра`,
+		bg: `Самостоятелна игра`,
 	},
 
 	play: {
