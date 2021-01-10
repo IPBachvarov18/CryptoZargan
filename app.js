@@ -80,10 +80,6 @@ app.get("/contact", function (req, res) {
 	res.sendFile(__dirname + "/public/contact.html");
 });
 
-app.get("/project", function (req, res) {
-	res.sendFile(__dirname + "/public/aboutProject.html");
-});
-
 app.get(process.env.er1, function (req, res) {
 	res.sendFile(__dirname + process.env.ee1);
 });
@@ -188,6 +184,13 @@ let GAME_PROGRESS = {
 	FINISH: 4,
 };
 
+let ERROR = {
+	NO_NAME_P1: 0,
+	NO_NAME_P2: 1,
+	INVALID_CODE_GERMAN: 2,
+	INVALID_CODE_BRITISH: 3,
+};
+
 io.on("connection", function (socket) {
 	console.log("New Connection!");
 
@@ -276,8 +279,9 @@ io.on("connection", function (socket) {
 		const roomId = uuid.v4();
 		socket.join(roomId);
 
-		if (nickname == undefined || role == undefined) {
+		if (nickname == "" || role == "") {
 			console.log("User tried to join with no name or role");
+			io.to(socket.id).emit("error", ERROR.NO_NAME_P1);
 			return {};
 		}
 
@@ -300,15 +304,14 @@ io.on("connection", function (socket) {
 
 	socket.on("playerTwoJoin", function (nickname, roomId) {
 		// TODO: check if room exist, Stoyane!
-		if (nickname == undefined) {
+		if (nickname == "") {
+			socket.emit("error", ERROR.NO_NAME_P2);
 			return {};
 		}
 		if (roomId != undefined) {
 			if (multiGameState.hasOwnProperty(roomId)) {
+				let players = multiGameState.getUsersByRoles();
 				socket.join(roomId);
-				let size = Object.keys(multiGameState).length;
-				console.log(size);
-
 				if (
 					multiGameState[roomId].firstPlayer != undefined &&
 					multiGameState[roomId].firstPlayerRole != undefined
@@ -409,15 +412,15 @@ io.on("connection", function (socket) {
 		if (socket.id == players.britishPlayerId) {
 			return {};
 		}
-		cntCodeSetup++;
-		if (cntCodeSetup > 2) {
-			console.log("Game terminated due to cheater in the game");
-			socket.emit(
-				"cheaterDetected",
-				"Game terminated due to cheater in the game"
-			);
-			return {};
-		}
+		// cntCodeSetup++;
+		// if (cntCodeSetup > 2) {
+		// 	console.log("Game terminated due to cheater in the game");
+		// 	socket.emit(
+		// 		"cheaterDetected",
+		// 		"Game terminated due to cheater in the game"
+		// 	);
+		// 	return {};
+		// }
 		// this.counter++;
 		// console.log(`Codes entered: ${this.counter}`);
 		// if (this.counter > 2) {
@@ -427,16 +430,23 @@ io.on("connection", function (socket) {
 
 		console.log(multiGameState[roomId].progress);
 
-		if (game.checkInput(code)) {
-			if (multiGameState[roomId].progress + 1 == 2) {
+		if (multiGameState[roomId].progress + 1 == 2) {
+			if (game.checkInput(code)) {
 				multiGameState[roomId].code = code;
-				socket.emit("codeGenerated", "Qsha si", code);
-			} else if (multiGameState[roomId].progress == 3) {
+				socket.emit("codeGenerated");
+			} else {
+				socket.emit("error", ERROR.INVALID_CODE_GERMAN);
+			}
+		} else if (multiGameState[roomId].progress == 3) {
+			if (game.checkInputTaskTwo(code)) {
 				multiGameState[roomId].code = code;
 				io.to(players.britishPlayerId).emit(`nextLevelBritish`);
+			} else {
+				io.to(players.germanPlayerId).emit(
+					"error",
+					ERROR.INVALID_CODE_GERMAN
+				);
 			}
-		} else {
-			socket.emit("incorrectInput", "Kaval");
 		}
 	});
 
@@ -456,6 +466,7 @@ io.on("connection", function (socket) {
 
 		if (!britishCode || britishCode.length != 4) {
 			console.log(`Invalid request: !${britishCode}!`);
+			socket.emit("error", ERROR.INVALID_CODE_BRITISH);
 			return {};
 		}
 

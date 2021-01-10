@@ -43,7 +43,6 @@
             </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/team" data-lang="nav-about-team">About Team</a>
-                    <a class="dropdown-item" href="/project" data-lang="nav-about-project">About Project</a>
                     <a class="dropdown-item" href="/documentation" data-lang="nav-documentation">Project Documentation</a>
                 </div>
             </li>
@@ -78,12 +77,12 @@
 
     <div id="waitingForPlayer" style="display: none">
         <p data-lang="send-code">Send this code to your friend and play together</p>
-        <p id="roomId"></p>
+        <p id="roomId"></p> <button onclick="copyToClipboard()">Copy</button>
     </div>
 
     <div id="createGame">
         <form id="createGameForm" style="display: none" data-lang="username">
-            Username!: <input type="text" name="nickname" data-lang="role"></br>
+            Username: <input type="text" name="nickname" data-lang="role"></br>
             Role:<select name="role">
                 <option value="German" data-lang="german">German</option>
                 <option value="British" data-lang="british">British</option>
@@ -91,6 +90,7 @@
             <input type="submit">
         </form>
     </div>
+    <p id="errorMessage" class="text-danger" style = "display:none"></p>
 
     <div id="joinGame">
         <form id="joinGameForm" style="display: none;"  data-lang="username">

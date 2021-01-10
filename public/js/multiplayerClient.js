@@ -38,12 +38,11 @@ if (joinGameForm) {
 		const nickname = e.target.nickname.value;
 		const roomId = e.target.gameId.value;
 		const waitingForStart = document.getElementById("waitForStart");
-		if (roomId != undefined && nickname != undefined) {
-			socket.emit("playerTwoJoin", nickname, roomId);
-		}
+		socket.emit("playerTwoJoin", nickname, roomId);
 
 		joinGameForm.style.display = "none";
 		waitingForStart.style.display = "block";
+		$("#errorMessage").hide();
 	});
 }
 
@@ -62,7 +61,6 @@ socket.on("playerJoined", function (message, obj) {
 if (startButton) {
 	startButton.addEventListener("click", function (e) {
 		e.preventDefault();
-		alert(1);
 		socket.emit("startGame");
 	});
 }
@@ -84,6 +82,7 @@ if (createGameForm) {
 socket.on("generateId", function (code) {
 	waitingForPlayer.style.display = "block";
 	roomId.innerText = code;
+	$("#errorMessage").hide();
 });
 
 $("#codeInitialSetup").on("submit", function (e) {
@@ -99,10 +98,8 @@ $("#codeInitialSetup").on("submit", function (e) {
 
 	socket.emit("setupCode", code);
 
-	e.target.elements.create1.value = "";
-	e.target.elements.create2.value = "";
-	e.target.elements.create3.value = "";
-	e.target.elements.create4.value = "";
+	clearInitialSetupDigits(e);
+	$("#errorMessage").hide();
 });
 
 $("#guessedDigits").on("submit", function (e) {
@@ -118,10 +115,8 @@ $("#guessedDigits").on("submit", function (e) {
 
 	socket.emit("inputCode", britishCode);
 
-	e.target.elements.digit1.value = "";
-	e.target.elements.digit2.value = "";
-	e.target.elements.digit3.value = "";
-	e.target.elements.digit4.value = "";
+	clearGuessedDigits(e);
+	$("#errorMessage").hide();
 });
 
 socket.on("gameStatusBritish", function () {
@@ -149,12 +144,7 @@ socket.on("displayGerman", function (code) {
 	$("#code").text(`Code: ${code}`);
 });
 
-socket.on("incorrectInput", function (message) {
-	alert(message);
-});
-
-socket.on("codeGenerated", function (message, code) {
-	alert(message);
+socket.on("codeGenerated", function () {
 	socket.emit("gameStarted");
 });
 
@@ -237,6 +227,31 @@ socket.on(
 	}
 );
 
+socket.on("error", function (errorCode) {
+	switch (errorCode) {
+		case 0:
+			$("#errorMessage").show();
+			$("#errorMessage").text("Please enter name and role");
+			$("#createGameForm").show();
+			break;
+		case 1:
+			$("#errorMessage").show();
+			$("#errorMessage").text("Please enter name");
+			$("#joinGameForm").show();
+			$("#waitForStart").hide();
+			break;
+		case 2:
+			$("#errorMessage").show();
+			$("#errorMessage").text("Invalid code");
+			clearInitialSetupDigits();
+			break;
+		case 3:
+			$("#errorMessage").show();
+			$("#errorMessage").text("Invalid code");
+			clearGuessedDigits();
+	}
+});
+
 $("#createGameButton").on("click", function (e) {
 	e.preventDefault();
 
@@ -267,4 +282,25 @@ function addRowsToTable(guessedDigits, exactPositions, britishCode) {
 	cell1.innerHTML = guessedDigits;
 	cell2.innerHTML = exactPositions;
 	cell3.innerHTML = britishCode;
+}
+
+function copyToClipboard() {
+	const str = $("#roomId").text();
+	const el = document.createElement("textarea");
+	el.value = str;
+	el.setAttribute("readonly", "");
+	el.style.position = "absolute";
+	el.style.left = "-9999px";
+	document.body.appendChild(el);
+	el.select();
+	document.execCommand("copy");
+	document.body.removeChild(el);
+}
+
+function clearGuessedDigits() {
+	$("#guessedDigits")[0].reset();
+}
+
+function clearInitialSetupDigits() {
+	$("#codeInitialSetup")[0].reset();
 }
