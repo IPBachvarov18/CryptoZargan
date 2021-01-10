@@ -115,6 +115,7 @@ if (guessedDigits) {
 		e.target.elements.digit2.value = "";
 		e.target.elements.digit3.value = "";
 		e.target.elements.digit4.value = "";
+		e.target.elements.digit5.value = "";
 
 		e.target.elements.digit1.focus();
 	});

@@ -90,8 +90,7 @@
             <input type="submit">
         </form>
     </div>
-    <p id="errorMessage" class="text-danger" style = "display:none"></p>
-
+   
     <div id="joinGame">
         <form id="joinGameForm" style="display: none;"  data-lang="username">
             Username: <input type="text" name="nickname" data-lang="ID"></br>
@@ -103,21 +102,21 @@
     <form id="guessedDigits" style="display:none" data-lang="guess-code">
 
         Guess Code
-        <input type="number" min="0" , max="7" name="digit1">
-        <input type="number" min="0" , max="7" name="digit2">
-        <input type="number" min="0" , max="7" name="digit3">
-        <input type="number" min="0" , max="7" name="digit4">
-        <input type="submit">
+        <input type="number" min="0" , max="7" name="digit1" id = "digit1">
+        <input type="number" min="0" , max="7" name="digit2" id = "digit2">
+        <input type="number" min="0" , max="7" name="digit3" id = "digit3">
+        <input type="number" min="0" , max="7" name="digit4" id = "digit4">
+        <input type="submit" id = "gsSubmit">
     </form>
 
     <form id="codeInitialSetup" style="display:none" data-lang="create-code">
 
         Create Code
-        <input type="number" min="0" , max="7" name="create1">
-        <input type="number" min="0" , max="7" name="create2">
-        <input type="number" min="0" , max="7" name="create3">
-        <input type="number" min="0" , max="7" name="create4">
-        <input type="submit">
+        <input type="number" min="0" , max="7" name="create1" id = "create1">
+        <input type="number" min="0" , max="7" name="create2" id = "create2">
+        <input type="number" min="0" , max="7" name="create3" id = "create3">
+        <input type="number" min="0" , max="7" name="create4" id = "create4">
+        <input type="submit" id = "crSubmit">
     </form>
 
     <div id="startGame" style="display: none">
@@ -156,6 +155,7 @@
     </div>
 
     <p id="code" style="display: none" data-lang="code">Code: </p>
+    <p id="errorMessage" class="text-danger" style = "display:none"></p>
 
     <table class=" table " id="triesTable" style="display: none ">
         <thead>

@@ -189,6 +189,7 @@ let ERROR = {
 	NO_NAME_P2: 1,
 	INVALID_CODE_GERMAN: 2,
 	INVALID_CODE_BRITISH: 3,
+	FULL_ROOM: 4,
 };
 
 io.on("connection", function (socket) {
@@ -303,40 +304,46 @@ io.on("connection", function (socket) {
 	});
 
 	socket.on("playerTwoJoin", function (nickname, roomId) {
-		// TODO: check if room exist, Stoyane!
 		if (nickname == "") {
 			socket.emit("error", ERROR.NO_NAME_P2);
 			return {};
 		}
 		if (roomId != undefined) {
+			console.log(multiGameState[roomId]);
 			if (multiGameState.hasOwnProperty(roomId)) {
 				let players = multiGameState.getUsersByRoles();
-				socket.join(roomId);
-				if (
-					multiGameState[roomId].firstPlayer != undefined &&
-					multiGameState[roomId].firstPlayerRole != undefined
-				) {
-					multiGameState[roomId].secondPlayer = nickname;
-					if (multiGameState[roomId].firstPlayerRole == "German") {
-						multiGameState[roomId].secondPlayerRole = "British";
-					} else {
-						multiGameState[roomId].secondPlayerRole = "German";
-					}
-					multiGameState[roomId].secondPlayerId = socket.id;
+				if (multiGameState[roomId].secondPlayer == null) {
+					socket.join(roomId);
+					if (
+						multiGameState[roomId].firstPlayer != undefined &&
+						multiGameState[roomId].firstPlayerRole != undefined
+					) {
+						multiGameState[roomId].secondPlayer = nickname;
+						if (
+							multiGameState[roomId].firstPlayerRole == "German"
+						) {
+							multiGameState[roomId].secondPlayerRole = "British";
+						} else {
+							multiGameState[roomId].secondPlayerRole = "German";
+						}
+						multiGameState[roomId].secondPlayerId = socket.id;
 
-					console.log(multiGameState);
+						console.log(multiGameState);
 
-					console.log(
-						`${nickname} who is ${multiGameState[roomId].secondPlayerRole} has joind in room with id ${roomId}`
-					);
-
-					socket.broadcast
-						.to(roomId)
-						.emit(
-							"playerJoined",
-							`${nickname} has joined`,
-							multiGameState[roomId]
+						console.log(
+							`${nickname} who is ${multiGameState[roomId].secondPlayerRole} has joind in room with id ${roomId}`
 						);
+
+						socket.broadcast
+							.to(roomId)
+							.emit(
+								"playerJoined",
+								`${nickname} has joined`,
+								multiGameState[roomId]
+							);
+					}
+				} else {
+					socket.emit("error", ERROR.FULL_ROOM);
 				}
 			} else {
 				console.log(`!Room with ID of ${roomId} doesn't exist!`);
@@ -412,21 +419,6 @@ io.on("connection", function (socket) {
 		if (socket.id == players.britishPlayerId) {
 			return {};
 		}
-		// cntCodeSetup++;
-		// if (cntCodeSetup > 2) {
-		// 	console.log("Game terminated due to cheater in the game");
-		// 	socket.emit(
-		// 		"cheaterDetected",
-		// 		"Game terminated due to cheater in the game"
-		// 	);
-		// 	return {};
-		// }
-		// this.counter++;
-		// console.log(`Codes entered: ${this.counter}`);
-		// if (this.counter > 2) {
-		//     console.log("MAZEN CHEATER");
-		//     return {};
-		// }
 
 		console.log(multiGameState[roomId].progress);
 
@@ -441,6 +433,10 @@ io.on("connection", function (socket) {
 			if (game.checkInputTaskTwo(code)) {
 				multiGameState[roomId].code = code;
 				io.to(players.britishPlayerId).emit(`nextLevelBritish`);
+				io.to(players.germanPlayerId).emit(
+					`levelTwoCode`,
+					multiGameState[roomId].code
+				);
 			} else {
 				io.to(players.germanPlayerId).emit(
 					"error",
@@ -451,13 +447,11 @@ io.on("connection", function (socket) {
 	});
 
 	socket.on("inputCode", function (britishCode) {
-		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
 		if (roomId == null) {
 			return {};
 		}
 
-		// !Check if id is null
 		let players = multiGameState.getUsersByRoles();
 
 		if (socket.id != players.britishPlayerId) {
@@ -512,5 +506,11 @@ io.on("connection", function (socket) {
 			hasWonMultiplayer,
 			multiGameState[roomId].progress
 		);
+	});
+
+	socket.on("disconnect", function () {
+		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
+
+		io.to(roomId).emit("gameCrash");
 	});
 });

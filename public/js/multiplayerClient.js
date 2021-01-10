@@ -27,7 +27,23 @@ $(() => {
 	});
 
 	$("#digit4").on("input", () => {
-		$("#digit5").focus();
+		$("#gsSubmit").focus();
+	});
+
+	$("#create1").on("input", () => {
+		$("#create2").focus();
+	});
+
+	$("#create2").on("input", () => {
+		$("#create3").focus();
+	});
+
+	$("#create3").on("input", () => {
+		$("#create4").focus();
+	});
+
+	$("#create4").on("input", () => {
+		$("#crSubmit").focus();
 	});
 });
 
@@ -169,12 +185,11 @@ socket.on(
 				$("#nextLevelMultiplayer").on("click", function (e) {
 					e.preventDefault();
 					$("#tries").empty();
-					alert("BABUN");
+					$("#code").hide();
 					socket.emit("nextLevelMultiplayer", hasWon);
 					console.log(level);
 					$("#levelResult").hide();
 					$("#codeInitialSetup").show();
-					$("#code").hide();
 				});
 			} else {
 				$("#guessedDigits").hide();
@@ -183,6 +198,7 @@ socket.on(
 		}
 		if (!hasTries) {
 			$("#lose").show();
+			$("#guessedDigits").hide();
 		}
 
 		addRowsToTable(guessedDigits, exactPositions, britishCode);
@@ -213,14 +229,12 @@ socket.on(
 					$("#guessedDigits").show();
 				});
 			} else {
-				$("#guessedDigits").hide();
-				$("#won").show();
+				$("#lose").show();
 			}
 		}
 
 		if (!hasTries) {
-			$("#lose").show();
-			$("#guessedDigits").hide();
+			$("#won").show();
 		}
 
 		addRowsToTable(guessedDigits, exactPositions, britishCode);
@@ -249,7 +263,24 @@ socket.on("error", function (errorCode) {
 			$("#errorMessage").show();
 			$("#errorMessage").text("Invalid code");
 			clearGuessedDigits();
+			break;
+		case 4:
+			$("#errorMessage").show();
+			$("#errorMessage").text("The Game Has Started");
+			$("#joinGameForm").show();
+			$("#waitForStart").hide();
 	}
+});
+
+socket.on("gameCrash", function () {
+	alert("RIBA");
+	window.location.replace("https://cryptozargan.studio");
+});
+
+socket.on("levelTwoCode", function (code) {
+	$("#codeInitialSetup").hide();
+	$("#code").text(`Code: ${code}`);
+	$("#code").show();
 });
 
 $("#createGameButton").on("click", function (e) {

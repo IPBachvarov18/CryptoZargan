@@ -49,6 +49,6 @@ npm install
 node .
 ```
 
-### Step 5: Go to `localhost:8888`
+### Step 5: Go to `https:/localhost:8888`
 
 <img src="docs/safe.png" alt="Step 3" />
