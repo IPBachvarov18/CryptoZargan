@@ -43,7 +43,6 @@
             </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/team" data-lang="nav-about-team">About Team</a>
-                    <a class="dropdown-item" href="/project" data-lang="nav-about-project">About Project</a>
                     <a class="dropdown-item" href="/documentation" data-lang="nav-documentation">Project Documentation</a>
                 </div>
             </li>
@@ -78,12 +77,12 @@
 
     <div id="waitingForPlayer" style="display: none">
         <p data-lang="send-code">Send this code to your friend and play together</p>
-        <p id="roomId"></p>
+        <p id="roomId"></p> <button onclick="copyToClipboard()">Copy</button>
     </div>
 
     <div id="createGame">
         <form id="createGameForm" style="display: none" data-lang="username">
-            Username!: <input type="text" name="nickname" data-lang="role"></br>
+            Username: <input type="text" name="nickname" data-lang="role"></br>
             Role:<select name="role">
                 <option value="German" data-lang="german">German</option>
                 <option value="British" data-lang="british">British</option>
@@ -91,7 +90,7 @@
             <input type="submit">
         </form>
     </div>
-
+   
     <div id="joinGame">
         <form id="joinGameForm" style="display: none;"  data-lang="username">
             Username: <input type="text" name="nickname" data-lang="ID"></br>
@@ -103,21 +102,21 @@
     <form id="guessedDigits" style="display:none" data-lang="guess-code">
 
         Guess Code
-        <input type="number" min="0" , max="7" name="digit1">
-        <input type="number" min="0" , max="7" name="digit2">
-        <input type="number" min="0" , max="7" name="digit3">
-        <input type="number" min="0" , max="7" name="digit4">
-        <input type="submit">
+        <input type="number" min="0" , max="7" name="digit1" id = "digit1">
+        <input type="number" min="0" , max="7" name="digit2" id = "digit2">
+        <input type="number" min="0" , max="7" name="digit3" id = "digit3">
+        <input type="number" min="0" , max="7" name="digit4" id = "digit4">
+        <input type="submit" id = "gsSubmit">
     </form>
 
     <form id="codeInitialSetup" style="display:none" data-lang="create-code">
 
         Create Code
-        <input type="number" min="0" , max="7" name="create1">
-        <input type="number" min="0" , max="7" name="create2">
-        <input type="number" min="0" , max="7" name="create3">
-        <input type="number" min="0" , max="7" name="create4">
-        <input type="submit">
+        <input type="number" min="0" , max="7" name="create1" id = "create1">
+        <input type="number" min="0" , max="7" name="create2" id = "create2">
+        <input type="number" min="0" , max="7" name="create3" id = "create3">
+        <input type="number" min="0" , max="7" name="create4" id = "create4">
+        <input type="submit" id = "crSubmit">
     </form>
 
     <div id="startGame" style="display: none">
@@ -149,13 +148,22 @@
         </form>
     </div>
 
-    <div id="lose" style="display:none">
+    <div id="lose1" style="display:none">
         <p data-lang="lose">British Lose!!!!!</p>
         <a href="/"><button class="btn>" data-lang="home">Home</button></a>
         <a href="/singleplayer"><button class="btn>" data-lang="play-again">Play Again</button></a>
     </div>
 
     <p id="code" style="display: none" data-lang="code">Code: </p>
+    <p id="errorMessage" class="text-danger" style = "display:none"></p>
+
+    <div id="win" style="display: none">
+        <img src="" alt="" id="winImg">
+    </div>
+
+    <div id="lose" style="display: none">
+        <img src="" alt="" id="loseImg">
+    </div>
 
     <table class=" table " id="triesTable" style="display: none ">
         <thead>

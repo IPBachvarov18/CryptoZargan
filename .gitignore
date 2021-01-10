@@ -105,6 +105,6 @@ dist
 .tern-port
 
 # SSL certificate
-*.pfx
+certPK.pfx
 
 fikret/

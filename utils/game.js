@@ -137,8 +137,23 @@ function checkInput(input) {
 	return true;
 }
 
+function checkInputTaskTwo(input) {
+	if (input.length != 4) {
+		return false;
+	}
+
+	for (let i = 0; i < input.length; i++) {
+		if (input[i] < "0" || input[i] > "7") {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 exports.generateCode = generateCode;
 exports.calculateExactPositions = calculateExactPositions;
 exports.calculatesGuessedDigits = calculatesGuessedDigits;
 exports.generateRepetitiveCode = generateRepetitiveCode;
 exports.checkInput = checkInput;
+exports.checkInputTaskTwo = checkInputTaskTwo;
