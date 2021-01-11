@@ -209,15 +209,9 @@ var textTranslation = {
 	},
 
 	opening: {
-		en: `This is multiplayer`,
+		en: `Multiplayer Mode`,
 
-		bg: `Това е мултиплейъра`,
-	},
-
-	choose: {
-		en: `Choose:`,
-
-		bg: `Избери:`,
+		bg: `Игра с приятел`,
 	},
 
 	winner: {
@@ -323,24 +317,22 @@ var textTranslation = {
 	},
 
 	"wait-create-code": {
-		en: `Wait for your friend to create the code`,
+		en: `Waiting for your friend to create the code`,
 
 		bg: `Изчакай приятеля си да напише кода`,
 	},
 
 	"wait-start-game": {
-		en: `Wait for your friend to start the game`,
+		en: `Waiting for the start of the game`,
 
 		bg: `Изчакай приятеля си да стартира игра`,
 	},
 
-	"download": {
+	download: {
 		en: `Download the full rules here`,
 
 		bg: `Изтегли правилата от тук`,
 	},
-
-
 
 	"single-rules": {
 		en: `In the singleplayer mode of the game you play against the computer. To find out the coordinates of the enemy battleships

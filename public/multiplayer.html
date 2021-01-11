@@ -1,197 +1,476 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Multiplayer</title>
+		<link rel="stylesheet" href="css/style.css" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiplayer</title>
-    <link rel="stylesheet" href="css/style.css">
+		<!-- Bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+			integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+			crossorigin="anonymous"
+		/>
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<!-- <script src="js/translate.js"></script>-->
+		<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+	</head>
 
-  <!-- <script src="js/translate.js"></script>--> 
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+	<body>
+		<nav class="navbar navbar-expand-sm bg-light navbar-light">
+			<a href="/"
+				><img
+					href="../about"
+					src="https://cdn.discordapp.com/attachments/775422843990048818/776137118040457236/crypto_zargan.png"
+					alt="Logo"
+					style="width: 100px"
+			/></a>
 
-</head>
+			<ul class="navbar-nav">
+				<li class="nav-item dropdown">
+					<a
+						class="nav-link dropdown-toggle active"
+						href="#"
+						id="navbardrop"
+						data-toggle="dropdown"
+						data-lang="nav-game"
+					>
+						Game
+					</a>
+					<div class="dropdown-menu">
+						<a
+							class="dropdown-item"
+							href="/singleplayer"
+							data-lang="nav-singleplayer"
+							>Singleplayer</a
+						>
+						<a
+							class="dropdown-item active"
+							href="/multiplayer"
+							data-lang="nav-multiplayer"
+							>Multiplayer</a
+						>
+						<a
+							class="dropdown-item"
+							href="/rules"
+							data-lang="nav-rules"
+							>Rules</a
+						>
+					</div>
+				</li>
 
-<body>
-   
+				<li class="nav-item dropdown">
+					<a
+						class="nav-link dropdown-toggle"
+						href="#"
+						id="navbardrop"
+						data-toggle="dropdown"
+						data-lang="nav-about"
+					>
+						About
+					</a>
+					<div class="dropdown-menu">
+						<a
+							class="dropdown-item"
+							href="/team"
+							data-lang="nav-about-team"
+							>About Team</a
+						>
+						<a
+							class="dropdown-item"
+							href="/documentation"
+							data-lang="nav-documentation"
+							>Project Documentation</a
+						>
+					</div>
+				</li>
 
-    <nav class="navbar navbar-expand-sm bg-light navbar-light">
-        <a href="/"><img href="../about" src="https://cdn.discordapp.com/attachments/775422843990048818/776137118040457236/crypto_zargan.png" alt="Logo" style="width:100px;"></a>
+				<li class="nav-item dropdown">
+					<a
+						class="nav-link dropdown-toggle"
+						href="#"
+						id="navbardrop"
+						data-toggle="dropdown"
+						data-lang="nav-language"
+					>
+						Language
+					</a>
+					<div class="dropdown-menu">
+						<a
+							class="dropdown-item translate-button"
+							href="#"
+							data-lng="en"
+							data-lang="btn-en"
+							>English</a
+						>
+						<a
+							class="dropdown-item translate-button"
+							href="#"
+							data-lng="bg"
+							data-lang="btn-bg"
+							>Bulgarian</a
+						>
+					</div>
+				</li>
 
-        <ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="/contact" data-lang="nav-contact"
+						>Contact</a
+					>
+				</li>
+			</ul>
+		</nav>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" href="#" id="navbardrop" data-toggle="dropdown" data-lang="nav-game">
-              Game
-            </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/singleplayer" data-lang="nav-singleplayer">Singleplayer</a>
-                    <a class="dropdown-item active" href="/multiplayer" data-lang="nav-multiplayer">Multiplayer</a>
-                    <a class="dropdown-item" href="/rules" data-lang="nav-rules">Rules</a>
-                </div>
-            </li>
+		<div class="d-flex justify-content-center pt-3">
+			<div
+				class="jumbotron"
+				style="height: 810px; background-color: #e9ecefb4"
+			>
+				<h1 data-lang="opening" class="text-center">
+					Multiplayer Mode
+				</h1>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" data-lang="nav-about">
-              About
-            </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/team" data-lang="nav-about-team">About Team</a>
-                    <a class="dropdown-item" href="/documentation" data-lang="nav-documentation">Project Documentation</a>
-                </div>
-            </li>
+				<div id="won" style="display: none">
+					<p data-lang="winner">British wins!</p>
+				</div>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" data-lang="nav-language">
-              Language
-            </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item translate-button" href="#" data-lng="en" data-lang="btn-en">English</a>
-                    <a class="dropdown-item translate-button" href="#" data-lng="bg" data-lang="btn-bg">Bulgarian</a>
-                </div>
-            </li>
+				<div id="createJoin" class="mt-5 text-center">
+					<button
+						id="createGameButton"
+						class="btn btn-primary"
+						data-lang="create"
+					>
+						Create Game
+					</button>
+					<button
+						id="joinGameButton"
+						class="btn btn-primary"
+						data-lang="join"
+					>
+						Join Game
+					</button>
+				</div>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/contact" data-lang="nav-contact">Contact</a>
-            </li>
-        </ul>
-    </nav>
-    
-    <h1 data-lang="opening">This is multiplayer</h1>
+				<div id="waitingForPlayer" style="display: none">
+					<p data-lang="send-code">
+						Send this code to your friend and play together
+					</p>
+					<p id="roomId"></p>
+					<button onclick="copyToClipboard()">Copy</button>
+				</div>
 
-    <div id="won" style="display: none">
-        <p data-lang="winner">British wins!</p>
-    </div>
+				<div id="createGame" class="mt-5">
+					<form
+						id="createGameForm"
+						style="display: none"
+						data-lang="username"
+					>
+						<div class="form-group">
+							<label for="username">Nickname</label>
+							<input
+								type="text"
+								name="nickname"
+								class="form-control mb-2 mr-sm-2"
+								placeholder="Enter nickname"
+								class="form-control"
+								data-lang="role"
+								required
+							/>
+							<div class="valid-feedback"></div>
+							<div class="invalid-feedback">
+								Please fill out this field.
+							</div>
+						</div>
 
-    <div id="createJoin">
-        <h1 data-lang="choose">Choose:</h1>
-        <button id="createGameButton" class="btn" data-lang="create">Create Game</button>
-        <button id="joinGameButton" class="btn" data-lang="join">Join Game</button>
-    </div>
+						<div class="form-group">
+							<label for="sel1">Role</label>
+							<select name="role" class="form-control" id="sel1">
+								<option value="German" data-lang="german">
+									German
+								</option>
+								<option value="British" data-lang="british">
+									British
+								</option>
+							</select>
+						</div>
 
-    <div id="waitingForPlayer" style="display: none">
-        <p data-lang="send-code">Send this code to your friend and play together</p>
-        <p id="roomId"></p> <button onclick="copyToClipboard()">Copy</button>
-    </div>
+						<div class="text-center">
+							<button
+								type="submit"
+								class="btn btn-primary"
+								style="width: 50%"
+								data-lang="play"
+							>
+								Play
+							</button>
+						</div>
+					</form>
+				</div>
 
-    <div id="createGame">
-        <form id="createGameForm" style="display: none" data-lang="username">
-            Username: <input type="text" name="nickname" data-lang="role"></br>
-            Role:<select name="role">
-                <option value="German" data-lang="german">German</option>
-                <option value="British" data-lang="british">British</option>
-              </select>
-            <input type="submit">
-        </form>
-    </div>
-   
-    <div id="joinGame">
-        <form id="joinGameForm" style="display: none;"  data-lang="username">
-            Username: <input type="text" name="nickname" data-lang="ID"></br>
-            Game ID: <input type="text" name="gameId">
-            <input type="submit">
-        </form>
-    </div>
+				<div id="joinGame" class="mt-5">
+					<form
+						id="joinGameForm"
+						style="display: none"
+						data-lang="username"
+					>
+						<div class="form-group">
+							<label for="username">Username</label>
+							<input
+								type="text"
+								name="nickname"
+								class="form-control mb-2 mr-sm-2"
+								placeholder="Enter nickname"
+								class="form-control"
+								required
+							/>
+							<div class="valid-feedback"></div>
+							<div class="invalid-feedback">
+								Please fill out this field.
+							</div>
+						</div>
 
-    <form id="guessedDigits" style="display:none" data-lang="guess-code">
+						<div class="form-group">
+							<label for="username">Game ID</label>
+							<input
+								type="text"
+								name="gameId"
+								class="form-control mb-2 mr-sm-2"
+								placeholder="Enter nickname"
+								class="form-control"
+								required
+							/>
+							<div class="valid-feedback"></div>
+							<div class="invalid-feedback">
+								Please fill out this field.
+							</div>
+						</div>
 
-        Guess Code
-        <input type="number" min="0" , max="7" name="digit1" id = "digit1">
-        <input type="number" min="0" , max="7" name="digit2" id = "digit2">
-        <input type="number" min="0" , max="7" name="digit3" id = "digit3">
-        <input type="number" min="0" , max="7" name="digit4" id = "digit4">
-        <input type="submit" id = "gsSubmit">
-    </form>
+						<div class="text-center">
+							<button
+								type="submit"
+								class="btn btn-primary"
+								style="width: 50%"
+								data-lang="play"
+							>
+								Play
+							</button>
+						</div>
+					</form>
+				</div>
 
-    <form id="codeInitialSetup" style="display:none" data-lang="create-code">
+				<form
+					id="guessedDigits"
+					style="display: none"
+					data-lang="guess-code"
+				>
+					Guess Code
+					<input
+						type="number"
+						min="0"
+						,
+						max="7"
+						name="digit1"
+						id="digit1"
+					/>
+					<input
+						type="number"
+						min="0"
+						,
+						max="7"
+						name="digit2"
+						id="digit2"
+					/>
+					<input
+						type="number"
+						min="0"
+						,
+						max="7"
+						name="digit3"
+						id="digit3"
+					/>
+					<input
+						type="number"
+						min="0"
+						,
+						max="7"
+						name="digit4"
+						id="digit4"
+					/>
+					<input type="submit" id="gsSubmit" />
+				</form>
 
-        Create Code
-        <input type="number" min="0" , max="7" name="create1" id = "create1">
-        <input type="number" min="0" , max="7" name="create2" id = "create2">
-        <input type="number" min="0" , max="7" name="create3" id = "create3">
-        <input type="number" min="0" , max="7" name="create4" id = "create4">
-        <input type="submit" id = "crSubmit">
-    </form>
+				<form
+					id="codeInitialSetup"
+					style="display: none"
+					data-lang="create-code"
+				>
+					Create Code
+					<input
+						type="number"
+						min="0"
+						,
+						max="7"
+						name="create1"
+						id="create1"
+					/>
+					<input
+						type="number"
+						min="0"
+						,
+						max="7"
+						name="create2"
+						id="create2"
+					/>
+					<input
+						type="number"
+						min="0"
+						,
+						max="7"
+						name="create3"
+						id="create3"
+					/>
+					<input
+						type="number"
+						min="0"
+						,
+						max="7"
+						name="create4"
+						id="create4"
+					/>
+					<input type="submit" id="crSubmit" />
+				</form>
 
-    <div id="startGame" style="display: none">
-        <p id="joinMessage"></p>
-        <input id="startButton" type="button" value="Start Game">
-    </div>
+				<div id="startGame" style="display: none">
+					<p id="joinMessage"></p>
+					<input id="startButton" type="button" value="Start Game" />
+				</div>
 
-    <div id="waitForStart" style="display: none">
-        <p data-lang="wait-start-game">Wait for your friend to start the game</p>
-    </div>
+				<div
+					id="waitForStart"
+					style="display: none"
+					class="text-center"
+				>
+					<p data-lang="wait-start-game">
+						Waiting for the start of the game
+					</p>
+					<div class="spinner-border text-primary" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</div>
 
-    <div id="waitForCode" style="display: none">
-        <p data-lang="wait-create-code">Wait for your friend to create the code</p>
-    </div>
+				<div id="waitForCode" style="display: none" class="text-center">
+					<p data-lang="wait-create-code">
+						Waiting for your friend to create the code
+					</p>
+					<div class="spinner-border text-primary" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</div>
 
-    <div id="waitForNextLevel" style="display: none">
-        <p data-lang="wait-level2">Wait for your friend to start level 2</p>
-    </div>
+				<div id="waitForNextLevel" style="display: none">
+					<p data-lang="wait-level2">
+						Wait for your friend to start level 2
+					</p>
+				</div>
 
-    <div id="congratulationsLevel" style="display: none">
-        <p data-lang="level1-win">Congratulations you completed level 1</p>
-    </div>
+				<div id="congratulationsLevel" style="display: none">
+					<p data-lang="level1-win">
+						Congratulations you completed level 1
+					</p>
+				</div>
 
-    <div id="levelResult" style="display: none">
-        <form id="levelActions">
-            <p data-lang="level1">British completed level 1. Are you ready to continue?</p>
-            <button id="nextLevelMultiplayer" class="btn" data-lang="next-level">Next Level</button>
-            <a href="/"><button type="submit" class="btn" data-lang="ff">Surrender</button></a>
-        </form>
-    </div>
+				<div id="levelResult" style="display: none">
+					<form id="levelActions">
+						<p data-lang="level1">
+							British completed level 1. Are you ready to
+							continue?
+						</p>
+						<button
+							id="nextLevelMultiplayer"
+							class="btn"
+							data-lang="next-level"
+						>
+							Next Level
+						</button>
+						<a href="/"
+							><button type="submit" class="btn" data-lang="ff">
+								Surrender
+							</button></a
+						>
+					</form>
+				</div>
 
-    <div id="lose1" style="display:none">
-        <p data-lang="lose">British Lose!!!!!</p>
-        <a href="/"><button class="btn>" data-lang="home">Home</button></a>
-        <a href="/singleplayer"><button class="btn>" data-lang="play-again">Play Again</button></a>
-    </div>
+				<div id="lose1" style="display: none">
+					<p data-lang="lose">British Lose!!!!!</p>
+					<a href="/"
+						><button class="btn>" data-lang="home">Home</button></a
+					>
+					<a href="/singleplayer"
+						><button class="btn>" data-lang="play-again">
+							Play Again
+						</button></a
+					>
+				</div>
 
-    <p id="code" style="display: none" data-lang="code">Code: </p>
-    <p id="errorMessage" class="text-danger" style = "display:none"></p>
+				<p id="code" style="display: none" data-lang="code">Code:</p>
+				<p
+					id="errorMessage"
+					class="text-danger"
+					style="display: none"
+				></p>
 
-    <div id="win" style="display: none">
-        <img src="" alt="" id="winImg">
-    </div>
+				<div id="win" style="display: none">
+					<img src="" alt="" id="winImg" />
+				</div>
 
-    <div id="lose" style="display: none">
-        <img src="" alt="" id="loseImg">
-    </div>
+				<div id="lose" style="display: none">
+					<img src="" alt="" id="loseImg" />
+				</div>
 
-    <table class=" table " id="triesTable" style="display: none ">
-        <thead>
-            <tr>
-                <th data-lang="table1">Guessed Digits</th>
-                <th data-lang="table2">Guessed Positions</th>
-                <th data-lang="table3">Number</th>
-            </tr>
-        </thead>
-        <tbody id="tries">
+				<table class="table" id="triesTable" style="display: none">
+					<thead>
+						<tr>
+							<th data-lang="table1">Guessed Digits</th>
+							<th data-lang="table2">Guessed Positions</th>
+							<th data-lang="table3">Number</th>
+						</tr>
+					</thead>
+					<tbody id="tries"></tbody>
+				</table>
+			</div>
+		</div>
 
-        </tbody>
-    </table>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.js "
+			integrity="sha512-53y53BQwxZvk4YGd9SkHPqI7nDwlIIFZ4D2BSJG08Co7y6O3YsWeRtO6trPtdoyqfTCTkTbCulNosIAI6E4UvQ=="
+			crossorigin=" anonymous "
+		></script>
+		<script src="https://cdn.socket.io/socket.io-3.0.1.min.js "></script>
+		<script src="js/multiplayerClient.js "></script>
+		<script src="js/index.js "></script>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.js " integrity="sha512-53y53BQwxZvk4YGd9SkHPqI7nDwlIIFZ4D2BSJG08Co7y6O3YsWeRtO6trPtdoyqfTCTkTbCulNosIAI6E4UvQ==" crossorigin=" anonymous ">
-    </script>
-    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js "></script>
-    <script src="js/multiplayerClient.js "></script>
-    <script src="js/index.js "></script>
-
-    <footer>
-        <div class="text-center p-3 bg-light fixed-bottom ">
-            © 2021 Copyright:
-            <a class="text-dark " href="https://github.com/IPBachvarov18/CryptoZargan ">Crypto Zargan</a>
-        </div>
-    </footer>
-
-</body>
-
+		<footer>
+			<div class="text-center p-3 bg-light fixed-bottom">
+				© 2021 Copyright:
+				<a
+					class="text-dark"
+					href="https://github.com/IPBachvarov18/CryptoZargan "
+					>Crypto Zargan</a
+				>
+			</div>
+		</footer>
+	</body>
 </html>
