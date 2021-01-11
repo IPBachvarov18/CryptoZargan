@@ -136,12 +136,14 @@ $("#guessedDigits").on("submit", function (e) {
 });
 
 socket.on("gameStatusBritish", function () {
+	console.log("GameStatusBritish");
 	$("#startGame").hide();
 	$("#waitForStart").hide();
 	$("#waitForCode").show();
 });
 
 socket.on("gameStatusGerman", function () {
+	console.log("GameStatusGerman");
 	$("#startGame").hide();
 	$("#codeInitialSetup").show();
 	$("#waitForStart").hide();

@@ -122,11 +122,14 @@ app.post("/processContact", function (req, res) {
 
 let multiGameState = {
 	getRoomIdBySocketId(socketId) {
+		console.log(`Getting roomId for ${socketId}`);
+		console.log(this);
 		for (let key in this) {
 			if (
 				this[key].firstPlayerId == socketId ||
 				this[key].secondPlayerId == socketId
 			) {
+				console.log(`roomId for ${key}`);
 				return key;
 			}
 		}
@@ -134,24 +137,33 @@ let multiGameState = {
 		return null;
 	},
 
-	getUserIdByRole(role) {
-		for (let key in this) {
-			if (this[key].firstPlayerRole == role) {
-				return this[key].firstPlayerId;
-			}
+	getUserIdByRole(role, roomId) {
+		console.log(`getUserIdByRole: ${role}`);
 
-			if (this[key].secondPlayerRole == role) {
-				return this[key].secondPlayerId;
-			}
+		// console.log(
+		// 	`getUserIdByRole[${roomId}].firstPlayerRole ${this[roomId].firstPlayerRole}`
+		// );
+		if (this[roomId].firstPlayerRole == role) {
+			console.log(`Returning ${this[roomId].firstPlayerId}`);
+			return this[roomId].firstPlayerId;
+		}
+
+		// console.log(
+		// 	`getUserIdByRole[${roomId}].secondPlayerRole ${this[roomId].secondPlayerRole}`
+		// );
+		if (this[roomId].secondPlayerRole == role) {
+			console.log(`Returning ${this[roomId].secondPlayerId}`);
+			return this[roomId].secondPlayerId;
 		}
 
 		return null;
 	},
 
-	getUsersByRoles() {
+	getUsersByRoles(roomId) {
+		// console.log(`getUsersByRoles: ${roomId}`);
 		return {
-			britishPlayerId: multiGameState.getUserIdByRole(ROLES.BRITISH),
-			germanPlayerId: multiGameState.getUserIdByRole(ROLES.GERMAN),
+			britishPlayerId: this.getUserIdByRole(ROLES.BRITISH, roomId),
+			germanPlayerId: this.getUserIdByRole(ROLES.GERMAN, roomId),
 		};
 	},
 };
@@ -193,7 +205,7 @@ let ERROR = {
 };
 
 io.on("connection", function (socket) {
-	console.log("New Connection!");
+	console.log(`New Connection: ${socket.id}`);
 
 	socket.on("startSingleplayer", function (username, difficulty) {
 		console.log(username, difficulty);
@@ -311,7 +323,7 @@ io.on("connection", function (socket) {
 		if (roomId != undefined) {
 			console.log(multiGameState[roomId]);
 			if (multiGameState.hasOwnProperty(roomId)) {
-				let players = multiGameState.getUsersByRoles();
+				let players = multiGameState.getUsersByRoles(roomId);
 				if (multiGameState[roomId].secondPlayer == null) {
 					socket.join(roomId);
 					if (
@@ -354,15 +366,23 @@ io.on("connection", function (socket) {
 	socket.on("startGame", function () {
 		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
+		console.log(`startGame: ${roomId}`);
 		if (roomId == null) {
+			console.log(`gameId is null!`);
 			return {};
 		}
 		// !Check if id is null
-		let players = multiGameState.getUsersByRoles();
+		let players = multiGameState.getUsersByRoles(roomId);
+		console.log(`Dumping players object`);
+		console.log(players);
 
 		multiGameState[roomId].progress = GAME_PROGRESS.STARTED;
+		console.log(`Dumping multiGameState object`);
+		console.log(multiGameState);
 
+		console.log(`Emitting gameStatusGerman to ${players.germanPlayerId}`);
 		io.to(players.germanPlayerId).emit(`gameStatusGerman`);
+		console.log(`Emitting gameStatusBritish to ${players.britishPlayerId}`);
 		io.to(players.britishPlayerId).emit(`gameStatusBritish`);
 	});
 
@@ -373,7 +393,7 @@ io.on("connection", function (socket) {
 			return {};
 		}
 		// !Check if id is null
-		let players = multiGameState.getUsersByRoles();
+		let players = multiGameState.getUsersByRoles(roomId);
 
 		multiGameState[roomId].progress = GAME_PROGRESS.LEVEL_1;
 
@@ -410,7 +430,7 @@ io.on("connection", function (socket) {
 		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
 
-		let players = multiGameState.getUsersByRoles();
+		let players = multiGameState.getUsersByRoles(roomId);
 
 		if (roomId == null) {
 			return {};
@@ -452,7 +472,7 @@ io.on("connection", function (socket) {
 			return {};
 		}
 
-		let players = multiGameState.getUsersByRoles();
+		let players = multiGameState.getUsersByRoles(roomId);
 
 		if (socket.id != players.britishPlayerId) {
 			return {};
