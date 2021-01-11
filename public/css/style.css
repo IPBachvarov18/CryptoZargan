@@ -16,8 +16,11 @@ nav {
     padding: 12px 30px;
     cursor: pointer;
     font-size: 20px;
-    position: relative;
-    top: 500px;
+    position: fixed;
+    top: 650px;
+   left: 715px;
+
+
 }
 
 .collapse {
@@ -29,7 +32,10 @@ nav {
 .single-rules {
     margin-left: 20%;
     text-align: right;
-    
+    text-align: justify;
+    margin-top: 3%;
+    border: black;
+
 }
 
 .single-btn {
@@ -45,6 +51,8 @@ nav {
     text-align: left;
      position: relative;
      left: 205%;
+     text-align: justify;
+     margin-top: 3%;
 
 }
 
