@@ -149,15 +149,16 @@ var textTranslation = {
 	},
 
 	level1: {
-		en: `British completed level 1. Are you ready to continue?`,
+		en: `You completed task 1. Complete task 2 to find the battleship and destroy it.`,
 
-		bg: `Британеца мина ниво 1. Готов ли си да продължиш?`,
+		bg: `Ти мина първата си мисия. Завърши и втората, за да разкриеш </br>
+		 координатите на вражеския кораб и да го унищожиш.`,
 	},
 
 	"next-level": {
-		en: `Next Level`,
+		en: `Next Task`,
 
-		bg: `Следващо ниво`,
+		bg: `Следваща мисия`,
 	},
 
 	ff: {
