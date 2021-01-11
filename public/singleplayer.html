@@ -147,7 +147,13 @@
 				</h1>
 
 				<div class="mt-5">
-					<form id="inputUsername">
+					<form id="inputUsername" autocomplete="off">
+						<input
+							autocomplete="false"
+							name="hidden"
+							type="text"
+							style="display: none"
+						/>
 						<div class="form-group">
 							<label for="username"></label>
 							<input
@@ -200,7 +206,17 @@
 					</button>
 				</div>
 
-				<form id="guessedDigits" style="display: none">
+				<form
+					id="guessedDigits"
+					style="display: none"
+					autocomplete="off"
+				>
+					<input
+						autocomplete="false"
+						name="hidden"
+						type="text"
+						style="display: none"
+					/>
 					<div class="text-center">
 						<input
 							type="number"
@@ -256,7 +272,13 @@
 				</form>
 
 				<div id="levelResult" style="display: none">
-					<form id="levelActions">
+					<form id="levelActions" autocomplete="off">
+						<input
+							autocomplete="false"
+							name="hidden"
+							type="text"
+							style="display: none"
+						/>
 						<p data-lang="level1" style="text-align: justify">
 							You completed level 1. Are you ready to continue
 						</p>

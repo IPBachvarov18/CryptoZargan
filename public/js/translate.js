@@ -324,7 +324,7 @@ var textTranslation = {
 	},
 
 	"wait-start-game": {
-		en: `Waiting for the start of the game`,
+		en: `Waiting for your friend to start the game`,
 
 		bg: `Изчакай приятеля си да стартира игра`,
 	},
