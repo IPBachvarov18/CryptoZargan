@@ -137,10 +137,18 @@
 		<div class="d-flex justify-content-center pt-3">
 			<div
 				class="jumbotron"
-				style="height: 810px; background-color: #e9ecefb4"
+				style="min-height: 810px; background-color: #e9ecefb4"
 			>
-				<h1 data-lang="opening" class="text-center">
+				<h1 data-lang="opening" class="text-center" id="multiMain">
 					Multiplayer Mode
+				</h1>
+
+				<h1 data-lang="multiWin" class="text-center" id="multiWin" style="display: none">
+					You Win
+				</h1>
+
+				<h1 data-lang="multiLose" class="text-center" id="multiLose" style="display: none">
+					You Lose
 				</h1>
 
 				<div id="won" style="display: none">
@@ -168,8 +176,8 @@
 					<p data-lang="send-code">
 						Send this code to your friend and play together
 					</p>
-					<p id="roomId" class="border rounded"></p>
-					<div class="mt-3">
+					<p id="roomId" class="text-center"></p>
+					<div class="mt-3 text-center">
 						<button
 							onclick="copyToClipboard()"
 							class="btn btn-primary"
@@ -488,6 +496,15 @@
 						</div>
 					</div>
 
+					<div id="leaveMessage" style="display: none">
+					<p>The other player left the game</p>
+					<a href="/"
+							><button class="btn btn-primary" data-lang="home">
+								Home
+							</button></a
+					>
+					</div>
+
 					<div
 						id="waitForStart"
 						style="display: none"
@@ -585,9 +602,6 @@
 						>
 					</div>
 
-					<p id="code" style="display: none" data-lang="code">
-						Code:
-					</p>
 					<p
 						id="errorMessage"
 						class="text-danger"
@@ -601,6 +615,18 @@
 					<div id="lose" style="display: none">
 						<img src="" alt="" id="loseImg" />
 					</div>
+
+					<div class="mt-3 mb-3" id="homeButton" style="display: none">
+						<a href="/">
+						<button class="btn btn-primary">
+							Home
+						</button>
+						</a>
+					</div>
+
+					<p id="code" style="display: none" data-lang="code">
+						Code:
+					</p>
 
 					<table class="table" id="triesTable" style="display: none">
 						<thead>

@@ -33,6 +33,17 @@ function calculatesGuessedDigits(inputDigits, digits) {
 		return {};
 	}
 
+	for (let i = 0; i < 4; i++) {
+		if (
+			inputDigits[i] < "0" ||
+			inputDigits[i] > "7" ||
+			digits[i] < "0" ||
+			digits[i] > "7"
+		) {
+			return 0;
+		}
+	}
+
 	for (let i = 0; i < inputDigits.length; i++) {
 		if (digits.indexOf(inputDigits[i]) != -1) {
 			guessed++;
@@ -53,10 +64,16 @@ function calculateExactPositions(inputDigits, digits) {
 	let guessedPosition = 0;
 	//let allowedNumbers = "/^[0-7]+$/"
 	for (let i = 0; i < 4; i++) {
-		if (inputDigits[i] < "0" || inputDigits[i] > "7") {
+		if (
+			inputDigits[i] < "0" ||
+			inputDigits[i] > "7" ||
+			digits[i] < "0" ||
+			digits[i] > "7"
+		) {
 			return 0;
 		}
 	}
+
 	for (let i = 0; i < inputDigits.length; i++) {
 		if (inputDigits[i] == digits[i]) {
 			guessedPosition++;

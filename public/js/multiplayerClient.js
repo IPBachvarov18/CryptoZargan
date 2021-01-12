@@ -196,11 +196,17 @@ socket.on(
 			} else {
 				$("#loseImg").attr("src", "img/germanLoseImg.png");
 				$("#lose").show();
+				$("#multiMain").hide();
+				$("#multiLose").show();
+				$("#homeButton").show();
 			}
 		}
 		if (!hasTries) {
 			$("#winImg").attr("src", "img/germanWinImg.png");
 			$("#win").show();
+			$("#multiMain").hide();
+			$("#multiWin").show();
+			$("#homeButton").show();
 		}
 
 		addRowsToTable(guessedDigits, exactPositions, britishCode);
@@ -233,6 +239,10 @@ socket.on(
 			} else {
 				$("#winImg").attr("src", "img/britishWinImg.png");
 				$("#win").show();
+				$("#guessedDigits").hide();
+				$("#multiMain").hide();
+				$("#multiWin").show();
+				$("#homeButton").show();
 			}
 		}
 
@@ -240,6 +250,9 @@ socket.on(
 			$("#guessedDigits").hide();
 			$("#loseImg").attr("src", "img/britishLoseImg.png");
 			$("#lose").show();
+			$("#multiMain").hide();
+			$("#multiLose").show();
+			$("#homeButton").show();
 		}
 
 		addRowsToTable(guessedDigits, exactPositions, britishCode);
@@ -278,7 +291,19 @@ socket.on("error", function (errorCode) {
 });
 
 socket.on("gameCrash", function () {
-	window.location.replace("https://cryptozargan.studio");
+	$("#guessedDigits").hide();
+	$("#triesTable").hide();
+	$("#code").hide();
+	$("#createJoin").hide();
+	$("#codeInitialSetup").hide();
+	$("#createGameForm").hide();
+	$("#joinGameForm").hide();
+	$("#waitForStart").hide();
+	$("#startGame").hide();
+	$("#congratulationsLevel").hide();
+	$("#waitForNextLevel").hide();
+	$("#levelActions").hide();
+	$("#leaveMessage").show();
 });
 
 socket.on("levelTwoCode", function (code) {
