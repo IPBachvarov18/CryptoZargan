@@ -194,12 +194,12 @@ socket.on(
 					$("#codeInitialSetup").show();
 				});
 			} else {
-				$("#loseImg").attr("src", "img/GermanLose.png");
+				$("#loseImg").attr("src", "img/germanLoseImg.png");
 				$("#lose").show();
 			}
 		}
 		if (!hasTries) {
-			$("#winImg").attr("src", "img/germanWon.jpg");
+			$("#winImg").attr("src", "img/germanWinImg.png");
 			$("#win").show();
 		}
 
@@ -278,7 +278,6 @@ socket.on("error", function (errorCode) {
 });
 
 socket.on("gameCrash", function () {
-	alert("RIBA");
 	window.location.replace("https://cryptozargan.studio");
 });
 

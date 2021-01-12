@@ -514,6 +514,12 @@
 						</div>
 					</div>
 
+					<div id="congratulationsLevel" style="display: none">
+						<p data-lang="level1-win">
+							Congratulations you completed level 1
+						</p>
+					</div>
+
 					<div
 						id="waitForNextLevel"
 						style="display: none"
@@ -527,13 +533,7 @@
 						</div>
 					</div>
 
-					<div id="congratulationsLevel" style="display: none">
-						<p data-lang="level1-win">
-							Congratulations you completed level 1
-						</p>
-					</div>
-
-					<div id="levelResult" style="display: none">
+					<div id="levelResult" class="mt-3" style="display: none">
 						<form id="levelActions" autocomplete="off">
 							<input
 								autocomplete="false"
@@ -545,22 +545,29 @@
 								British completed level 1. Are you ready to
 								continue?
 							</p>
-							<button
+
+							<div class="playButtons text-center mt-3 mb-3">
+								<a href="/"
+								<button
 								id="nextLevelMultiplayer"
-								class="btn"
-								data-lang="next-level"
-							>
-								Next Level
-							</button>
-							<a href="/"
-								><button
 									type="submit"
-									class="btn"
+									class="btn btn-primary"
+									data-lang="next-level"
+								>
+								Next Level
+								</button>
+							</a>
+
+								<a href="/">
+								<button
+									type="submit"
+									class="btn btn-primary"
 									data-lang="ff"
 								>
-									Surrender
-								</button></a
-							>
+								Surrender
+								</button>
+								</a>
+						</div>
 						</form>
 					</div>
 
