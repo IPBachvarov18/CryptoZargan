@@ -402,6 +402,12 @@ var textTranslation = {
 		</ul>`,
 	},
 
+	"rules": {
+		en: `Rules`,
+
+		bg: `Правила`,
+	},
+
 	"start-game": {
 		en: `Start Game`,
 

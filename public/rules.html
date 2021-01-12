@@ -77,79 +77,102 @@
         </ul>
     </nav>
 
-    <h1>Game rules</h1>
+  
 
-
-    <button class="single-btn btn btn-outline-primary mt-3 m" data-toggle="collapse" data-target="#single"
-        aria-expanded="false" data-lang="index-singleplayer">
-        Single player
-
-
-
-        <button class="multip-btn btn btn-outline-primary mt-3 m" data-toggle="collapse" data-target="#multy"
-            aria-expanded="false" data-lang="index-multiplayer">
+    <div class="playButtons margtopbutton mt-5" style="text-align: center">
+        <button class="btn btn-outline-primary mr-5 " data-lang="index-singleplayer" id="singleButton">
+            Single Player
+        </button>
+        <button class="btn btn-outline-primary ml-5" data-lang="index-multiplayer" aria-expanded="false"
+            id="multiButton">
             Multiplayer
         </button>
+    </div>
 
 
-        <div class="collapse" id="single">
-            <div class="single-rules" data-lang="single-rules"style=" background-color: #e9ecef7a">
-                In the singleplayer mode of the game you play against the computer - a random number generates and you
-                have
-                to guess it to progress further. There are 3 difficulties.
-                <ul>
-                    <li>Easy</li>
-                    <li>Medium</li>
-                    <li>Hard</li>
-                </ul>
-                There are also 2 tasks:
-                <ul>
-                    <li> First task – On the first task the numbers cannot be repeated</li>
-                    <li> Second task – On the second task the numbers can be repeated. </li>
-                </ul>
-                You have 13 attempts to guess the number, otherwise you lose.
+
+    <div style="display:none;" id="single">
+        <div style="display:none;" class="d-flex justify-content-center pt-3">
+            <div class="jumbotron" style="height: 810px; background-color: #e9ecefb4">
+                <h1 data-lang="rules" style="text-align: center">
+                    Singl rules
+                </h1>
+
+                <div class="mt-5" style="width: 350px" data-lang="single-rules">
+                    In the singleplayer mode of the game you play against the computer - a random number generates and
+                    you
+                    have
+                    to guess it to progress further. There are 3 difficulties.
+                    <ul>
+                        <li>Easy</li>
+                        <li>Medium</li>
+                        <li>Hard</li>
+                    </ul>
+                    There are also 2 tasks:
+                    <ul>
+                        <li> First task – On the first task the numbers cannot be repeated</li>
+                        <li> Second task – On the second task the numbers can be repeated. </li>
+                    </ul>
+                    You have 13 attempts to guess the number, otherwise you lose.
+                </div>
+                <div class="rules text-center mb-5mt-3 ">
+                    <a href="Rules of the game.pdf " download>
+                        <button class="btn btn-primary "> Download the full rules here</button>
+                    </a>
+                </div>
             </div>
         </div>
+    </div>
+    </div>
 
+    <div style="display:none;" id="multi">
+        <div style="display:none;" class="d-flex justify-content-center pt-3">
+            <div class="jumbotron" style="height: 810px; background-color: #e9ecefb4">
+                <h1 data-lang="rules" style="text-align: center">
+                    Multiplayer rules
+                </h1>
 
-
-        <div class="collapse" id="multy">
-            <div class="multi-rules" data-lang="multi-rules" style=" background-color: #e9ecef7a">
-                In the multiplayer mode of the game 2 people can play against each other.<br> One person creates a room
-                and
-                gives the code that was given to him so that the other one can join it. <br>The person who creates the
-                room can
-              choose his role. There are 2 different roles:
-                <ul>
-                    <li>German – If you choose to be German you create the code. Your task is the code
-                        to be hard so that the British cannot defeat you easy.</li>
+                <div class="mt-5" style="width: 350px" data-lang="multi-rules">
+                    In the multiplayer mode of the game 2 people can play against each other.<br> One person creates
+                    a room
+                    and
+                    gives the code that was given to him so that the other one can join it. <br>The person who
+                    creates the
+                    room can
+                    choose his role. There are 2 different roles:
+                    <ul>
+                        <li>German – If you choose to be German you create the code. Your task is the code
+                            to be hard so that the British cannot defeat you easy.</li>
                         <li>British – Or if you choose to be the British you are guessing the code that was
-                        created by the German. You have 13 attempts to guess the code.</li> 
-                </ul>
-                There are also 2 tasks:
-                <ul>
-                    <li> First task – On the first task the numbers cannot be repeated</li>
-                    <li> Second task – On the second task the numbers can be repeated. </li>
-                </ul>
+                            created by the German. You have 13 attempts to guess the code.</li>
+                    </ul>
+                    There are also 2 tasks:
+                    <ul>
+                        <li> First task – On the first task the numbers cannot be repeated</li>
+                        <li> Second task – On the second task the numbers can be repeated. </li>
+                    </ul>
+
+                </div>
+                <div class="rules text-center mb-5 mt-3">
+                    <a href="Rules of the game.pdf" download>
+                        <button class="btn btn-primary  "> Download the full rules here</button>
+                    </a>
+                </div>
             </div>
         </div>
+    </div>
+    </div>
 
-
-
-        <div class="rules">
-            <a href="Rules of the game.pdf" download>
-                <button class="btn1"> Download the full rules here</button>
-            </a>
-        </div>
-
-
-        <footer>
-            <div class="text-center p-3 bg-light fixed-bottom">
+    <footer>
+        <div class="text-center p-3 bg-light container-fluid fixed-bottom">
+            <div class="container">
                 © 2021 Copyright:
                 <a class="text-dark" href="https://github.com/IPBachvarov18/CryptoZargan">Crypto Zargan</a>
             </div>
-        </footer>
+        </div>
+    </footer>
 
+    </script>
 </body>
 
 </html>

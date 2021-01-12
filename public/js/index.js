@@ -16,6 +16,27 @@ $(document).ready(function () {
 	translateLabel(lang);
 });
 
+$(() => {
+	$("#singleButton").on("click", () => {
+		$("#multi").hide();
+		$("#single").fadeIn(500);
+		$("#single").show();
+	});
+
+	$("#multiButton").on("click", () => {
+		$("#single").hide();
+		$("#multi").fadeIn(500);
+		$("#multi").show();
+	});
+
+	$("#contactSubmit").on("submit", () => {
+		$("#invalidName").show();
+
+	});
+})
+
+
+
 // let acc = document.getElementsByClassName("accordion");
 
 // for (let i = 0; i < acc.length; i++) {
