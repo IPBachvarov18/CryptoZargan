@@ -1,340 +1,328 @@
 var textTranslation = {
-	"nav-game": {
+	"navGame": {
 		en: `Game`,
 
 		bg: `Игра`,
 	},
 
-	"nav-singleplayer": {
+	"navSingleplayer": {
 		en: `Single Player`,
 		bg: `Самостоятелна игра`,
 	},
 
-	"nav-multiplayer": {
+	"navMultiplayer": {
 		en: `Multiplayer`,
 
 		bg: `Игра с приятел`,
 	},
 
-	"nav-rules": {
+	"navRules": {
 		en: `Rules`,
 
 		bg: `Правила`,
 	},
 
-	"nav-about": {
+	"navAbout": {
 		en: `About`,
 
 		bg: `Информация`,
 	},
 
-	"nav-about-team": {
+	"navAboutTeam": {
 		en: `About Team`,
 
 		bg: `За отбора`,
 	},
 
-	"nav-about-project": {
-		en: `About Project`,
-
-		bg: `За проекта`,
-	},
-
-	"nav-documentation": {
+	"navDocumentation": {
 		en: `Documentation`,
 
 		bg: `Документация`,
 	},
 
-	"nav-language": {
+	"navLanguage": {
 		en: `Language`,
 
 		bg: `Език`,
 	},
 
-	"btn-en": {
+	"btnEn": {
 		en: `English`,
 
 		bg: `Английски`,
 	},
 
-	"btn-bg": {
+	"btnBg": {
 		en: `Bulgarian`,
 
 		bg: `Български`,
 	},
 
-	"nav-contact": {
+	"navContact": {
 		en: `Contact`,
 
 		bg: `Контакт`,
 	},
 
-	"welcome-text": {
+	"welcomeText": {
 		en: `Welcome to Bletchley Game`,
 
 		bg: `Добре дошли в Bletchley Game`,
 	},
 
-	"team-text": {
+	"teamText": {
 		en: `By Team Crypto Zargan`,
 
 		bg: `От отбор Крипто Зарган`,
 	},
 
-	"index-singleplayer": {
+	"indexSingleplayer": {
 		en: `Single Player`,
 
 		bg: `Самостоятелна игра`,
 	},
 
-	"index-multiplayer": {
+	"indexMultiplayer": {
 		en: `Multiplayer`,
 
 		bg: `Игра с приятел`,
 	},
 
-	"index-story": {
-		en: `Some Magic`,
-
-		bg: `Магия`,
-	},
-
-	contact: {
+	"contact": {
 		en: `Contact Page`,
 
 		bg: `Страница за контакт`,
 	},
 
-	aboutTeam: {
+	"aboutTeam": {
 		en: `About Team Page`,
 
 		bg: `Страница за отбора`,
 	},
 
-	aboutProject: {
+	"aboutProject": {
 		en: `About Project Page`,
 
 		bg: `Страница за проекта`,
 	},
 
-	singleplayer: {
+	"singleplayer": {
 		en: `Single Player Mode`,
 
 		bg: `Самостоятелна игра`,
 	},
 
-	play: {
+	"play": {
 		en: `Play`,
 
 		bg: `Играй`,
 	},
 
-	"diff-easy": {
+	"difficultyEasy": {
 		en: `Easy`,
 
 		bg: `Лесно`,
 	},
 
-	"diff-med": {
+	"difficultyMedium": {
 		en: `Medium`,
 
 		bg: `Нормално`,
 	},
 
-	"diff-hard": {
+	"difficultyHard": {
 		en: `Hard`,
 
 		bg: `Трудно`,
 	},
 
-	level1: {
+	"levelOne": {
 		en: `You completed level 1. Are you ready to continue?`,
 
 		bg: `Ти мина първото ниво. Готов ли си да продължиш?`,
 	},
 
-	"next-level": {
+	"nextLevel": {
 		en: `Next Task`,
 
 		bg: `Следваща мисия`,
 	},
 
-	ff: {
+	"surrender": {
 		en: `Surrender`,
 
 		bg: `Предаване`,
 	},
 
-	home: {
+	"home": {
 		en: `Home`,
 
 		bg: `Начална страница`,
 	},
 
-	"play-again": {
+	"playAgain": {
 		en: `Play Again`,
 
 		bg: `Играй отново`,
 	},
 
-	win: {
+	"win": {
 		en: `You win!`,
 
 		bg: `Ти печелиш!`,
 	},
 
-	lose: {
+	"lose": {
 		en: `You lose!`,
 
 		bg: `Ти загуби!`,
 	},
 
-	"guessed-digi": {
+	"guessedDigigits": {
 		en: `Guessed Digits`,
 
 		bg: `Познати числа`,
 	},
 
-	"guessed-pos": {
+	"guessedPos": {
 		en: `Guessed Positions`,
 
 		bg: `Познати позиции`,
 	},
 
-	"guessed-num": {
+	"guessedNum": {
 		en: `Number`,
 
 		bg: `Число`,
 	},
 
-	opening: {
+	"opening": {
 		en: `Multiplayer Mode`,
 
 		bg: `Игра с приятел`,
 	},
 
-	winner: {
+	"winner": {
 		en: `British wins!`,
 
 		bg: `Британеца печели!`,
 	},
 
-	create: {
+	"create": {
 		en: `Create Game`,
 
 		bg: `Създай игра`,
 	},
 
-	join: {
+	"join": {
 		en: `Join Game`,
 
 		bg: `Присъедини се в игра`,
 	},
 
-	"send-code": {
+	"sendCode": {
 		en: `Send this code to your friend and play together`,
 
 		bg: `Прати кода на твоя приятел и играйте заедно`,
 	},
 
-	username: {
+	"username": {
 		en: `Username:`,
 
 		bg: `Потребителско име:`,
 	},
 
-	role: {
+	"role": {
 		en: `Role:`,
 
 		bg: `Роля:`,
 	},
 
-	german: {
+	"german": {
 		en: `German`,
 
 		bg: `Германец`,
 	},
 
-	british: {
+	"british": {
 		en: `British`,
 
 		bg: `Британец`,
 	},
 
-	ID: {
-		en: `Game ID:`,
-
-		bg: `Идентификатор на играта:`,
-	},
-
-	"guess-code": {
+	"guessCode": {
 		en: `Guess Code`,
 
 		bg: `Познай кода`,
 	},
 
-	"create-code": {
+	"createCode": {
 		en: `Create code`,
 
 		bg: `Създай кода`,
 	},
 
-	code: {
+	"code": {
 		en: `Code: `,
 
 		bg: `Код: `,
 	},
 
-	table1: {
+	"guessedDigits": {
 		en: `Guessed Digits`,
 
 		bg: `Познати цифри`,
 	},
 
-	table2: {
+	"guessedPositions": {
 		en: `Guessed Positions`,
 
 		bg: `Познати позиции`,
 	},
 
-	table3: {
+	"britishCode": {
 		en: `Number`,
 
 		bg: `Число`,
 	},
 
-	"level1-win": {
+	"levelOneWin": {
 		en: `Congratulations you completed level 1`,
 
 		bg: `Поздравления ти завърши първо ниво`,
 	},
 
-	"wait-level2": {
+	"waitForLevelTwo": {
 		en: `Waiting for your friend to start level 2`,
 
 		bg: `Изчакай приятеля си да стартира второ ниво`,
 	},
 
-	"wait-create-code": {
+	"waitCreateCode": {
 		en: `Waiting for your friend to create the code`,
 
 		bg: `Изчакай приятеля си да напише кода`,
 	},
 
-	"wait-start-game": {
+	"waitStartGame": {
 		en: `Waiting for your friend to start the game`,
 
 		bg: `Изчакай приятеля си да стартира игра`,
 	},
 
-	download: {
+	"download": {
 		en: `Download the full rules here`,
 
 		bg: `Изтегли правилата от тук`,
 	},
 
-	"single-rules": {
+	"crackButton": {
+		en: `Crack`,
+
+		bg: `Разбий`,
+	},
+	
+	"singleplayerRules": {
 		en: `In the single player mode of the game you play against the computer. To find out the coordinates of the enemy battleships
 		you have to crack 2 codes - generated by a computer. <b>The numbers must be with the numbers form 0 to 7 including.</b>
 		There are 3 difficulties:
@@ -367,7 +355,7 @@ var textTranslation = {
 		<strong>Имате 13 опита</strong>, за да познаете координатите на вражеския кораб, в противен случай ще загубите.`,
 	},
 
-	"multi-rules": {
+	"multiplayerRules": {
 		en: ` In the multiplayer mode of the game 2 people can play against each other.<br> One person creates a room and
 		gives the code that was given to him so that the other one can join it. <b>The numbers must be with the numbers form 0 to 7 including.</b>  <br>The person who creates the
 		room can
@@ -401,17 +389,384 @@ var textTranslation = {
 		</ul>`,
 	},
 
-	rules: {
+	"name": {
+		en: `Name`,
+
+		bg: `Име`,
+	},
+
+	"email": {
+		en: `Email`,
+
+		bg: `Имейл`,
+	},
+
+	"subject": {
+		en: `Subject`,
+
+		bg: `Тема`,
+	},
+	
+	"message": {
+		en: `Message`,
+
+		bg: `Съобщение`,
+	},
+	
+	"contactSubmit": {
+		en: `Submit`,
+
+		bg: `Предай`,
+	},
+
+	"meetTheTeam": {
+		en: `Meet The Team`,
+
+		bg: `Запознайте се с отбора ни`,
+	},
+	
+	"nameIvelin": {
+		en: `Ivelin Bachvarov`,
+
+		bg: `Ивелин Бъчваров`,
+	},
+
+	"roleIvelin": {
+		en: `SCRUM Master`,
+
+		bg: `SCRUM Мастър`,
+	},
+	
+	"nameIliyan": {
+		en: `Iliyan Iliev`,
+
+		bg: `Илиян Илиев`,
+	},
+	
+	"roleIliyan": {
+		en: `Back-end Developer`,
+
+		bg: `Back-end разработчик`,
+	},
+
+	"nameMario": {
+		en: `Mario Slavov`,
+
+		bg: `Марио Славов`,
+	},
+
+	"roleMario": {
+		en: `Documentary / Front-end Developer`,
+
+		bg: `Документация / Front-end разработчик`,
+	},
+	
+	"nameStoyan": {
+		en: `Stoyan Kolev`,
+
+		bg: `Стоян Колев`,
+	},
+
+	"roleStoyan": {
+		en: `QA Engineer`,
+
+		bg: `QA Инжинер`,
+	},
+	
+	"nameGeorgi": {
+		en: `Georgi Georgiev`,
+
+		bg: `Георги Георгиев`,
+	},
+
+	"roleGeorgi": {
+		en: `Code Checker / Front-end Developer`,
+
+		bg: `Проверка на кода / Front-end разработчик`,
+	},
+	
+	"nameEmil": {
+		en: `Emil Ribarev`,
+
+		bg: `Емил Рибарев`,
+	},
+
+	"roleEmil": {
+		en: `Back-end Developer / GitHub Wizard`,
+
+		bg: `Back-end разработчик / GitHub магьосник`,
+	},
+	
+	"contactUsernamePlaceholder": {
+		en: `	
+		<input
+		type="text"
+		name="username"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Enter name"
+		class="form-control"
+		required
+	/>`,
+
+		bg: `
+		<input
+		type="text"
+		name="username"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Въведете име"
+		class="form-control"
+		required
+	/>
+		`,
+	},
+	
+	"contactEmaiPlaceholder": {
+		en: `	<input
+		type="email"
+		name="email"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Enter email"
+		class="form-control"
+		required
+	/>`,
+
+		bg: `<input
+		type="email"
+		name="email"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Въведете електронна поща"
+		class="form-control"
+		required
+	/>`,
+	},
+	
+	"contactSubjectPlaceholder": {
+		en: `
+		<input
+			type="text"
+			name="subject"
+			class="form-control mb-2 mr-sm-2"
+			placeholder="Enter subject"
+			class="form-control"
+			required
+		/>`,
+
+		bg: `<input
+		type="text"
+		name="subject"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Въведете тема на съобщението"
+		class="form-control"
+		required
+	/>`,
+	},
+	
+	"contactMessagePlaceholder": {
+		en: `<input
+		type="text-aria"
+		name="message"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Enter message"
+		class="form-control"
+		required
+	/>`,
+
+		bg: `<input
+		type="text-aria"
+		name="message"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Въведете съобщение"
+		class="form-control"
+		required
+	/>`,
+	},
+	
+
+	
+	"contactUsernamePlaceholder": {
+		en: `	<input
+		type="text"
+		name="username"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Enter nickname"
+		class="form-control"
+		required
+	/>`,
+
+		bg: `	<input
+		type="text"
+		name="username"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Въведете име"
+		class="form-control"
+		required
+	/>`,
+	},
+	
+	"rules": {
 		en: `Rules`,
 
 		bg: `Правила`,
 	},
+	
+	"multiplayerWin": {
+		en: `You Win!`,
 
-	"start-game": {
+		bg: `Ти спечели!`,
+	},
+	
+	"multiplayerLose": {
+		en: `You Lose!`,
+
+		bg: `Ти загуби!`,
+	},
+	
+	"multiplayerNickname": {
+		en: `Nickname`,
+
+		bg: `Име`,
+	},
+	
+	"multiplayerNicknamePlaceholder": {
+		en: `<input
+		type="text"
+		name="nickname"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Enter nickname"
+		class="form-control"
+		data-lang="role"
+		required
+	/>`,
+
+		bg: `<input
+		type="text"
+		name="nickname"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Въведте име"
+		class="form-control"
+		data-lang="role"
+		required
+	/>`,
+	},
+	
+	"multiplayerRole": {
+		en: `Role`,
+
+		bg: `Роля`,
+	},
+	
+	"multiplayerPlayButton": {
+		en: `Play`,
+
+		bg: `Играй`,
+	},
+	
+	"multiplayerNicknameTwo": {
+		en: `Nickname`,
+
+		bg: `Име`,
+	},
+	
+	"multiplayerNicknameTwoPlaceholder": {
+		en: `<input
+		type="text"
+		name="nickname"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Enter nickname"
+		class="form-control"
+		required
+	/>`,
+
+		bg: `<input
+		type="text"
+		name="nickname"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Въведете име"
+		class="form-control"
+		required
+	/>`,
+	},
+	
+	"gameIdMultiplayer": {
+		en: `Game ID`,
+
+		bg: `Код на играта`,
+	},
+	
+	"multiplayerIdPlaceholder": {
+		en: `<input
+		type="text"
+		name="gameId"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Enter Game ID"
+		class="form-control"
+		required
+	/>`,
+
+		bg: `<input
+		type="text"
+		name="gameId"
+		class="form-control mb-2 mr-sm-2"
+		placeholder="Въведете код на играта"
+		class="form-control"
+		required
+	/>`,
+	},
+	
+	"copyButton": {
+		en: `Copy`,
+
+		bg: `Копирай`,
+	},
+	
+	"": {
+		en: ``,
+
+		bg: ``,
+	},
+	
+	"": {
+		en: ``,
+
+		bg: ``,
+	},
+	
+	"": {
+		en: ``,
+
+		bg: ``,
+	},
+	
+	"": {
+		en: ``,
+
+		bg: ``,
+	},
+	
+	"multiplayerGuessCodeButton": {
+		en: `Guess Code`,
+
+		bg: `Познай кода`,
+	},
+	
+	"multiplayerCreateCodeButton": {
+		en: `Create Code`,
+
+		bg: `Създай код`,
+	},
+	
+	"startGame": {
 		en: `Start Game`,
 
-		bg: `Стартирай играта`,
+		bg: `Започни игра`,
 	},
+	
+	"otherPlayerLeft": {
+		en: `The other player left the game`,
+
+		bg: `Другият играч е излязал от играта`,
+	}
+	
 };
 
 var currentLanguage = "en";

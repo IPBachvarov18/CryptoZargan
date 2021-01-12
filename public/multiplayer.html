@@ -25,7 +25,7 @@
 		></script>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-		<!-- <script src="js/translate.js"></script>-->
+		<script src="js/translate.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 	</head>
 
@@ -46,7 +46,7 @@
 						href="#"
 						id="navbardrop"
 						data-toggle="dropdown"
-						data-lang="nav-game"
+						data-lang="navGame"
 					>
 						Game
 					</a>
@@ -54,19 +54,19 @@
 						<a
 							class="dropdown-item"
 							href="/singleplayer"
-							data-lang="nav-singleplayer"
+							data-lang="navSingleplayer"
 							>Singleplayer</a
 						>
 						<a
 							class="dropdown-item active"
 							href="/multiplayer"
-							data-lang="nav-multiplayer"
+							data-lang="navMultiplayer"
 							>Multiplayer</a
 						>
 						<a
 							class="dropdown-item"
 							href="/rules"
-							data-lang="nav-rules"
+							data-lang="navRules"
 							>Rules</a
 						>
 					</div>
@@ -78,7 +78,7 @@
 						href="#"
 						id="navbardrop"
 						data-toggle="dropdown"
-						data-lang="nav-about"
+						data-lang="navAbout"
 					>
 						About
 					</a>
@@ -86,13 +86,13 @@
 						<a
 							class="dropdown-item"
 							href="/team"
-							data-lang="nav-about-team"
+							data-lang="navAboutTeam"
 							>About Team</a
 						>
 						<a
 							class="dropdown-item"
 							href="/documentation"
-							data-lang="nav-documentation"
+							data-lang="navDocumentation"
 							>Project Documentation</a
 						>
 					</div>
@@ -104,7 +104,7 @@
 						href="#"
 						id="navbardrop"
 						data-toggle="dropdown"
-						data-lang="nav-language"
+						data-lang="navLanguage"
 					>
 						Language
 					</a>
@@ -113,21 +113,21 @@
 							class="dropdown-item translate-button"
 							href="#"
 							data-lng="en"
-							data-lang="btn-en"
+							data-lang="btnEn"
 							>English</a
 						>
 						<a
 							class="dropdown-item translate-button"
 							href="#"
 							data-lng="bg"
-							data-lang="btn-bg"
+							data-lang="btnBg"
 							>Bulgarian</a
 						>
 					</div>
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="/contact" data-lang="nav-contact"
+					<a class="nav-link" href="/contact" data-lang="navContact"
 						>Contact</a
 					>
 				</li>
@@ -143,17 +143,13 @@
 					Multiplayer Mode
 				</h1>
 
-				<h1 data-lang="multiWin" class="text-center" id="multiWin" style="display: none">
+				<h1 data-lang="multiplayerWin" class="text-center" id="multiWin" style="display: none">
 					You Win
 				</h1>
 
-				<h1 data-lang="multiLose" class="text-center" id="multiLose" style="display: none">
+				<h1 data-lang="multiplayerLose" class="text-center" id="multiLose" style="display: none">
 					You Lose
 				</h1>
-
-				<div id="won" style="display: none">
-					<p data-lang="winner">British wins!</p>
-				</div>
 
 				<div id="createJoin" class="mt-5 text-center">
 					<button
@@ -170,10 +166,20 @@
 					>
 						Join Game
 					</button>
+					
+					<a href="/rules"
+							
+					type="submit"
+					class="btn btn-primary mt-4"
+					style="width: 50%"
+					data-lang="rules"
+				>
+					Rules
+				</a>
 				</div>
 
 				<div id="waitingForPlayer" style="display: none" class="mt-5">
-					<p data-lang="send-code">
+					<p data-lang="sendCode">
 						Send this code to your friend and play together
 					</p>
 					<p id="roomId" class="text-center"></p>
@@ -181,6 +187,7 @@
 						<button
 							onclick="copyToClipboard()"
 							class="btn btn-primary"
+							data-lang="copyButton"
 						>
 							Copy
 						</button>
@@ -191,7 +198,6 @@
 					<form
 						id="createGameForm"
 						style="display: none"
-						data-lang="username"
 						autocomplete="off"
 					>
 						<input
@@ -201,7 +207,8 @@
 							style="display: none"
 						/>
 						<div class="form-group">
-							<label for="nickname">Nickname</label>
+							<label for="nickname" data-lang="multiplayerNickname">Nickname</label>
+							<span data-lang="multiplayerNicknamePlaceholder">
 							<input
 								type="text"
 								name="nickname"
@@ -211,14 +218,12 @@
 								data-lang="role"
 								required
 							/>
+							</span>
 							<div class="valid-feedback"></div>
-							<div class="invalid-feedback">
-								Please fill out this field.
-							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="sel1">Role</label>
+							<label for="sel1" data-lang="multiplayerRole">Role</label>
 							<select name="role" class="form-control" id="sel1">
 								<option value="German" data-lang="german">
 									German
@@ -234,7 +239,7 @@
 								type="submit"
 								class="btn btn-primary"
 								style="width: 50%"
-								data-lang="play"
+								data-lang="multiplayerPlayButton"
 							>
 								Play
 							</button>
@@ -246,7 +251,6 @@
 					<form
 						id="joinGameForm"
 						style="display: none"
-						data-lang="username"
 						autocomplete="off"
 					>
 						<input
@@ -256,7 +260,8 @@
 							style="display: none"
 						/>
 						<div class="form-group">
-							<label for="nickname">Nickname</label>
+							<label for="nickname" data-lang="multiplayerNicknameTwo">Nickname</label>
+							<span data-lang="multiplayerNicknameTwoPlaceholder">
 							<input
 								type="text"
 								name="nickname"
@@ -265,14 +270,13 @@
 								class="form-control"
 								required
 							/>
+							</span>
 							<div class="valid-feedback"></div>
-							<div class="invalid-feedback">
-								Please fill out this field.
-							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="username">Game ID</label>
+							<label for="username" data-lang="gameIdMultiplayer">Game ID</label>
+							<span data-lang="multiplayerIdPlaceholder">
 							<input
 								type="text"
 								name="gameId"
@@ -281,10 +285,8 @@
 								class="form-control"
 								required
 							/>
+							</span>
 							<div class="valid-feedback"></div>
-							<div class="invalid-feedback">
-								Please fill out this field.
-							</div>
 						</div>
 
 						<div class="text-center">
@@ -304,7 +306,6 @@
 					<form
 						id="codeInitialSetup"
 						style="display: none"
-						data-lang="create-code"
 						autocomplete="off"
 					>
 						<input
@@ -354,6 +355,7 @@
 								type="submit"
 								class="btn btn-primary"
 								style="width: 50%"
+								data-lang="multiplayerCreateCodeButton"
 							>
 								Create Code
 							</button>
@@ -364,7 +366,6 @@
 				<form
 					id="guessedDigits"
 					style="display: none"
-					data-lang="guess-code"
 					autocomplete="off"
 				>
 					<input
@@ -414,6 +415,7 @@
 							type="submit"
 							class="btn btn-primary"
 							style="width: 50%"
+							data-lang="multiplayerGuessCodeButton"
 						>
 							Guess Code
 						</button>
@@ -475,6 +477,7 @@
 								type="submit"
 								class="btn btn-primary"
 								style="width: 50%"
+								data-lang="multiplayerCreateCodeButton"
 							>
 								Create Code
 							</button>
@@ -489,7 +492,7 @@
 								type="submit"
 								class="btn btn-primary"
 								style="width: 50%"
-								data-lang="start-game"
+								data-lang="startGame"
 							>
 								Start Game
 							</button>
@@ -497,7 +500,7 @@
 					</div>
 
 					<div id="leaveMessage" style="display: none">
-					<p>The other player left the game</p>
+					<p data-lang="otherPlayerLeft">The other player left the game</p>
 					<a href="/"
 							><button class="btn btn-primary" data-lang="home">
 								Home
@@ -510,7 +513,7 @@
 						style="display: none"
 						class="text-center"
 					>
-						<p data-lang="wait-start-game">
+						<p data-lang="waitStartGame">
 							Waiting for your friend to start the game
 						</p>
 						<div class="spinner-border text-primary" role="status">
@@ -523,7 +526,7 @@
 						style="display: none"
 						class="text-center"
 					>
-						<p data-lang="wait-create-code">
+						<p data-lang="waitCreateCode">
 							Waiting for your friend to create the code
 						</p>
 						<div class="spinner-border text-primary" role="status">
@@ -532,7 +535,7 @@
 					</div>
 
 					<div id="congratulationsLevel" style="display: none">
-						<p data-lang="level1-win">
+						<p data-lang="levelOneWin">
 							Congratulations you completed level 1
 						</p>
 					</div>
@@ -542,11 +545,11 @@
 						style="display: none"
 						class="text-center"
 					>
-						<p data-lang="wait-level2">
+						<p data-lang="waitForLevelTwo">
 							Waiting for your friend to start level 2
 						</p>
 						<div class="spinner-border text-primary" role="status">
-							<span class="sr-only">Loading...</span>
+							<span class="sr-only" >Loading...</span>
 						</div>
 					</div>
 
@@ -558,20 +561,22 @@
 								type="text"
 								style="display: none"
 							/>
-							<p data-lang="level1">
+							<p data-lang="levelOne">
 								British completed level 1. Are you ready to
 								continue?
 							</p>
 
 							<div class="playButtons text-center mt-3 mb-3">
-								<a href="/"
+								<a href="/">
 								<button
 								id="nextLevelMultiplayer"
 									type="submit"
 									class="btn btn-primary"
-									data-lang="next-level"
+									data-lang="nextLevel"
 								>
+								
 								Next Level
+								
 								</button>
 							</a>
 
@@ -579,7 +584,7 @@
 								<button
 									type="submit"
 									class="btn btn-primary"
-									data-lang="ff"
+									data-lang="surrender"
 								>
 								Surrender
 								</button>
@@ -618,7 +623,7 @@
 
 					<div class="mt-3 mb-3" id="homeButton" style="display: none">
 						<a href="/">
-						<button class="btn btn-primary">
+						<button class="btn btn-primary" data-lang="home">
 							Home
 						</button>
 						</a>
@@ -631,9 +636,9 @@
 					<table class="table" id="triesTable" style="display: none">
 						<thead>
 							<tr>
-								<th data-lang="table1">Guessed Digits</th>
-								<th data-lang="table2">Guessed Positions</th>
-								<th data-lang="table3">Number</th>
+								<th data-lang="guessedDigits">Guessed Digits</th>
+								<th data-lang="guessedPositions">Guessed Positions</th>
+								<th data-lang="britishCode">Number</th>
 							</tr>
 						</thead>
 						<tbody id="tries"></tbody>

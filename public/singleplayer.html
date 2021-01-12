@@ -49,7 +49,7 @@
 						href="#"
 						id="navbardrop"
 						data-toggle="dropdown"
-						data-lang="nav-game"
+						data-lang="navGame"
 					>
 						Game
 					</a>
@@ -57,19 +57,19 @@
 						<a
 							class="dropdown-item active"
 							href="/singleplayer"
-							data-lang="nav-singleplayer"
+							data-lang="navSingleplayer"
 							>Single Player</a
 						>
 						<a
 							class="dropdown-item"
 							href="/multiplayer"
-							data-lang="nav-multiplayer"
+							data-lang="navMultiplayer"
 							>Multiplayer</a
 						>
 						<a
 							class="dropdown-item"
 							href="/rules"
-							data-lang="nav-rules"
+							data-lang="navRules"
 							>Rules</a
 						>
 					</div>
@@ -81,7 +81,7 @@
 						href="#"
 						id="navbardrop"
 						data-toggle="dropdown"
-						data-lang="nav-about"
+						data-lang="navAbout"
 					>
 						About
 					</a>
@@ -89,13 +89,13 @@
 						<a
 							class="dropdown-item"
 							href="/team"
-							data-lang="nav-about-team"
+							data-lang="navAboutTeam"
 							>About Team</a
 						>
 						<a
 							class="dropdown-item"
 							href="/documentation"
-							data-lang="nav-documentation"
+							data-lang="navDocumentation"
 							>Project Documentation</a
 						>
 					</div>
@@ -107,7 +107,7 @@
 						href="#"
 						id="navbardrop"
 						data-toggle="dropdown"
-						data-lang="nav-language"
+						data-lang="navLanguage"
 					>
 						Language
 					</a>
@@ -116,21 +116,21 @@
 							class="dropdown-item translate-button"
 							href="#"
 							data-lng="en"
-							data-lang="btn-en"
+							data-lang="btnEn"
 							>English</a
 						>
 						<a
 							class="dropdown-item translate-button"
 							href="#"
 							data-lng="bg"
-							data-lang="btn-bg"
+							data-lang="btnBg"
 							>Bulgarian</a
 						>
 					</div>
 				</li>
 
 				<li class="nav-item">
-					<a class="nav-link" href="/contact" data-lang="nav-contact"
+					<a class="nav-link" href="/contact" data-lang="navContact"
 						>Contact</a
 					>
 				</li>
@@ -156,6 +156,7 @@
 						/>
 						<div class="form-group">
 							<label for="username"></label>
+							<span data-lang="contactUsernamePlaceholder">
 							<input
 								type="text"
 								name="username"
@@ -165,9 +166,7 @@
 								required
 							/>
 							<div class="valid-feedback"></div>
-							<div class="invalid-feedback">
-								Please fill out this field.
-							</div>
+					</span>
 						</div>
 						<div class="text-center">
 							<button
@@ -178,6 +177,16 @@
 							>
 								Play
 							</button>
+
+						<a href="/rules"
+							
+							type="submit"
+							class="btn btn-primary mt-4"
+							style="width: 50%"
+							data-lang="rules"
+						>
+							Rules
+						</a>
 						</div>
 					</form>
 				</div>
@@ -186,21 +195,21 @@
 					<button
 						id="easy"
 						class="btn btn-primary"
-						data-lang="diff-easy"
+						data-lang="difficultyEasy"
 					>
 						Easy
 					</button>
 					<button
 						id="medium"
 						class="btn btn-primary"
-						data-lang="diff-med"
+						data-lang="difficultyMedium"
 					>
 						Medium
 					</button>
 					<button
 						id="hard"
 						class="btn btn-primary"
-						data-lang="diff-hard"
+						data-lang="difficultyHard"
 					>
 						Hard
 					</button>
@@ -265,6 +274,7 @@
 							type="submit"
 							id="submit"
 							class="btn btn-primary"
+							data-lang= "crackButton"
 						>
 							Crack
 						</button>
@@ -280,7 +290,7 @@
 							style="display: none"
 						/>
 
-						<p data-lang="level1" class="text-center">
+						<p data-lang="levelOne" class="text-center">
 							You completed level 1. Are you ready to continue?
 						</p>
 
@@ -289,7 +299,7 @@
 								type="submit"
 								value="nextLevel"
 								class="btn btn-primary"
-								data-lang="next-level"
+								data-lang="nextLevel"
 							>
 							Next Level
 							</button>
@@ -298,7 +308,7 @@
 							<button
 								type="button"
 								class="btn btn-primary"
-								data-lang="ff"
+								data-lang="surrender"
 							>
 							Surrender
 							</button>
@@ -349,7 +359,7 @@
 						<a href="/singleplayer">
 							<button
 								class="btn btn-primary"
-								data-lang="play-again"
+								data-lang="playAgain"
 							>
 							Play Again
 							</button>
@@ -361,11 +371,11 @@
 					<table class="table" id="triesTable" style="display: none">
 						<thead>
 							<tr>
-								<th data-lang="guessed-digi">Guessed Digits</th>
-								<th data-lang="guessed-pos">
+								<th data-lang="guessedDigigits">Guessed Digits</th>
+								<th data-lang="guessedPos">
 									Guessed Positions
 								</th>
-								<th data-lang="guessed-num">Number</th>
+								<th data-lang="guessedNum">Number</th>
 							</tr>
 						</thead>
 						<tbody></tbody>

@@ -50,7 +50,7 @@
 						href="#"
 						id="navbardrop"
 						data-toggle="dropdown"
-						data-lang="nav-game"
+						data-lang="navGame"
 					>
 						Game
 					</a>
@@ -58,19 +58,19 @@
 						<a
 							class="dropdown-item"
 							href="/singleplayer"
-							data-lang="nav-singleplayer"
+							data-lang="navSingleplayer"
 							>Single Player</a
 						>
 						<a
 							class="dropdown-item"
 							href="/multiplayer"
-							data-lang="nav-multiplayer"
+							data-lang="navMultiplayer"
 							>Multiplayer</a
 						>
 						<a
 							class="dropdown-item"
 							href="/rules"
-							data-lang="nav-rules"
+							data-lang="navRules"
 							>Rules</a
 						>
 					</div>
@@ -82,7 +82,7 @@
 						href="#"
 						id="navbardrop"
 						data-toggle="dropdown"
-						data-lang="nav-about"
+						data-lang="navAbout"
 					>
 						About
 					</a>
@@ -90,13 +90,13 @@
 						<a
 							class="dropdown-item"
 							href="/team"
-							data-lang="nav-about-team"
+							data-lang="navAboutTeam"
 							>About Team</a
 						>
 						<a
 							class="dropdown-item"
 							href="/documentation"
-							data-lang="nav-documentation"
+							data-lang="navDocumentation"
 							>Project Documentation</a
 						>
 					</div>
@@ -108,7 +108,7 @@
 						href="#"
 						id="navbardrop"
 						data-toggle="dropdown"
-						data-lang="nav-language"
+						data-lang="navLanguage"
 					>
 						Language
 					</a>
@@ -117,14 +117,14 @@
 							class="dropdown-item translate-button"
 							href="#"
 							data-lng="en"
-							data-lang="btn-en"
+							data-lang="btnEn"
 							>English</a
 						>
 						<a
 							class="dropdown-item translate-button"
 							href="#"
 							data-lng="bg"
-							data-lang="btn-bg"
+							data-lang="btnBg"
 							>Bulgarian</a
 						>
 					</div>
@@ -134,7 +134,7 @@
 					<a
 						class="nav-link active"
 						href="/contact"
-						data-lang="nav-contact"
+						data-lang="navContact"
 						>Contact</a
 					>
 				</li>
@@ -164,7 +164,8 @@
 							style="display: none"
 						/>
 						<div class="form-group">
-							<label for="username">Name</label>
+							<label for="username" data-lang="name">Name</label>
+							<span data-lang="contactUsernamePlaceholder">
 							<input
 								type="text"
 								name="username"
@@ -173,14 +174,13 @@
 								class="form-control"
 								required
 							/>
+							</span>
 							<div class="valid-feedback"></div>
-							<div class="invalid-feedback" id="invalidName" style="display: none;">
-								Please fill out this field.
-							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="email">Email</label>
+							<label for="email" data-lang="email">Email</label>
+							<span data-lang="contactEmaiPlaceholder">
 							<input
 								type="email"
 								name="email"
@@ -189,14 +189,13 @@
 								class="form-control"
 								required
 							/>
+							</span>
 							<div class="valid-feedback"></div>
-							<div class="invalid-feedback" id="invalidName" style="display: none;">
-								Please fill out this field.
-							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="subject">Subject</label>
+							<label for="subject" data-lang="subject">Subject</label>
+							<span data-lang="contactSubjectPlaceholder">
 							<input
 								type="text"
 								name="subject"
@@ -205,14 +204,13 @@
 								class="form-control"
 								required
 							/>
+							</span>
 							<div class="valid-feedback"></div>
-							<div class="invalid-feedback" id="invalidName" style="display: none;">
-								Please fill out this field.
-							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="message">Message</label>
+							<label for="message"  data-lang="message">Message</label>
+							<span data-lang="contactMessagePlaceholder">
 							<input
 								type="text-aria"
 								name="message"
@@ -221,29 +219,9 @@
 								class="form-control"
 								required
 							/>
+							</span>
 							<div class="valid-feedback"></div>
-							<div class="invalid-feedback id="invalidName" style="display: none;">
-								Please fill out this field.
-							</div>
+
 						</div>
 
-						<button type="submit" class="btn btn-primary" id="contactSubmit">
-							Submit
-						</button>
-					</form>
-				</div>
-			</div>
-		</div>
-
-		<footer>
-			<div class="text-center p-3 bg-light fixed-bottom">
-				© 2021 Copyright:
-				<a
-					class="text-dark"
-					href="https://github.com/IPBachvarov18/CryptoZargan"
-					>Crypto Zargan</a
-				>
-			</div>
-		</footer>
-	</body>
-</html>
+						<button type="submit" class="btn btn-primary" id="contactSubmit" data-lang="message"> 
