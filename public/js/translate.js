@@ -149,10 +149,9 @@ var textTranslation = {
 	},
 
 	level1: {
-		en: `You completed task 1. Complete task 2 to find the battleship and destroy it.`,
+		en: `You completed level 1. Are you ready to continue?`,
 
-		bg: `Ти мина първата си мисия. Завърши и втората, за да разкриеш </br>
-		 координатите на вражеския кораб и да го унищожиш.`,
+		bg: `Ти мина първото ниво. Готов ли си да продължиш?`,
 	},
 
 	"next-level": {
@@ -180,15 +179,15 @@ var textTranslation = {
 	},
 
 	win: {
-		en: `You won!!!!!`,
+		en: `You win!`,
 
-		bg: `Ти спечели!!!!!`,
+		bg: `Ти печелиш!`,
 	},
 
 	lose: {
-		en: `You Lose!!!!!`,
+		en: `You lose!`,
 
-		bg: `Ти загуби!!!!!`,
+		bg: `Ти загуби!`,
 	},
 
 	"guessed-digi": {
@@ -402,7 +401,7 @@ var textTranslation = {
 		</ul>`,
 	},
 
-	"rules": {
+	rules: {
 		en: `Rules`,
 
 		bg: `Правила`,

@@ -280,49 +280,81 @@
 							style="display: none"
 						/>
 
-						<p data-lang="level1" style="text-align: justify">
-							You completed level 1. Are you ready to continue
+						<p data-lang="level1" class="text-center">
+							You completed level 1. Are you ready to continue?
 						</p>
 
-						<button
-							type="submit"
-							value="nextLevel"
-							class="btn"
-							data-lang="next-level"
-						>
+						<div class="playButtons text-center mt-3 mb-3">
+							<button
+								type="submit"
+								value="nextLevel"
+								class="btn btn-primary"
+								data-lang="next-level"
+							>
 							Next Level
-						</button>
+							</button>
 
-						<a href="/"
-							><button type="submit" class="btn" data-lang="ff">
-								Surrender
-							</button></a
-						>
+							<a href="/">
+							<button
+								type="button"
+								class="btn btn-primary"
+								data-lang="ff"
+							>
+							Surrender
+							</button>
+							</a>
+						</div>
 					</form>
 				</div>
 
 				<div id="won" style="display: none">
-					<p data-lang="win">You won!!!!!</p>
-					<a href="/"
-						><button class="btn>" data-lang="home">Home</button></a
-					>
-					<a href="/singleplayer"
-						><button class="btn>" data-lang="play-again">
-							Play Again
-						</button></a
-					>
+					<p data-lang="win" class="text-center">You win!</p>
+
+					<div class="playButtons text-center mt-3 mb-3">
+						<a href="/"
+						<button
+							value="nextLevel"
+							class="btn btn-primary"
+							data-lang="home"
+						>
+						Home
+						</button>
+						</a>
+
+						<a href="/singleplayer">
+						<button
+							class="btn btn-primary"
+							data-lang="play-again"
+						>
+						Play Again
+						</button>
+						</a>
+					</div>
 				</div>
 
 				<div id="lose" style="display: none">
-					<p data-lang="lose">You Lose!!!!!</p>
-					<a href="/"
-						><button class="btn>" data-lang="home">Home</button></a
-					>
-					<a href="/singleplayer"
-						><button class="btn>" data-lang="play-again">
+					<p data-lang="lose" class="text-center">You lose!</p>
+
+					<div class="playButtons text-center mt-3 mb-3">
+						<a href="/"
+						<button
+							value="nextLevel"
+							class="btn btn-primary"
+							data-lang="home"
+						>
+						Home
+						</button>
+						</a>
+					
+						<a href="/singleplayer">
+							<button
+								class="btn btn-primary"
+								data-lang="play-again"
+							>
 							Play Again
-						</button></a
-					>
+							</button>
+							</a>
+					</div>
 				</div>
 
 				<div class="mt-3">

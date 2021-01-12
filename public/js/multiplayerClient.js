@@ -303,6 +303,9 @@ socket.on("gameCrash", function () {
 	$("#congratulationsLevel").hide();
 	$("#waitForNextLevel").hide();
 	$("#levelActions").hide();
+	$("#homeButton").hide();
+	$("#winImg").hide();
+	$("#loseImg").hide();
 	$("#leaveMessage").show();
 });
 

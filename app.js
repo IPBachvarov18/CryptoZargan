@@ -496,7 +496,7 @@ io.on("connection", function (socket) {
 			multiGameState[roomId].code
 		);
 
-		hasTriesMultiplayer = gameCountMultiplayer < 3;
+		hasTriesMultiplayer = gameCountMultiplayer <= 13;
 		if (hasTriesMultiplayer) {
 			gameCountMultiplayer++;
 			hasWonMultiplayer = exactPositionsMultiplayer == 4;

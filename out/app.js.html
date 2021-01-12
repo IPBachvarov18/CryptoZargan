@@ -44,6 +44,8 @@ require("dotenv").config();
 
 const httpApp = express(http);
 
+app.disable("x-powered-by");
+
 httpApp.listen(process.env.httpPort, () => {
 	console.log(`HTTP server started on port ${process.env.httpPort}`);
 });
@@ -86,6 +88,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("./public"));
 app.use(express.static("./out"));
+app.use(express.static("./docs"));
 
 app.get("/", function (req, res) {
 	res.sendFile(__dirname + "/public/index.html");
@@ -105,10 +108,6 @@ app.get("/team", function (req, res) {
 
 app.get("/contact", function (req, res) {
 	res.sendFile(__dirname + "/public/contact.html");
-});
-
-app.get("/project", function (req, res) {
-	res.sendFile(__dirname + "/public/aboutProject.html");
 });
 
 app.get(process.env.er1, function (req, res) {
@@ -153,11 +152,14 @@ app.post("/processContact", function (req, res) {
 
 let multiGameState = {
 	getRoomIdBySocketId(socketId) {
+		console.log(`Getting roomId for ${socketId}`);
+		console.log(this);
 		for (let key in this) {
 			if (
 				this[key].firstPlayerId == socketId ||
 				this[key].secondPlayerId == socketId
 			) {
+				console.log(`roomId for ${key}`);
 				return key;
 			}
 		}
@@ -165,24 +167,33 @@ let multiGameState = {
 		return null;
 	},
 
-	getUserIdByRole(role) {
-		for (let key in this) {
-			if (this[key].firstPlayerRole == role) {
-				return this[key].firstPlayerId;
-			}
+	getUserIdByRole(role, roomId) {
+		console.log(`getUserIdByRole: ${role}`);
 
-			if (this[key].secondPlayerRole == role) {
-				return this[key].secondPlayerId;
-			}
+		// console.log(
+		// 	`getUserIdByRole[${roomId}].firstPlayerRole ${this[roomId].firstPlayerRole}`
+		// );
+		if (this[roomId].firstPlayerRole == role) {
+			console.log(`Returning ${this[roomId].firstPlayerId}`);
+			return this[roomId].firstPlayerId;
+		}
+
+		// console.log(
+		// 	`getUserIdByRole[${roomId}].secondPlayerRole ${this[roomId].secondPlayerRole}`
+		// );
+		if (this[roomId].secondPlayerRole == role) {
+			console.log(`Returning ${this[roomId].secondPlayerId}`);
+			return this[roomId].secondPlayerId;
 		}
 
 		return null;
 	},
 
-	getUsersByRoles() {
+	getUsersByRoles(roomId) {
+		// console.log(`getUsersByRoles: ${roomId}`);
 		return {
-			britishPlayerId: multiGameState.getUserIdByRole(ROLES.BRITISH),
-			germanPlayerId: multiGameState.getUserIdByRole(ROLES.GERMAN),
+			britishPlayerId: this.getUserIdByRole(ROLES.BRITISH, roomId),
+			germanPlayerId: this.getUserIdByRole(ROLES.GERMAN, roomId),
 		};
 	},
 };
@@ -215,8 +226,16 @@ let GAME_PROGRESS = {
 	FINISH: 4,
 };
 
+let ERROR = {
+	NO_NAME_P1: 0,
+	NO_NAME_P2: 1,
+	INVALID_CODE_GERMAN: 2,
+	INVALID_CODE_BRITISH: 3,
+	FULL_ROOM: 4,
+};
+
 io.on("connection", function (socket) {
-	console.log("New Connection!");
+	console.log(`New Connection: ${socket.id}`);
 
 	socket.on("startSingleplayer", function (username, difficulty) {
 		console.log(username, difficulty);
@@ -300,11 +319,12 @@ io.on("connection", function (socket) {
 	});
 
 	socket.on("playerOneJoin", function (nickname, role) {
-		const roomId = uuid.v4();
+		const roomId = uuid.v4().substr(0, 8);
 		socket.join(roomId);
 
-		if (nickname == undefined || role == undefined) {
+		if (nickname == "" || role == "") {
 			console.log("User tried to join with no name or role");
+			io.to(socket.id).emit("error", ERROR.NO_NAME_P1);
 			return {};
 		}
 
@@ -319,48 +339,53 @@ io.on("connection", function (socket) {
 		};
 
 		console.log(
-			`${nickname} who is ${role} has joind in room with id ${roomId}`
+			`${nickname} who is ${role} has joined in room with id ${roomId}`
 		);
 		console.log(multiGameState);
 		socket.emit("generateId", roomId);
 	});
 
 	socket.on("playerTwoJoin", function (nickname, roomId) {
-		// TODO: check if room exist, Stoyane!
-		if (nickname == undefined) {
+		if (nickname == "") {
+			socket.emit("error", ERROR.NO_NAME_P2);
 			return {};
 		}
 		if (roomId != undefined) {
+			console.log(multiGameState[roomId]);
 			if (multiGameState.hasOwnProperty(roomId)) {
-				socket.join(roomId);
-				let size = Object.keys(multiGameState).length;
-				console.log(size);
+				let players = multiGameState.getUsersByRoles(roomId);
+				if (multiGameState[roomId].secondPlayer == null) {
+					socket.join(roomId);
+					if (
+						multiGameState[roomId].firstPlayer != undefined &amp;&amp;
+						multiGameState[roomId].firstPlayerRole != undefined
+					) {
+						multiGameState[roomId].secondPlayer = nickname;
+						if (
+							multiGameState[roomId].firstPlayerRole == "German"
+						) {
+							multiGameState[roomId].secondPlayerRole = "British";
+						} else {
+							multiGameState[roomId].secondPlayerRole = "German";
+						}
+						multiGameState[roomId].secondPlayerId = socket.id;
 
-				if (
-					multiGameState[roomId].firstPlayer != undefined &amp;&amp;
-					multiGameState[roomId].firstPlayerRole != undefined
-				) {
-					multiGameState[roomId].secondPlayer = nickname;
-					if (multiGameState[roomId].firstPlayerRole == "German") {
-						multiGameState[roomId].secondPlayerRole = "British";
-					} else {
-						multiGameState[roomId].secondPlayerRole = "German";
-					}
-					multiGameState[roomId].secondPlayerId = socket.id;
+						console.log(multiGameState);
 
-					console.log(multiGameState);
-
-					console.log(
-						`${nickname} who is ${multiGameState[roomId].secondPlayerRole} has joind in room with id ${roomId}`
-					);
-
-					socket.broadcast
-						.to(roomId)
-						.emit(
-							"playerJoined",
-							`${nickname} has joined`,
-							multiGameState[roomId]
+						console.log(
+							`${nickname} who is ${multiGameState[roomId].secondPlayerRole} has joind in room with id ${roomId}`
 						);
+
+						socket.broadcast
+							.to(roomId)
+							.emit(
+								"playerJoined",
+								`${nickname} has joined`,
+								multiGameState[roomId]
+							);
+					}
+				} else {
+					socket.emit("error", ERROR.FULL_ROOM);
 				}
 			} else {
 				console.log(`!Room with ID of ${roomId} doesn't exist!`);
@@ -371,15 +396,23 @@ io.on("connection", function (socket) {
 	socket.on("startGame", function () {
 		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
+		console.log(`startGame: ${roomId}`);
 		if (roomId == null) {
+			console.log(`gameId is null!`);
 			return {};
 		}
 		// !Check if id is null
-		let players = multiGameState.getUsersByRoles();
+		let players = multiGameState.getUsersByRoles(roomId);
+		console.log(`Dumping players object`);
+		console.log(players);
 
 		multiGameState[roomId].progress = GAME_PROGRESS.STARTED;
+		console.log(`Dumping multiGameState object`);
+		console.log(multiGameState);
 
+		console.log(`Emitting gameStatusGerman to ${players.germanPlayerId}`);
 		io.to(players.germanPlayerId).emit(`gameStatusGerman`);
+		console.log(`Emitting gameStatusBritish to ${players.britishPlayerId}`);
 		io.to(players.britishPlayerId).emit(`gameStatusBritish`);
 	});
 
@@ -390,7 +423,7 @@ io.on("connection", function (socket) {
 			return {};
 		}
 		// !Check if id is null
-		let players = multiGameState.getUsersByRoles();
+		let players = multiGameState.getUsersByRoles(roomId);
 
 		multiGameState[roomId].progress = GAME_PROGRESS.LEVEL_1;
 
@@ -427,7 +460,7 @@ io.on("connection", function (socket) {
 		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
 
-		let players = multiGameState.getUsersByRoles();
+		let players = multiGameState.getUsersByRoles(roomId);
 
 		if (roomId == null) {
 			return {};
@@ -436,46 +469,40 @@ io.on("connection", function (socket) {
 		if (socket.id == players.britishPlayerId) {
 			return {};
 		}
-		cntCodeSetup++;
-		if (cntCodeSetup > 2) {
-			console.log("Game terminated due to cheater in the game");
-			socket.emit(
-				"cheaterDetected",
-				"Game terminated due to cheater in the game"
-			);
-			return {};
-		}
-		// this.counter++;
-		// console.log(`Codes entered: ${this.counter}`);
-		// if (this.counter > 2) {
-		//     console.log("MAZEN CHEATER");
-		//     return {};
-		// }
 
 		console.log(multiGameState[roomId].progress);
 
-		if (game.checkInput(code)) {
-			if (multiGameState[roomId].progress + 1 == 2) {
+		if (multiGameState[roomId].progress + 1 == 2) {
+			if (game.checkInput(code)) {
 				multiGameState[roomId].code = code;
-				socket.emit("codeGenerated", "Qsha si", code);
-			} else if (multiGameState[roomId].progress == 3) {
+				socket.emit("codeGenerated");
+			} else {
+				socket.emit("error", ERROR.INVALID_CODE_GERMAN);
+			}
+		} else if (multiGameState[roomId].progress == 3) {
+			if (game.checkInputTaskTwo(code)) {
 				multiGameState[roomId].code = code;
 				io.to(players.britishPlayerId).emit(`nextLevelBritish`);
+				io.to(players.germanPlayerId).emit(
+					`levelTwoCode`,
+					multiGameState[roomId].code
+				);
+			} else {
+				io.to(players.germanPlayerId).emit(
+					"error",
+					ERROR.INVALID_CODE_GERMAN
+				);
 			}
-		} else {
-			socket.emit("incorrectInput", "Kaval");
 		}
 	});
 
 	socket.on("inputCode", function (britishCode) {
-		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
 		if (roomId == null) {
 			return {};
 		}
 
-		// !Check if id is null
-		let players = multiGameState.getUsersByRoles();
+		let players = multiGameState.getUsersByRoles(roomId);
 
 		if (socket.id != players.britishPlayerId) {
 			return {};
@@ -483,6 +510,7 @@ io.on("connection", function (socket) {
 
 		if (!britishCode || britishCode.length != 4) {
 			console.log(`Invalid request: !${britishCode}!`);
+			socket.emit("error", ERROR.INVALID_CODE_BRITISH);
 			return {};
 		}
 
@@ -496,7 +524,7 @@ io.on("connection", function (socket) {
 			multiGameState[roomId].code
 		);
 
-		hasTriesMultiplayer = gameCountMultiplayer &lt; 13;
+		hasTriesMultiplayer = gameCountMultiplayer &lt;= 13;
 		if (hasTriesMultiplayer) {
 			gameCountMultiplayer++;
 			hasWonMultiplayer = exactPositionsMultiplayer == 4;
@@ -529,6 +557,14 @@ io.on("connection", function (socket) {
 			multiGameState[roomId].progress
 		);
 	});
+
+	socket.on("disconnect", function () {
+		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
+		delete multiGameState[roomId];
+		console.log(multiGameState);
+
+		io.to(roomId).emit("gameCrash");
+	});
 });
 </code></pre>
         </article>
@@ -546,7 +582,7 @@ io.on("connection", function (socket) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Jan 09 2021 17:25:46 GMT+0200 (Eastern European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Jan 12 2021 22:48:58 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
