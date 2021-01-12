@@ -44,8 +44,8 @@ function calculatesGuessedDigits(inputDigits, digits) {
 		}
 	}
 
-	for (let i = 0; i < inputDigits.length; i++) {
-		if (digits.indexOf(inputDigits[i]) != -1) {
+	for (let i = 0; i < digits.length; i++) {
+		if (inputDigits.indexOf(digits[i]) != -1 && inputDigits[i]!=digits[i]) {
 			guessed++;
 		}
 	}
