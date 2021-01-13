@@ -287,6 +287,11 @@ socket.on("error", function (errorCode) {
 			$("#errorMessage").text("The Game Has Started");
 			$("#joinGameForm").show();
 			$("#waitForStart").hide();
+		case 5:
+			$("#errorMessage").show();
+			$("#errorMessage").text("Invalid ID");
+			$("#joinGameForm").show();
+			$("#waitForStart").hide();
 	}
 });
 

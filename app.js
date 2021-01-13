@@ -142,12 +142,10 @@ let multiGameState = {
 	getUserIdByRole(role, roomId) {
 		console.log(`getUserIdByRole: ${role}`);
 
-
 		if (this[roomId].firstPlayerRole == role) {
 			console.log(`Returning ${this[roomId].firstPlayerId}`);
 			return this[roomId].firstPlayerId;
 		}
-
 
 		if (this[roomId].secondPlayerRole == role) {
 			console.log(`Returning ${this[roomId].secondPlayerId}`);
@@ -158,7 +156,6 @@ let multiGameState = {
 	},
 
 	getUsersByRoles(roomId) {
-		
 		return {
 			britishPlayerId: this.getUserIdByRole(ROLES.BRITISH, roomId),
 			germanPlayerId: this.getUserIdByRole(ROLES.GERMAN, roomId),
@@ -200,6 +197,7 @@ let ERROR = {
 	INVALID_CODE_GERMAN: 2,
 	INVALID_CODE_BRITISH: 3,
 	FULL_ROOM: 4,
+	INVALID_ID: 5,
 };
 
 io.on("connection", function (socket) {
@@ -356,6 +354,7 @@ io.on("connection", function (socket) {
 					socket.emit("error", ERROR.FULL_ROOM);
 				}
 			} else {
+				socket.emit("error", ERROR.INVALID_ID);
 				console.log(`!Room with ID of ${roomId} doesn't exist!`);
 			}
 		}
