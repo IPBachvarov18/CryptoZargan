@@ -583,7 +583,7 @@ var textTranslation = {
 	
 
 	
-	"contactUsernamePlaceholder": {
+	"contactUsernamePlaceholderSing": {
 		en: `	<input
 		type="text"
 		name="username"
