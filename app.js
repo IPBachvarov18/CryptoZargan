@@ -142,17 +142,13 @@ let multiGameState = {
 	getUserIdByRole(role, roomId) {
 		console.log(`getUserIdByRole: ${role}`);
 
-		// console.log(
-		// 	`getUserIdByRole[${roomId}].firstPlayerRole ${this[roomId].firstPlayerRole}`
-		// );
+
 		if (this[roomId].firstPlayerRole == role) {
 			console.log(`Returning ${this[roomId].firstPlayerId}`);
 			return this[roomId].firstPlayerId;
 		}
 
-		// console.log(
-		// 	`getUserIdByRole[${roomId}].secondPlayerRole ${this[roomId].secondPlayerRole}`
-		// );
+
 		if (this[roomId].secondPlayerRole == role) {
 			console.log(`Returning ${this[roomId].secondPlayerId}`);
 			return this[roomId].secondPlayerId;
@@ -162,7 +158,7 @@ let multiGameState = {
 	},
 
 	getUsersByRoles(roomId) {
-		// console.log(`getUsersByRoles: ${roomId}`);
+		
 		return {
 			britishPlayerId: this.getUserIdByRole(ROLES.BRITISH, roomId),
 			germanPlayerId: this.getUserIdByRole(ROLES.GERMAN, roomId),
