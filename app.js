@@ -361,14 +361,13 @@ io.on("connection", function (socket) {
 	});
 
 	socket.on("startGame", function () {
-		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
 		console.log(`startGame: ${roomId}`);
 		if (roomId == null) {
 			console.log(`gameId is null!`);
 			return {};
 		}
-		// !Check if id is null
+
 		let players = multiGameState.getUsersByRoles(roomId);
 		console.log(`Dumping players object`);
 		console.log(players);
@@ -384,12 +383,11 @@ io.on("connection", function (socket) {
 	});
 
 	socket.on("gameStarted", function () {
-		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
 		if (roomId == null) {
 			return {};
 		}
-		// !Check if id is null
+
 		let players = multiGameState.getUsersByRoles(roomId);
 
 		multiGameState[roomId].progress = GAME_PROGRESS.LEVEL_1;
@@ -404,7 +402,6 @@ io.on("connection", function (socket) {
 	let gameCountMultiplayer = 1;
 	let hasWonMultiplayer = false;
 	let hasTriesMultiplayer = true;
-	let code2;
 	let guessedDigitsMultiplayer;
 	let exactPositionsMultiplayer;
 
@@ -421,10 +418,7 @@ io.on("connection", function (socket) {
 		console.log(multiGameState[roomId].code);
 	});
 
-	let cntCodeSetup = 0;
-
 	socket.on("setupCode", function (code) {
-		// !Check if id is null
 		let roomId = multiGameState.getRoomIdBySocketId(socket.id);
 
 		let players = multiGameState.getUsersByRoles(roomId);
