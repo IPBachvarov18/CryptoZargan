@@ -23,6 +23,11 @@ We have implemented the Bletchley game with HTML / CSS / JS. Our project consist
 -   [x] Multiplayer mode
 -   [x] Bulgarian and English localisation
 
+## Documentation and presentation
+
+- [Presentation](https://codingburgas.sharepoint.com/:p:/s/2018-TeamCryptoZargan/Efc3eaGtsNpChyVfUh6oKyQB4Pt3P_-_LlC7auQdkQvotw?e=uMszYZ)
+- [Documentation](https://codingburgas.sharepoint.com/:w:/s/2018-TeamCryptoZargan/EQMQyv_Uw71FprXKo335sP4BMzeDGbMo90Jm-DofDUViMw?e=fCGZ47)
+- [QA](https://codingburgas-my.sharepoint.com/:f:/g/personal/ipbachvarov18_codingburgas_bg/EvT1oDBiABJLqxDSOYGJQTkBpGVIXyZzqg34RPERicJSNQ?e=mbpwNr)
 ---
 
 ## How to run the project on your machine
